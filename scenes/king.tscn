@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/king_controller.gd" type="Script" id=1]
-[ext_resource path="res://graphics/king/idle.png" type="Texture" id=2]
+[ext_resource path="res://graphics/king/pose.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -27,6 +27,7 @@ tracks/0/keys = {
 
 [node name="king" type="KinematicBody2D"]
 
+transform/pos = Vector2( 45.0949, 200.422 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 2.92768 )
