@@ -110,7 +110,7 @@ func can_deal_damage():
 
 #Attack animation when collides with player
 func _on_atq_area_enter( area ):
-	if (area.get_parent().get_name() != "king"):
+	if (area.get_parent().get_name() == "king"):
 		change_anim("attack", 3)
 		#Use this to block the enemy during this animation:
 		walking = false
