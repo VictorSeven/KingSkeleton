@@ -87,16 +87,17 @@ func move_input(delta):
 	#Init jump
 	if (Input.is_action_pressed("ui_up")):
 		input_y = true
-		change_anim("float")
 		#If we have not started a jump, then start one
 		if (target_height == -1):
 			#start_height = get_pos().y #Current height
 			target_height = start_height - jump_height #Get where I want to jump
 		#Once we have the target height, stop it
 		elif (get_pos().y < target_height):
+			change_anim("idle")
 			vel.y = 0 
 		#If we still did not reach it -continue up
 		else:
+			change_anim("float")
 			vel.y = -max_speed.y #Up with constant speed
 	#Drop the button, then go down
 	else:
@@ -143,7 +144,7 @@ func change_anim(newanim):
 
 func _on_hitbox_body_enter( body ):
 	#If we detect a collision with the sword,
-	if (body.get_name() == "sword"):
+	if (body.is_in_group("sword")):
 		#Don't count the collision reported by creation of sword,
 		if (!sword_destroy): 
 			sword_destroy = true
@@ -158,7 +159,7 @@ func _on_hitbox_area_enter( area ):
 	var parent
 	parent = area.get_parent() 
 	#If we detect a collision with the sword (which is itself an area),
-	if (area.get_name() == "sword"):
+	if (area.is_in_group("sword")):
 		#Don't count the collision reported by creation of sword,
 		if (!sword_destroy): 
 			sword_destroy = true
