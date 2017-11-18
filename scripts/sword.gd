@@ -13,6 +13,7 @@ var elapsed_time = 0.0 #Counter
 var atq = 10 #Damage dealed by sword
 
 func _ready():
+	add_to_group("sword")
 	set_fixed_process(true)
 
 func get_atq():
