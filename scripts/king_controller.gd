@@ -3,10 +3,12 @@ extends KinematicBody2D
 #King controller: this function controls the King Skeleton
 #The character can move around/fly using the arrows
 
-var acel = Vector2(0.5, 0.8) #Acceleration
+var gravity = Vector2(0, 500)
+var acel = Vector2(20, 0.8) #Acceleration
 var vel = Vector2(0.0, 0.0) #Speed
-var max_speed = Vector2(1.8, 1.3) #Maximum allowed speed
-var brake = 0.1 #Allows smooth brake
+var max_speed = Vector2(200, 100) #Maximum allowed speed
+var speedY = 100
+var brake = 2 #Allows smooth brake
 var brakelim = brake*1.01 #Delete residual speed of brake
 var right = true #Direction we are looking at
 var input_x = false #We are not making any input in x
@@ -15,6 +17,7 @@ var jump_height = 100 #Height you can jump
 var target_height = -1.0 #Where do I have to jump? 
 var start_height #Height where jump started
 var input_y = false  #We are not making any input in y
+var on_air_time = 0 #Time spent in the air since the last time floor was touched
 
 var atq1 = true #Controls which animation I use
 var is_throwing = false #true when we are throwing the sword
@@ -27,6 +30,11 @@ var stun = 3.0
 var elapsed_time = 0.0
 var is_damaged = false
 
+#var anchorY = 100;
+#var frequency = 0.1;
+#var amplitude = 2;
+#var timer = 0;
+
 func _ready():
 	start_height = get_pos().y #Initial start height
 	set_fixed_process(true) #Start the fixed process
@@ -34,17 +42,33 @@ func _ready():
 #Proceso fijo
 func _fixed_process(delta):
 	elapsed_time += delta
+	
 	#If the sword is not in the air, process King's input
 	if (not is_throwing and not is_damaged):
 		move_input(delta)
+		
+		# Integrate velocity into motion and move
+		var motion = vel * delta
+	
 		if (is_colliding()):
+			# You can check which tile was collision against with this
+			# print(get_collider_metadata())
+		
 			var n = get_collision_normal()
 			#In case we are colliding with ground, get start height
 			if (n == Vector2(0.0, -1.0)):
 				start_height = get_pos().y
-			vel = n.slide(vel)
+				on_air_time = 0
 			
-		move(vel)
+			if(on_air_time == 0):
+				vel.y = 0.0
+			else:
+				motion = n.slide(motion)
+				vel = n.slide(vel)
+		
+		#set_pos(Vector2(get_pos().x, get_pos().y + sin(timer * frequency) * amplitude));
+		#timer += 1;
+		move(motion)
 	elif (is_damaged):
 		elapsed_time += delta #Start counter
 		move(Vector2(-max_speed.x/5.0, 0.0))
@@ -53,6 +77,8 @@ func _fixed_process(delta):
 			change_anim("idle") #Idle animation
 	else:
 		pass 
+	
+	on_air_time += delta
 
 
 
@@ -98,11 +124,11 @@ func move_input(delta):
 		#If we still did not reach it -continue up
 		else:
 			change_anim("float")
-			vel.y = -max_speed.y #Up with constant speed
+			vel.y = -speedY #Up with constant speed
 	#Drop the button, then go down
 	else:
 		input_y = false
-		vel.y += acel.y #Simulate gravity
+		vel += gravity*delta #Simulate gravity
 		#Maximum speed of fall
 		if (vel.y > max_speed.y):
 			vel.y = max_speed.y

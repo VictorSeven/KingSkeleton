@@ -1,60 +1,76 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=1]
-[ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=2]
-[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=4]
-
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends TileMap
-
-# class member variables go here, for example:
-# var a = 2
-# var b = \"textvar\"
-
-func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
-
-func _process(delta):
-	var current_pos = get_node().get_pos()
-	var new_pos = Vector2(current_pos.x - 10, current_pos.y)
-	set_pos(new_pos)
-	pass"
+[ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://graphics/tiles/puebloDestruidoBueno.png" type="Texture" id=3]
+[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=4]
+[ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=5]
+[ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=9]
+[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=10]
+[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=11]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-transform/pos = Vector2( 246.893, 182.649 )
-transform/scale = Vector2( 2, 2 )
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = false
+
+[node name="ParallaxLayer _bg" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 0.4, 0.5 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="background" type="Sprite" parent="ParallaxBackground/ParallaxLayer _bg"]
+
+transform/pos = Vector2( 28.6687, -135.992 )
 texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 10000, 4000 )
 
-[node name="Houses" type="TileMap" parent="."]
+[node name="ParallaxLayer_clouds" type="ParallaxLayer" parent="ParallaxBackground"]
 
-transform/pos = Vector2( 0, -96 )
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 32, 32 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 6226038, 37, 6226054, 38 )
+transform/pos = Vector2( 22.1606, 23.2687 )
+motion/scale = Vector2( 0.5, 0.5 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Cloud1" parent="ParallaxBackground/ParallaxLayer_clouds" instance=ExtResource( 2 )]
+
+nube_frame = 1
+
+[node name="Cloud2" parent="ParallaxBackground/ParallaxLayer_clouds" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 28.809, 87.5343 )
+
+[node name="House1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 530.354, 314.269 )
+texture = ExtResource( 3 )
+region = true
+region_rect = Rect2( 346, 192, 75, 62 )
+
+[node name="Valla1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 962.299, 265.359 )
+texture = ExtResource( 4 )
 
 [node name="Floor" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 5 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -67,31 +83,13 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 327682, 48, 327683, 48, 327684, 48, 327685, 48, 327686, 48, 327687, 48, 327688, 48, 327689, 51, 393218, 49, 393219, 49, 393220, 49, 393221, 49, 393222, 49, 393223, 49, 393224, 49, 393225, 52, 458754, 49, 458755, 49, 458756, 49, 458757, 49, 458758, 49, 458759, 49, 458760, 49, 458761, 52, 524290, 50, 524291, 50, 524292, 50, 524293, 50, 524294, 50, 524295, 50, 524296, 50, 524297, 53 )
-
-[node name="Deco" type="TileMap" parent="."]
-
-transform/pos = Vector2( 0, -96 )
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 32, 32 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 1638376, 41, 2162664, 42, 2228223, 39, 2686952, 43, 2752511, 40, 3342371, 47 )
+tile_data = IntArray( 65530, 31, 65531, 31, 65532, 31, 65533, 34, 131066, 32, 131067, 32, 131068, 32, 131069, 35, 196602, 32, 196603, 32, 196604, 32, 196605, 35, 262138, 32, 262139, 32, 262140, 32, 262141, 35, 327674, 32, 327675, 32, 327676, 32, 327677, 35, 393210, 32, 393211, 32, 393212, 32, 327682, 48, 327683, 48, 327684, 48, 327686, 48, 327687, 48, 327688, 48, 327689, 51, 458746, 33, 458747, 33, 458748, 33, 393218, 49, 393219, 49, 393220, 49, 393222, 49, 393223, 49, 393224, 49, 393225, 52, 458754, 49, 458755, 49, 458756, 49, 458758, 49, 458759, 49, 458760, 49, 458761, 52, 524290, 50, 524291, 50, 524292, 50, 524294, 50, 524295, 50, 524296, 50, 524297, 53 )
 
 [node name="Platform" type="TileMap" parent="."]
 
+transform/pos = Vector2( 1, 1 )
 mode = 0
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 5 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -104,48 +102,29 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 327676, 28, 327677, 31, 327678, 31, 327679, 31, 262144, 31, 262145, 31, 262146, 34, 393212, 29, 393213, 32, 393214, 32, 393215, 32, 327680, 32, 327681, 32, 327682, 35, 458748, 29, 458749, 32, 458750, 32, 458751, 32, 393216, 32, 393217, 32, 393218, 35, 524284, 29, 524285, 32, 524286, 32, 524287, 32, 458752, 32, 458753, 32, 458754, 35, 589820, 30, 589821, 33, 589822, 33, 589823, 33, 524288, 33, 524289, 33, 524290, 36, 1703974, 0 )
+tile_data = IntArray( 196612, 28, 196613, 31, 196614, 34, 327676, 28, 327677, 31, 327678, 31, 327679, 31, 262144, 31, 262145, 31, 262146, 34, 262148, 29, 262149, 32, 262150, 35, 262155, 44, 262156, 48, 262157, 48, 262158, 48, 262159, 48, 262160, 48, 262161, 48, 262162, 48, 262163, 48, 262164, 48, 262165, 48, 262166, 48, 262167, 51, 393212, 29, 393213, 32, 393214, 32, 393215, 32, 327680, 32, 327681, 32, 327682, 35, 327684, 29, 327685, 32, 327686, 35, 327691, 45, 327692, 49, 327693, 49, 327694, 49, 327695, 49, 327696, 49, 327697, 49, 327698, 49, 327699, 49, 327700, 49, 327701, 49, 327702, 49, 327703, 52, 458748, 29, 458749, 32, 458750, 32, 458751, 32, 393216, 32, 393217, 32, 393218, 35, 393220, 29, 393221, 32, 393222, 35, 393227, 45, 393228, 49, 393229, 49, 393230, 49, 393231, 49, 393232, 49, 393233, 49, 393234, 49, 393235, 49, 393236, 49, 393237, 49, 393238, 49, 393239, 52, 524284, 29, 524285, 32, 524286, 32, 524287, 32, 458752, 32, 458753, 32, 458754, 35, 458756, 29, 458757, 32, 458758, 35, 458763, 45, 458764, 49, 458765, 49, 458766, 49, 458767, 49, 458768, 49, 458769, 49, 458770, 49, 458771, 49, 458772, 49, 458773, 49, 458774, 49, 458775, 52, 589820, 30, 589821, 33, 589822, 33, 589823, 33, 524288, 33, 524289, 33, 524290, 36, 524292, 30, 524293, 33, 524294, 36, 524299, 46, 524300, 50, 524301, 50, 524302, 50, 524303, 50, 524304, 50, 524305, 50, 524306, 50, 524307, 50, 524308, 50, 524309, 50, 524310, 50, 524311, 53 )
 
-[node name="Empty" type="TileMap" parent="."]
+[node name="Tree1" parent="." instance=ExtResource( 6 )]
 
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 1703974, 0 )
+transform/pos = Vector2( -121.884, 192.798 )
 
-[node name="Clouds" type="TileMap" parent="."]
+[node name="Tree2" parent="." instance=ExtResource( 6 )]
 
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( -2, 71, -1, 73, 65533, 70, 65534, 72, 65535, 74, 0, 75, 6, 64, 7, 66, 65541, 63, 65542, 65, 65543, 67, 65544, 68, 65545, 69, 196619, 71, 196620, 73, 262154, 70, 262155, 72, 262156, 74, 262157, 75, 1703974, 0 )
-script/script = SubResource( 1 )
+transform/pos = Vector2( 13.2963, 192.798 )
+tree_frame = 1
 
-[node name="king" parent="." instance=ExtResource( 3 )]
+[node name="Ruins" parent="." instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 112, 112 )
+transform/pos = Vector2( 904.155, 257.064 )
+ruin_frame = 1
+
+[node name="Ruins1" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 1335.18, 260.388 )
+
+[node name="king" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 85.9358, 238.248 )
 
 [node name="camera" type="Camera2D" parent="king"]
 
@@ -153,7 +132,7 @@ anchor_mode = 1
 rotating = false
 current = true
 zoom = Vector2( 0.5, 0.5 )
-limit/left = -64
+limit/left = -256
 limit/top = -10000000
 limit/right = 10000000
 limit/bottom = 10000000
@@ -166,8 +145,18 @@ drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
 
-[node name="genoma" parent="." instance=ExtResource( 4 )]
+[node name="genoma" parent="." instance=ExtResource( 9 )]
 
-transform/pos = Vector2( 441.182, 335.56 )
+transform/pos = Vector2( 1179.13, 280.158 )
+
+[node name="Corpses" type="Sprite" parent="."]
+
+transform/pos = Vector2( 466.964, 357.308 )
+texture = ExtResource( 10 )
+
+[node name="Cart1" parent="." instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 1015.9, 266.838 )
+cart_frame = 2
 
 

@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://graphics/deco/carros.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Sprite
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+export var cart_frame = 0
+var max_frame = 3
+
+var cart_width = 128
+var cart_height = 64
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	set_region_rect(Rect2(0, (cart_frame % max_frame) * cart_height, cart_width, cart_height));
+	pass
+"
+
+[node name="Sprite" type="Sprite"]
+
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 128, 64 )
+script/script = SubResource( 1 )
+cart_frame = 0
+
+
