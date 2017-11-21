@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/boss_area.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 206.749, 103.493 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 37.2344, 28.4862 )
+
+[node name="boss_area" type="Node2D"]
+
+editor/display_folded = true
+script/script = ExtResource( 1 )
+final_zoom = 0.75
+zoom_speed = 0.05
+offset = Vector2( 200, 20 )
+
+[node name="radar" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="col" type="CollisionShape2D" parent="radar"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="boss_start" type="Area2D" parent="."]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss_start"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="area_enter" from="radar" to="." method="_on_radar_area_enter"]
+
+[connection signal="area_enter" from="boss_start" to="." method="_on_boss_start_area_enter"]
+
+
