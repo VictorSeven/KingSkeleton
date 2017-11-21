@@ -1,28 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=1]
 [ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/king.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=4]
-
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends TileMap
-
-# class member variables go here, for example:
-# var a = 2
-# var b = \"textvar\"
-
-func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
-
-func _process(delta):
-	var current_pos = get_node().get_pos()
-	var new_pos = Vector2(current_pos.x - 10, current_pos.y)
-	set_pos(new_pos)
-	pass"
+[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -31,25 +12,6 @@ func _process(delta):
 transform/pos = Vector2( 246.893, 182.649 )
 transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
-
-[node name="Houses" type="TileMap" parent="."]
-
-transform/pos = Vector2( 0, -96 )
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 32, 32 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 6226038, 37, 6226054, 38 )
 
 [node name="Floor" type="TileMap" parent="."]
 
@@ -68,25 +30,9 @@ collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 327682, 48, 327683, 48, 327684, 48, 327685, 48, 327686, 48, 327687, 48, 327688, 48, 327689, 51, 393218, 49, 393219, 49, 393220, 49, 393221, 49, 393222, 49, 393223, 49, 393224, 49, 393225, 52, 458754, 49, 458755, 49, 458756, 49, 458757, 49, 458758, 49, 458759, 49, 458760, 49, 458761, 52, 524290, 50, 524291, 50, 524292, 50, 524293, 50, 524294, 50, 524295, 50, 524296, 50, 524297, 53 )
-
-[node name="Deco" type="TileMap" parent="."]
-
-transform/pos = Vector2( 0, -96 )
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 32, 32 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 1638376, 41, 2162664, 42, 2228223, 39, 2686952, 43, 2752511, 40, 3342371, 47 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Platform" type="TileMap" parent="."]
 
@@ -105,43 +51,9 @@ collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 327676, 28, 327677, 31, 327678, 31, 327679, 31, 262144, 31, 262145, 31, 262146, 34, 393212, 29, 393213, 32, 393214, 32, 393215, 32, 327680, 32, 327681, 32, 327682, 35, 458748, 29, 458749, 32, 458750, 32, 458751, 32, 393216, 32, 393217, 32, 393218, 35, 524284, 29, 524285, 32, 524286, 32, 524287, 32, 458752, 32, 458753, 32, 458754, 35, 589820, 30, 589821, 33, 589822, 33, 589823, 33, 524288, 33, 524289, 33, 524290, 36, 1703974, 0 )
-
-[node name="Empty" type="TileMap" parent="."]
-
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 1703974, 0 )
-
-[node name="Clouds" type="TileMap" parent="."]
-
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( -2, 71, -1, 73, 65533, 70, 65534, 72, 65535, 74, 0, 75, 6, 64, 7, 66, 65541, 63, 65542, 65, 65543, 67, 65544, 68, 65545, 69, 196619, 71, 196620, 73, 262154, 70, 262155, 72, 262156, 74, 262157, 75, 1703974, 0 )
-script/script = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="king" parent="." instance=ExtResource( 3 )]
 
@@ -166,8 +78,8 @@ drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
 
-[node name="genoma" parent="." instance=ExtResource( 4 )]
+[node name="bat" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 441.182, 335.56 )
+transform/pos = Vector2( 560.288, 287.418 )
 
 

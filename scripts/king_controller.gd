@@ -28,6 +28,8 @@ var elapsed_time = 0.0
 var is_damaged = false
 
 func _ready():
+	print(get_collision_mask())
+	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
 	set_fixed_process(true) #Start the fixed process
 
@@ -155,9 +157,6 @@ func _on_hitbox_body_enter( body ):
 
 
 func _on_hitbox_area_enter( area ):
-	#Hitboxes are childrens, so take parent
-	var parent
-	parent = area.get_parent() 
 	#If we detect a collision with the sword (which is itself an area),
 	if (area.is_in_group("sword")):
 		#Don't count the collision reported by creation of sword,
@@ -167,7 +166,7 @@ func _on_hitbox_area_enter( area ):
 			area.queue_free() #Delete the sword
 			is_throwing = false #Stop throwing
 			change_anim("idle") #Idle anim
-	elif (parent.is_in_group("enemy") and not is_damaged): #Attacked by enemy
+	elif (area.is_in_group("enemy") and not is_damaged): #Attacked by enemy
 		#Do damage to the King depending on enemy atq
-		if (parent.can_deal_damage()):
-			damage(parent.get_atq()) 
+		if (area.get_parent().can_deal_damage()):
+			damage(area.get_parent().get_atq()) 

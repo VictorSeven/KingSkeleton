@@ -25,7 +25,8 @@ var life = 30
 var kill = false
 
 func _ready():
-	add_to_group("enemy")
+	get_node("hitbox").add_to_group("hitbox")
+	get_node("atq").add_to_group("enemy")
 	king = get_tree().get_root().get_node("Node2D/king")
 	# Load all textures:
 	for name in nombres:
@@ -110,7 +111,7 @@ func can_deal_damage():
 
 #Attack animation when collides with player
 func _on_atq_area_enter( area ):
-	if (area.get_parent().get_name() == "king"):
+	if (area.is_in_group("king")):
 		change_anim("attack", 3)
 		#Use this to block the enemy during this animation:
 		walking = false

@@ -70,5 +70,8 @@ func move_input():
 
 #Damage enemies
 func _on_sword_area_enter( area ):
-	if (area.get_parent().is_in_group("enemy")):
-		area.get_parent().damage(atq)
+	if (area.is_in_group("hitbox")):
+		if (area.get_parent().has_method("damage")):
+			area.get_parent().damage(atq)
+		else:
+			area.damage(atq)
