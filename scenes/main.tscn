@@ -11,9 +11,9 @@
 [ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/king.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=12]
-[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=13]
-[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=14]
+[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=12]
+[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=14]
 
 [node name="Node2D" type="Node2D"]
 
@@ -32,6 +32,7 @@ scroll/ignore_camera_zoom = false
 
 [node name="ParallaxLayer _bg" type="ParallaxLayer" parent="ParallaxBackground"]
 
+editor/display_folded = true
 motion/scale = Vector2( 0.4, 0.5 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 0, 0 )
@@ -45,6 +46,7 @@ region_rect = Rect2( 0, 0, 10000, 4000 )
 
 [node name="ParallaxLayer_clouds" type="ParallaxLayer" parent="ParallaxBackground"]
 
+editor/display_folded = true
 transform/pos = Vector2( 22.1606, 23.2687 )
 motion/scale = Vector2( 0.5, 0.5 )
 motion/offset = Vector2( 0, 0 )
@@ -60,6 +62,7 @@ transform/pos = Vector2( 28.809, 87.5343 )
 
 [node name="ParallaxLayer_castle" type="ParallaxLayer" parent="ParallaxBackground"]
 
+editor/display_folded = true
 transform/pos = Vector2( 22.1606, 23.2687 )
 motion/scale = Vector2( 0.51, 0.5 )
 motion/offset = Vector2( 0, 0 )
@@ -215,18 +218,18 @@ drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
 
-[node name="genoma" parent="." instance=ExtResource( 12 )]
-
-transform/pos = Vector2( 1179.13, 280.158 )
-
 [node name="Corpses" type="Sprite" parent="."]
 
 transform/pos = Vector2( 466.964, 357.308 )
-texture = ExtResource( 13 )
+texture = ExtResource( 12 )
 
-[node name="Cart1" parent="." instance=ExtResource( 14 )]
+[node name="Cart1" parent="." instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 1030.53, 276.104 )
 cart_frame = 2
+
+[node name="bat" parent="." instance=ExtResource( 14 )]
+
+transform/pos = Vector2( 1175.68, 203.919 )
 
 

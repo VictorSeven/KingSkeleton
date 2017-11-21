@@ -3,7 +3,7 @@ extends Area2D
 var king_pos #King's pos
 var k = 20 #Elastic constant of oscillator 
 var input_force = 600.0 #Force by user
-var initial_vel = 1000.0 #Initial velocity
+var initial_vel = 700.0 #Initial velocity
 var vel 
 
 var cycle = 0 #Cycle of sword movement
@@ -71,7 +71,4 @@ func move_input():
 #Damage enemies
 func _on_sword_area_enter( area ):
 	if (area.is_in_group("hitbox")):
-		if (area.get_parent().has_method("damage")):
-			area.get_parent().damage(atq)
-		else:
-			area.damage(atq)
+		area.get_parent().damage(atq)

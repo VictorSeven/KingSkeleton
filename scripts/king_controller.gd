@@ -6,9 +6,9 @@ extends KinematicBody2D
 var gravity = Vector2(0, 500)
 var acel = Vector2(20, 0.8) #Acceleration
 var vel = Vector2(0.0, 0.0) #Speed
-var max_speed = Vector2(200, 100) #Maximum allowed speed
+var max_speed = Vector2(150, 100) #Maximum allowed speed
 var speedY = 100
-var brake = 2 #Allows smooth brake
+var brake = 5.0 #Allows smooth brake
 var brakelim = brake*1.01 #Delete residual speed of brake
 var right = true #Direction we are looking at
 var input_x = false #We are not making any input in x
@@ -60,13 +60,13 @@ func _fixed_process(delta):
 			#In case we are colliding with ground, get start height
 			if (n == Vector2(0.0, -1.0)):
 				start_height = get_pos().y
-				on_air_time = 0
-			
-			if(on_air_time == 0):
 				vel.y = 0.0
-			else:
-				motion = n.slide(motion)
-				vel = n.slide(vel)
+				#on_air_time = 0
+			#if(on_air_time == 0):
+			#	pass#vel.y = 0.0
+			#else:
+			#	motion = n.slide(motion)
+			#	vel = n.slide(vel)
 		
 		#set_pos(Vector2(get_pos().x, get_pos().y + sin(timer * frequency) * amplitude));
 		#timer += 1;
@@ -80,7 +80,6 @@ func _fixed_process(delta):
 	else:
 		pass 
 	
-	on_air_time += delta
 
 
 
@@ -113,7 +112,7 @@ func move_input(delta):
 		vel.x = sign(vel.x) * max_speed.x
 	
 	#Init jump
-	if (Input.is_action_pressed("ui_up")):
+	if (Input.is_action_pressed("ui_up")): 
 		input_y = true
 		#If we have not started a jump, then start one
 		if (target_height == -1):
@@ -144,6 +143,7 @@ func move_input(delta):
 	
 	#Do attack is we are not throwing sword
 	if (Input.is_action_pressed("ui_accept") and !is_throwing):
+		vel.x = 0.0 #Stop king
 		var sword_world = sword.instance() #Instance new sword
 		sword_world.init_sword(get_pos(), not right) #Init it
 		add_child(sword_world) #Crate into world
