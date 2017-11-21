@@ -1,18 +1,19 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=1]
 [ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/tiles/puebloDestruidoBueno.png" type="Texture" id=3]
-[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=4]
-[ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=5]
-[ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=11]
-[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=12]
-[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=13]
+[ext_resource path="res://graphics/deco/castillo grande.png" type="Texture" id=3]
+[ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=4]
+[ext_resource path="res://graphics/deco/casa.png" type="Texture" id=5]
+[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=6]
+[ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=7]
+[ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=12]
+[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=13]
+[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=14]
 
 [node name="Node2D" type="Node2D"]
 
@@ -57,72 +58,102 @@ nube_frame = 1
 
 transform/pos = Vector2( 28.809, 87.5343 )
 
+[node name="ParallaxLayer_castle" type="ParallaxLayer" parent="ParallaxBackground"]
+
+transform/pos = Vector2( 22.1606, 23.2687 )
+motion/scale = Vector2( 0.51, 0.5 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Castillo" type="Sprite" parent="ParallaxBackground/ParallaxLayer_castle"]
+
+transform/pos = Vector2( 3831.73, -52.1422 )
+texture = ExtResource( 3 )
+
+[node name="Tree3" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 1854.59, 203.306 )
+tree_frame = 1
+
 [node name="House1" type="Sprite" parent="."]
 
-transform/pos = Vector2( 530.354, 314.269 )
-texture = ExtResource( 3 )
-region = true
+transform/pos = Vector2( 530.354, 315.269 )
+texture = ExtResource( 5 )
+region_rect = Rect2( 346, 192, 75, 62 )
+
+[node name="House2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 1916.66, 245.542 )
+texture = ExtResource( 5 )
 region_rect = Rect2( 346, 192, 75, 62 )
 
 [node name="Valla1" type="Sprite" parent="."]
 
 transform/pos = Vector2( 962.299, 265.359 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
-[node name="Floor" type="TileMap" parent="."]
+[node name="Valla2" type="Sprite" parent="."]
 
-mode = 0
-tile_set = ExtResource( 5 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 65530, 31, 65531, 31, 65532, 31, 65533, 34, 131066, 32, 131067, 32, 131068, 32, 131069, 35, 196602, 32, 196603, 32, 196604, 32, 196605, 35, 262138, 32, 262139, 32, 262140, 32, 262141, 35, 327674, 32, 327675, 32, 327676, 32, 327677, 35, 393210, 32, 393211, 32, 393212, 32, 327682, 48, 327683, 48, 327684, 48, 327686, 48, 327687, 48, 327688, 48, 327689, 51, 458746, 33, 458747, 33, 458748, 33, 393218, 49, 393219, 49, 393220, 49, 393222, 49, 393223, 49, 393224, 49, 393225, 52, 458754, 49, 458755, 49, 458756, 49, 458758, 49, 458759, 49, 458760, 49, 458761, 52, 524290, 50, 524291, 50, 524292, 50, 524294, 50, 524295, 50, 524296, 50, 524297, 53 )
+transform/pos = Vector2( 1894.16, 259.918 )
+texture = ExtResource( 6 )
 
-[node name="Platform" type="TileMap" parent="."]
-
-transform/pos = Vector2( 1, 1 )
-mode = 0
-tile_set = ExtResource( 5 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( 196612, 28, 196613, 31, 196614, 34, 327676, 28, 327677, 31, 327678, 31, 327679, 31, 262144, 31, 262145, 31, 262146, 34, 262148, 29, 262149, 32, 262150, 35, 262155, 44, 262156, 48, 262157, 48, 262158, 48, 262159, 48, 262160, 48, 262161, 48, 262162, 48, 262163, 48, 262164, 48, 262165, 48, 262166, 48, 262167, 51, 393212, 29, 393213, 32, 393214, 32, 393215, 32, 327680, 32, 327681, 32, 327682, 35, 327684, 29, 327685, 32, 327686, 35, 327691, 45, 327692, 49, 327693, 49, 327694, 49, 327695, 49, 327696, 49, 327697, 49, 327698, 49, 327699, 49, 327700, 49, 327701, 49, 327702, 49, 327703, 52, 458748, 29, 458749, 32, 458750, 32, 458751, 32, 393216, 32, 393217, 32, 393218, 35, 393220, 29, 393221, 32, 393222, 35, 393227, 45, 393228, 49, 393229, 49, 393230, 49, 393231, 49, 393232, 49, 393233, 49, 393234, 49, 393235, 49, 393236, 49, 393237, 49, 393238, 49, 393239, 52, 524284, 29, 524285, 32, 524286, 32, 524287, 32, 458752, 32, 458753, 32, 458754, 35, 458756, 29, 458757, 32, 458758, 35, 458763, 45, 458764, 49, 458765, 49, 458766, 49, 458767, 49, 458768, 49, 458769, 49, 458770, 49, 458771, 49, 458772, 49, 458773, 49, 458774, 49, 458775, 52, 589820, 30, 589821, 33, 589822, 33, 589823, 33, 524288, 33, 524289, 33, 524290, 36, 524292, 30, 524293, 33, 524294, 36, 524299, 46, 524300, 50, 524301, 50, 524302, 50, 524303, 50, 524304, 50, 524305, 50, 524306, 50, 524307, 50, 524308, 50, 524309, 50, 524310, 50, 524311, 53 )
-
-[node name="Tree1" parent="." instance=ExtResource( 6 )]
+[node name="Tree1" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( -121.884, 192.798 )
 
-[node name="Tree2" parent="." instance=ExtResource( 6 )]
+[node name="Tree2" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 13.2963, 192.798 )
 tree_frame = 1
 
-[node name="Ruins" parent="." instance=ExtResource( 7 )]
+[node name="Floor" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 7 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65530, 31, 65531, 31, 65532, 31, 65533, 34, 131066, 32, 131067, 32, 131068, 32, 131069, 35, 65585, 44, 65586, 48, 65587, 31, 65588, 48, 65589, 31, 65590, 31, 65591, 31, 65592, 31, 65593, 31, 65594, 31, 65595, 31, 65596, 48, 65597, 31, 65598, 31, 65599, 31, 65600, 34, 196602, 32, 196603, 32, 196604, 32, 196605, 35, 131121, 29, 131122, 32, 131123, 32, 131124, 32, 131125, 32, 131126, 32, 131127, 32, 131128, 32, 131129, 32, 131130, 32, 131131, 32, 131132, 32, 131133, 32, 131134, 32, 131135, 32, 131136, 35, 262138, 32, 262139, 32, 262140, 32, 262141, 35, 196642, 48, 196657, 29, 196658, 32, 196659, 32, 196660, 32, 196661, 32, 196662, 32, 196663, 32, 196664, 32, 196665, 32, 196666, 32, 196667, 32, 196668, 32, 196669, 32, 196670, 32, 196671, 32, 196672, 35, 327674, 32, 327675, 32, 327676, 32, 327677, 35, 262170, 44, 262171, 48, 262172, 31, 262173, 31, 262174, 31, 262175, 48, 262176, 48, 262177, 48, 262178, 49, 262193, 29, 262194, 32, 262195, 32, 262196, 32, 262197, 32, 262198, 32, 262199, 32, 262200, 32, 262201, 32, 262202, 32, 262203, 32, 262204, 32, 262205, 32, 262206, 32, 262207, 32, 262208, 35, 393210, 32, 393211, 32, 393212, 32, 327682, 48, 327683, 48, 327684, 48, 327686, 48, 327687, 48, 327688, 48, 327689, 51, 327706, 45, 327707, 49, 327708, 49, 327709, 49, 327710, 49, 327711, 49, 327712, 49, 327713, 49, 327714, 49, 327729, 29, 327730, 32, 327731, 32, 327732, 32, 327733, 32, 327734, 32, 327735, 32, 327736, 32, 327737, 32, 327738, 32, 327739, 32, 327740, 32, 327741, 32, 327742, 32, 327743, 32, 327744, 35, 458746, 33, 458747, 33, 458748, 33, 393218, 49, 393219, 49, 393220, 49, 393222, 49, 393223, 49, 393224, 49, 393225, 52, 393242, 45, 393243, 49, 393244, 49, 393245, 49, 393246, 49, 393247, 49, 393248, 49, 393249, 49, 393250, 49, 393265, 29, 393266, 32, 393267, 32, 393268, 32, 393269, 32, 393270, 32, 393271, 32, 393272, 32, 393273, 32, 393274, 32, 393275, 32, 393276, 32, 393277, 32, 393278, 32, 393279, 32, 393280, 35, 458754, 49, 458755, 49, 458756, 49, 458758, 49, 458759, 49, 458760, 49, 458761, 52, 458778, 45, 458779, 49, 458780, 49, 458781, 49, 458782, 49, 458783, 49, 458784, 49, 458785, 49, 458786, 49, 458801, 30, 458802, 33, 458803, 33, 458804, 33, 458805, 33, 458806, 33, 458807, 33, 458808, 33, 458809, 33, 458810, 33, 458811, 33, 458812, 33, 458813, 33, 458814, 33, 458815, 33, 458816, 36, 524290, 50, 524291, 50, 524292, 50, 524294, 50, 524295, 50, 524296, 50, 524297, 53, 524314, 46, 524315, 50, 524316, 50, 524317, 50, 524318, 50, 524319, 50, 524320, 50, 524321, 50, 524322, 50 )
+
+[node name="Platform" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 7 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 131106, 44, 131107, 48, 131108, 31, 131109, 31, 131110, 48, 131111, 48, 131112, 48, 131113, 48, 131114, 31, 131115, 48, 131116, 48, 131117, 48, 131118, 51, 196612, 28, 196613, 31, 196614, 34, 196641, 44, 196642, 45, 196643, 49, 196644, 49, 196645, 49, 196646, 49, 196647, 49, 196648, 49, 196649, 49, 196650, 49, 196651, 49, 196652, 49, 196653, 49, 196654, 52, 327676, 28, 327677, 31, 327678, 31, 327679, 31, 262144, 31, 262145, 31, 262146, 34, 262148, 29, 262149, 32, 262150, 35, 262155, 44, 262156, 48, 262157, 48, 262158, 48, 262159, 48, 262160, 48, 262161, 48, 262162, 48, 262163, 48, 262164, 48, 262165, 48, 262166, 48, 262167, 51, 262177, 45, 262178, 45, 262179, 49, 262180, 49, 262181, 49, 262182, 48, 262183, 48, 262184, 48, 262185, 49, 262186, 49, 262187, 49, 262188, 49, 262189, 49, 262190, 52, 393212, 29, 393213, 32, 393214, 32, 393215, 32, 327680, 32, 327681, 32, 327682, 35, 327684, 29, 327685, 32, 327686, 35, 327691, 45, 327692, 49, 327693, 49, 327694, 49, 327695, 49, 327696, 49, 327697, 49, 327698, 49, 327699, 49, 327700, 49, 327701, 49, 327702, 49, 327703, 52, 327714, 45, 327715, 49, 327716, 49, 327717, 49, 327718, 49, 327719, 49, 327720, 49, 327721, 49, 327722, 49, 327723, 49, 327724, 49, 327725, 49, 327726, 52, 458748, 29, 458749, 32, 458750, 32, 458751, 32, 393216, 32, 393217, 32, 393218, 35, 393220, 29, 393221, 32, 393222, 35, 393227, 45, 393228, 49, 393229, 49, 393230, 49, 393231, 49, 393232, 49, 393233, 49, 393234, 49, 393235, 49, 393236, 49, 393237, 49, 393238, 49, 393239, 52, 393250, 45, 393251, 49, 393252, 49, 393253, 49, 393254, 49, 393255, 49, 393256, 49, 393257, 49, 393258, 49, 393259, 49, 393260, 49, 393261, 49, 393262, 52, 524284, 29, 524285, 32, 524286, 32, 524287, 32, 458752, 32, 458753, 32, 458754, 35, 458756, 29, 458757, 32, 458758, 35, 458763, 45, 458764, 49, 458765, 49, 458766, 49, 458767, 49, 458768, 49, 458769, 49, 458770, 49, 458771, 49, 458772, 49, 458773, 49, 458774, 49, 458775, 52, 458786, 45, 458787, 49, 458788, 49, 458789, 49, 458790, 49, 458791, 49, 458792, 49, 458793, 49, 458794, 49, 458795, 49, 458796, 49, 458797, 49, 458798, 52, 589820, 30, 589821, 33, 589822, 33, 589823, 33, 524288, 33, 524289, 33, 524290, 36, 524292, 30, 524293, 33, 524294, 36, 524299, 46, 524300, 50, 524301, 50, 524302, 50, 524303, 50, 524304, 50, 524305, 50, 524306, 50, 524307, 50, 524308, 50, 524309, 50, 524310, 50, 524311, 53 )
+
+[node name="Ruins" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 904.155, 257.064 )
 ruin_frame = 1
 
-[node name="Ruins1" parent="." instance=ExtResource( 7 )]
+[node name="Ruins1" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 1335.18, 260.388 )
+
+[node name="Ruins2" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 2511.33, 263.328 )
 
 [node name="CanvasLayer_HUD" type="CanvasLayer" parent="."]
 
@@ -144,26 +175,24 @@ margin/bottom = 40.0
 custom_constants/vseparation = 32
 columns = 2
 
-[node name="Player" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 8 )]
+[node name="Player" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
 
 label_text = "PLAYER"
 
-[node name="Healthbar" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
+[node name="Healthbar" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
 
-[node name="Player2" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 8 )]
+[node name="Player2" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
 
 margin/top = 32.0
 margin/bottom = 32.0
 label_text = "ENEMY"
 
-[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
+[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
 
-margin/left = 0.0
 margin/top = 32.0
-margin/right = 0.0
 margin/bottom = 32.0
 
-[node name="king" parent="." instance=ExtResource( 10 )]
+[node name="king" parent="." instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 85.9358, 238.248 )
 
@@ -186,16 +215,16 @@ drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
 
-[node name="genoma" parent="." instance=ExtResource( 11 )]
+[node name="genoma" parent="." instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 1179.13, 280.158 )
 
 [node name="Corpses" type="Sprite" parent="."]
 
 transform/pos = Vector2( 466.964, 357.308 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
-[node name="Cart1" parent="." instance=ExtResource( 13 )]
+[node name="Cart1" parent="." instance=ExtResource( 14 )]
 
 transform/pos = Vector2( 1030.53, 276.104 )
 cart_frame = 2
