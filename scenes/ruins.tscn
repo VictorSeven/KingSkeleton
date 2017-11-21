@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://graphics/deco/ruins.png" type="Texture" id=1]
+
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Sprite
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+export var ruin_frame = 0
+var max_frame = 2
+
+var ruin_width = 192
+var ruin_height = 128
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	set_region_rect(Rect2(0, (ruin_frame % max_frame) * ruin_height, ruin_width, ruin_height));
+	pass
+"
+
+[node name="Ruins" type="Sprite"]
+
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 192, 128 )
+script/script = SubResource( 1 )
+ruin_frame = 0
+
+
