@@ -69,7 +69,10 @@ func move():
 	if (frame < 0.4):
 		var force = (1.0-noise_intensity) * (king.get_pos()-get_pos()).normalized()
 		vel = maxvel * (noise + force).normalized()
-		
+		if (vel.x < 0):
+			get_node("Sprite").set_flip_h(true)
+		elif (vel.x > 0):
+			get_node("Sprite").set_flip_h(false)
 	else:
 		noise = noise_intensity * Vector2(randf(),randf())
 		vel = Vector2(0.0, 0.0)

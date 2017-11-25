@@ -10,7 +10,7 @@ var cycle = 0 #Cycle of sword movement
 var lifetime = [1.0, 0.3, 1000] #Time to change behaviour
 var elapsed_time = 0.0 #Counter
 
-var atq = 10 #Damage dealed by sword
+var atq = 30 #Damage dealed by sword
 
 func _ready():
 	add_to_group("sword")

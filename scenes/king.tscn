@@ -1,7 +1,13 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://scripts/king_controller.gd" type="Script" id=1]
 [ext_resource path="res://graphics/king/sheet.png" type="Texture" id=2]
+[ext_resource path="res://graphics/king/peto.png" type="Texture" id=3]
+[ext_resource path="res://graphics/king/hombro izquierdo.png" type="Texture" id=4]
+[ext_resource path="res://graphics/king/cabeza.png" type="Texture" id=5]
+[ext_resource path="res://graphics/king/brazo.png" type="Texture" id=6]
+[ext_resource path="res://graphics/king/hombro derecho.png" type="Texture" id=7]
+[ext_resource path="res://graphics/king/alma.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -93,9 +99,155 @@ tracks/0/keys = {
 "values": [ 27, 28 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=12]
 
-resource/name = "float"
+resource/name = "death"
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("death_parts:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("death_parts/soul:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.7, 1.5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("death_parts/soul:frame")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("death_parts/body:transform/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2.18513, 7.39431 ), Vector2( -0.786888, 22.4292 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("death_parts/body:transform/rot")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -76.104 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("death_parts/lshoulder:transform/pos")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10.3922, -9.37698 ), Vector2( 12.6649, 24.7139 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("death_parts/lshoulder:transform/rot")
+tracks/7/interp = 1
+tracks/7/imported = false
+tracks/7/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 35.3414 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("death_parts/head:transform/pos")
+tracks/8/interp = 1
+tracks/8/imported = false
+tracks/8/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.73331, -12.8731 ), Vector2( -0.539413, 23.4905 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("death_parts/head:transform/rot")
+tracks/9/interp = 1
+tracks/9/imported = false
+tracks/9/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 23.6338 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("death_parts/arm:transform/pos")
+tracks/10/interp = 1
+tracks/10/imported = false
+tracks/10/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -9.84021, 6.69874 ), Vector2( -16.8332, 25.405 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("death_parts/arm:transform/rot")
+tracks/11/interp = 1
+tracks/11/imported = false
+tracks/11/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -80.6219 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("death_parts/rshoulder:transform/pos")
+tracks/12/interp = 1
+tracks/12/imported = false
+tracks/12/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -9.16235, -8.64037 ), Vector2( -13.533, 26.6742 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("death_parts/rshoulder:transform/rot")
+tracks/13/interp = 1
+tracks/13/imported = false
+tracks/13/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 41.9832 ]
+}
+
+[sub_resource type="Animation" id=13]
+
 length = 0.45
 loop = true
 step = 0.15
@@ -110,7 +262,7 @@ tracks/0/keys = {
 "values": [ 24, 25, 26 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=14]
 
 length = 0.6
 loop = true
@@ -126,7 +278,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=15]
 
 length = 0.6
 loop = true
@@ -142,14 +294,13 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
 extents = Vector2( 20.672, 20.6476 )
 
 [node name="king" type="KinematicBody2D"]
 
-transform/pos = Vector2( 45.0949, 200.422 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1.08035, 0, 0, 1.13708, -1.72999, 6.4886 )
@@ -164,7 +315,6 @@ script/script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 8
-frame = 11
 
 [node name="shape" type="CollisionShape2D" parent="."]
 
@@ -184,9 +334,10 @@ anims/atq1_wait = SubResource( 3 )
 anims/atq2_throw = SubResource( 4 )
 anims/atq2_wait = SubResource( 5 )
 anims/damage = SubResource( 6 )
-anims/float = SubResource( 7 )
-anims/idle = SubResource( 8 )
-anims/walk = SubResource( 9 )
+anims/death = SubResource( 12 )
+anims/float = SubResource( 13 )
+anims/idle = SubResource( 14 )
+anims/walk = SubResource( 15 )
 next/atq1_throw = "atq1_wait"
 next/atq2_throw = "atq2_wait"
 playback/active = true
@@ -196,10 +347,11 @@ autoplay = "idle"
 
 [node name="hitbox" type="Area2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -0.921261, -1.29413 )
 transform/scale = Vector2( 1.02176, 1 )
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.454029, 1.28159 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -210,9 +362,46 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 
 transform/pos = Vector2( -0.454029, 1.28159 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 trigger = false
 _update_shape_index = 0
+
+[node name="death_parts" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+
+[node name="body" type="Sprite" parent="death_parts"]
+
+transform/pos = Vector2( 2.18513, 7.39431 )
+texture = ExtResource( 3 )
+
+[node name="lshoulder" type="Sprite" parent="death_parts"]
+
+transform/pos = Vector2( 10.3922, -9.37698 )
+texture = ExtResource( 4 )
+
+[node name="head" type="Sprite" parent="death_parts"]
+
+transform/pos = Vector2( 1.73331, -12.8731 )
+texture = ExtResource( 5 )
+
+[node name="arm" type="Sprite" parent="death_parts"]
+
+transform/pos = Vector2( -9.84021, 6.69874 )
+texture = ExtResource( 6 )
+
+[node name="rshoulder" type="Sprite" parent="death_parts"]
+
+transform/pos = Vector2( -9.16235, -8.64037 )
+texture = ExtResource( 7 )
+
+[node name="soul" type="Sprite" parent="death_parts"]
+
+visibility/visible = false
+transform/pos = Vector2( -1.66385, -54.2327 )
+texture = ExtResource( 8 )
+hframes = 9
 
 [connection signal="area_enter" from="hitbox" to="." method="_on_hitbox_area_enter"]
 

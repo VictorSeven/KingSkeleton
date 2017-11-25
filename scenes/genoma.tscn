@@ -1,31 +1,14 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/en_genoma.gd" type="Script" id=1]
-[ext_resource path="res://graphics/enemies/genoma/Caido.png" type="Texture" id=2]
+[ext_resource path="res://graphics/enemies/genoma/Caminando.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 34.0555, 10.7094 )
+extents = Vector2( 13.4014, 32.9546 )
 
 [sub_resource type="Animation" id=2]
-
-resource/name = "activate"
-length = 0.6
-loop = false
-step = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.2, 0.4 ),
-"transitions": FloatArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2 ]
-}
-
-[sub_resource type="Animation" id=3]
 
 resource/name = "attack"
 length = 0.8
@@ -42,7 +25,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 resource/name = "damage"
 length = 0.4
@@ -59,7 +42,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 
 resource/name = "death"
 length = 0.6
@@ -76,23 +59,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=6]
-
-length = 1.0
-loop = true
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 
 length = 0.8
 loop = true
@@ -108,55 +75,53 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=6]
 
 custom_solver_bias = 0.0
 radius = 6.03192
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 10.9297, 89.6559 )
 
 [node name="genoma" type="KinematicBody2D"]
 
 transform/pos = Vector2( 0.71698, 0 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 0.817101, 1, 21.4926 )
+shapes/0/transform = Matrix32( 1, 0, 0, 0.817101, -3.05202, 3.53145 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-activation_dist = 150.0
 
 [node name="anim" type="AnimationPlayer" parent="."]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/activate = SubResource( 2 )
-anims/attack = SubResource( 3 )
-anims/damage = SubResource( 4 )
-anims/death = SubResource( 5 )
-anims/idle = SubResource( 6 )
-anims/walk = SubResource( 7 )
+anims/attack = SubResource( 2 )
+anims/damage = SubResource( 3 )
+anims/death = SubResource( 4 )
+anims/walk = SubResource( 5 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = "idle"
+autoplay = "walk"
 
 [node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
+hframes = 8
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="col" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( 1, 21.4926 )
+transform/pos = Vector2( -3.05202, 3.53145 )
 transform/scale = Vector2( 1, 0.817101 )
 shape = SubResource( 1 )
 trigger = false
@@ -165,8 +130,9 @@ _update_shape_index = 0
 [node name="atq" type="Area2D" parent="."]
 
 editor/display_folded = true
+transform/pos = Vector2( -6.65917, -11.1779 )
 input/pickable = true
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -14.3016, 7.62939e-06 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -177,7 +143,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="atq"]
 
 transform/pos = Vector2( -14.3016, 7.62939e-06 )
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
@@ -185,8 +151,8 @@ _update_shape_index = 0
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 9 )
-shapes/0/transform = Matrix32( 1, 0, 0, 0.225062, 0, 0.0741997 )
+shapes/0/shape = SubResource( 7 )
+shapes/0/transform = Matrix32( 1, 0, 0, 0.225062, -3.80524, -1.5906 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -197,9 +163,9 @@ collision/mask = 2
 
 [node name="hitcol" type="CollisionShape2D" parent="hitbox"]
 
-transform/pos = Vector2( 0, 0.0741997 )
+transform/pos = Vector2( -3.80524, -1.5906 )
 transform/scale = Vector2( 1, 0.225062 )
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
 

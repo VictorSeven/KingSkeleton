@@ -18,10 +18,12 @@ var target_height = -1.0 #Where do I have to jump?
 var start_height #Height where jump started
 var input_y = false  #We are not making any input in y
 var on_air_time = 0 #Time spent in the air since the last time floor was touched
+var max_float_time =  1.4 #Maximum time to float around
 
 var atq1 = true #Controls which animation I use
 var is_throwing = false #true when we are throwing the sword
 var sword_destroy = false #To avoid destructing the sword just launched
+
 
 var sword = preload("res://scenes/sword.tscn")
 
@@ -30,13 +32,10 @@ var stun = 3.0
 var elapsed_time = 0.0
 var is_damaged = false
 
-#var anchorY = 100;
-#var frequency = 0.1;
-#var amplitude = 2;
-#var timer = 0;
+var in_boss = false
 
 func _ready():
-	print(get_collision_mask())
+	change_anim("idle")
 	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
 	set_fixed_process(true) #Start the fixed process
@@ -61,22 +60,27 @@ func _fixed_process(delta):
 			if (n == Vector2(0.0, -1.0)):
 				start_height = get_pos().y
 				vel.y = 0.0
-				#on_air_time = 0
-			#if(on_air_time == 0):
-			#	pass#vel.y = 0.0
-			#else:
-			#	motion = n.slide(motion)
-			#	vel = n.slide(vel)
+				on_air_time = 0 #In ground, reset air time counter
 		
 		#set_pos(Vector2(get_pos().x, get_pos().y + sin(timer * frequency) * amplitude));
 		#timer += 1;
 		move(motion)
 	elif (is_damaged):
 		elapsed_time += delta #Start counter
-		move(Vector2(-max_speed.x/5.0, 0.0))
-		if (elapsed_time >= stun): #After sometime with no control
-			is_damaged = false #Return control to King
-			change_anim("idle") #Idle animation
+		if (lifepoints > 0):
+			#Make it go back depending on which side he is looking to
+			if (right):
+				move(Vector2(-delta*max_speed.x/5.0, 0.0))
+			else:
+				move(Vector2(delta*max_speed.x/5.0, 0.0))
+			if (elapsed_time >= stun): #After sometime with no control
+				is_damaged = false #Return control to King
+				change_anim("idle") #Idle animation
+		else:
+			if (elapsed_time > 10.0):
+				set_fixed_process(false)
+				get_tree().set_pause(true)
+				#TODO: lose game
 	else:
 		pass 
 	
@@ -112,8 +116,9 @@ func move_input(delta):
 		vel.x = sign(vel.x) * max_speed.x
 	
 	#Init jump
-	if (Input.is_action_pressed("ui_up")): 
+	if (Input.is_action_pressed("ui_up") and on_air_time < max_float_time): 
 		input_y = true
+		on_air_time += delta #Increase time floating
 		#If we have not started a jump, then start one
 		if (target_height == -1):
 			#start_height = get_pos().y #Current height
@@ -157,18 +162,25 @@ func move_input(delta):
 		atq1 = not atq1 #Change animation for next 
 
 func damage(points):
-	print("holi")
 	is_damaged = true #Enter in damage state
 	elapsed_time = 0.0 #Start counter
-	change_anim("damage") #Damaged anim
 	lifepoints -= points #Eliminate points
-	
-	#TODO: redraw HP 
+	if (lifepoints < 0):
+		change_anim("death") #Kill it
+	else: 
+		change_anim("damage") #Damaged anim
+
 
 func change_anim(newanim):
 	#If the animation is new,
 	if (newanim != get_node("anim").get_current_animation()):
 		get_node("anim").play(newanim) #Change it!
+
+func is_in_boss():
+	return in_boss
+
+func start_boss():
+	in_boss = true
 
 func _on_hitbox_body_enter( body ):
 	#If we detect a collision with the sword,
