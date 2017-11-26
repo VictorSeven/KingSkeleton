@@ -8,6 +8,8 @@ script/source = "extends Container
 # var a = 2
 # var b = \"textvar\"
 
+export var path_to_target = \"Node2D/king\"
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -28,6 +30,7 @@ script/source = "extends Panel
 # class member variables go here, for example:
 # var a = 2
 # var b = \"textvar\"
+var target	#Entity used to get health value
 
 var max_health = 100
 var current_health = 100
@@ -51,6 +54,7 @@ func _ready():
 	size = get_size() 
 	segment_height = size.height
 	segment_width = size.width / segments
+	target = get_tree().get_root().get_node(get_parent().path_to_target)
 	# Called every time the node is added to the scene.
 	# Initialization here
 	pass
@@ -65,6 +69,8 @@ func _draw():
 #	draw_rect(r, c)
 
 func draw_bar():
+	current_health = target.get_health();
+	print(current_health)
 	var i = 0;
 	var vertex1 = Vector2()
 	var vertex2 = Vector2()
@@ -101,11 +107,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 4.0
+margin/left = 0.0
 margin/top = 0.0
-margin/right = 4.0
+margin/right = 0.0
 margin/bottom = 0.0
 script/script = SubResource( 3 )
+path_to_target = "Node2D/king"
 
 [node name="Panel" type="Panel" parent="."]
 

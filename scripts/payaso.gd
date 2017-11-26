@@ -1,6 +1,8 @@
 extends Node2D
 
 var king
+var healthbar
+var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar1"
 
 var deathtex = load("res://graphics/enemies/payaso/death.png")
 
@@ -36,6 +38,7 @@ var vel = 0.0
 func _ready():
 	randomize() #RNG
 	king = get_tree().get_root().get_node("Node2D/king") #Get the king
+	healthbar = get_tree().get_root().get_node(path_to_healthbar).get_child(0)
 	#Zone where we are going to walk
 	minx = get_pos().x - zone
 	maxx = get_pos().x + zone
@@ -116,7 +119,8 @@ func throw_card():
 #Damage the clown
 func damage(swatq):
 	if (not is_damaged): #Avoid extra damage
-		life -= swatq 
+		life -= swatq
+		healthbar.update()
 		is_damaged = true
 		if (life > 0):
 			throwtime = throwtime * 0.8 #Reduce the rate of knive throw!
@@ -128,4 +132,5 @@ func damage(swatq):
 		else:
 			get_node("anim").play("death") #Kill clown
 
-
+func get_health():
+	return life

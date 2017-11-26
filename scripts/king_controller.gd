@@ -3,6 +3,11 @@ extends KinematicBody2D
 #King controller: this function controls the King Skeleton
 #The character can move around/fly using the arrows
 
+var healthbar
+var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/PlayerHUD/Healthbar"
+var hud_panel
+var path_to_hud_panel = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD"
+
 var gravity = Vector2(0, 500)
 var acel = Vector2(20, 0.8) #Acceleration
 var vel = Vector2(0.0, 0.0) #Speed
@@ -38,11 +43,18 @@ func _ready():
 	change_anim("idle")
 	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
+	healthbar = get_tree().get_root().get_node(path_to_healthbar).get_child(0)
+	hud_panel = get_tree().get_root().get_node(path_to_hud_panel)
 	set_fixed_process(true) #Start the fixed process
 
 #Proceso fijo
 func _fixed_process(delta):
 	elapsed_time += delta
+	
+	if in_boss:
+		hud_panel.show()
+	else:
+		hud_panel.hide()
 	
 	#If the sword is not in the air, process King's input
 	if (not is_throwing and not is_damaged):
@@ -165,6 +177,7 @@ func damage(points):
 	is_damaged = true #Enter in damage state
 	elapsed_time = 0.0 #Start counter
 	lifepoints -= points #Eliminate points
+	healthbar.update()
 	if (lifepoints < 0):
 		change_anim("death") #Kill it
 	else: 
@@ -181,6 +194,9 @@ func is_in_boss():
 
 func start_boss():
 	in_boss = true
+	
+func get_health():
+	return lifepoints
 
 func _on_hitbox_body_enter( body ):
 	#If we detect a collision with the sword,

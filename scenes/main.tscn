@@ -2,22 +2,22 @@
 
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=1]
 [ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/deco/castillo grande.png" type="Texture" id=3]
-[ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=4]
-[ext_resource path="res://graphics/deco/casa.png" type="Texture" id=5]
-[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=6]
+[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=3]
+[ext_resource path="res://graphics/deco/casa.png" type="Texture" id=4]
+[ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/deco/castillo grande.png" type="Texture" id=6]
 [ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=7]
-[ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=11]
-[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=12]
-[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/payaso.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/ahorcado.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/ahorcado.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/payaso.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=16]
+[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=17]
+[ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=18]
 
 [node name="Node2D" type="Node2D"]
 
@@ -65,46 +65,50 @@ nube_frame = 1
 
 transform/pos = Vector2( 28.809, 87.5343 )
 
-[node name="Castillo" type="Sprite" parent="."]
+[node name="BG_objetos" type="Node2D" parent="."]
 
-transform/pos = Vector2( 3835.98, -15.6322 )
+editor/display_folded = true
+
+[node name="Valla1" type="Sprite" parent="BG_objetos"]
+
+transform/pos = Vector2( 999.361, 267.164 )
 texture = ExtResource( 3 )
 
-[node name="Tree3" parent="." instance=ExtResource( 4 )]
+[node name="Valla2" type="Sprite" parent="BG_objetos"]
+
+transform/pos = Vector2( 1894.16, 259.918 )
+texture = ExtResource( 3 )
+
+[node name="House1" type="Sprite" parent="BG_objetos"]
+
+transform/pos = Vector2( 530.354, 315.269 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 346, 192, 75, 62 )
+
+[node name="House2" type="Sprite" parent="BG_objetos"]
+
+transform/pos = Vector2( 1916.66, 245.542 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 346, 192, 75, 62 )
+
+[node name="Tree1" parent="BG_objetos" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -121.884, 192.798 )
+
+[node name="Tree2" parent="BG_objetos" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 13.2963, 192.798 )
+tree_frame = 1
+
+[node name="Tree3" parent="BG_objetos" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 1854.59, 203.306 )
 tree_frame = 1
 
-[node name="House1" type="Sprite" parent="."]
+[node name="Castillo" type="Sprite" parent="BG_objetos"]
 
-transform/pos = Vector2( 530.354, 315.269 )
-texture = ExtResource( 5 )
-region_rect = Rect2( 346, 192, 75, 62 )
-
-[node name="House2" type="Sprite" parent="."]
-
-transform/pos = Vector2( 1916.66, 245.542 )
-texture = ExtResource( 5 )
-region_rect = Rect2( 346, 192, 75, 62 )
-
-[node name="Valla1" type="Sprite" parent="."]
-
-transform/pos = Vector2( 962.299, 265.359 )
+transform/pos = Vector2( 3835.98, -15.6322 )
 texture = ExtResource( 6 )
-
-[node name="Valla2" type="Sprite" parent="."]
-
-transform/pos = Vector2( 1894.16, 259.918 )
-texture = ExtResource( 6 )
-
-[node name="Tree1" parent="." instance=ExtResource( 4 )]
-
-transform/pos = Vector2( -121.884, 192.798 )
-
-[node name="Tree2" parent="." instance=ExtResource( 4 )]
-
-transform/pos = Vector2( 13.2963, 192.798 )
-tree_frame = 1
 
 [node name="Floor" type="TileMap" parent="."]
 
@@ -142,22 +146,8 @@ collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 131106, 44, 131107, 48, 131108, 31, 131109, 31, 131110, 48, 131111, 48, 131112, 48, 131113, 48, 131114, 31, 131115, 48, 131116, 48, 131117, 48, 131118, 51, 196612, 28, 196613, 31, 196614, 34, 196641, 44, 196642, 45, 196643, 49, 196644, 49, 196645, 49, 196646, 49, 196647, 49, 196648, 49, 196649, 49, 196650, 49, 196651, 49, 196652, 49, 196653, 49, 196654, 52, 327676, 28, 327677, 31, 327678, 31, 327679, 31, 262144, 31, 262145, 31, 262146, 34, 262148, 29, 262149, 32, 262150, 35, 262155, 44, 262156, 48, 262157, 48, 262158, 48, 262159, 48, 262160, 48, 262161, 48, 262162, 48, 262163, 48, 262164, 48, 262165, 48, 262166, 48, 262167, 51, 262177, 45, 262178, 45, 262179, 49, 262180, 49, 262181, 49, 262182, 48, 262183, 48, 262184, 48, 262185, 49, 262186, 49, 262187, 49, 262188, 49, 262189, 49, 262190, 52, 393212, 29, 393213, 32, 393214, 32, 393215, 32, 327680, 32, 327681, 32, 327682, 35, 327684, 29, 327685, 32, 327686, 35, 327691, 45, 327692, 49, 327693, 49, 327694, 49, 327695, 49, 327696, 49, 327697, 49, 327698, 49, 327699, 49, 327700, 49, 327701, 49, 327702, 49, 327703, 52, 327714, 45, 327715, 49, 327716, 49, 327717, 49, 327718, 49, 327719, 49, 327720, 49, 327721, 49, 327722, 49, 327723, 49, 327724, 49, 327725, 49, 327726, 52, 458748, 29, 458749, 32, 458750, 32, 458751, 32, 393216, 32, 393217, 32, 393218, 35, 393220, 29, 393221, 32, 393222, 35, 393227, 45, 393228, 49, 393229, 49, 393230, 49, 393231, 49, 393232, 49, 393233, 49, 393234, 49, 393235, 49, 393236, 49, 393237, 49, 393238, 49, 393239, 52, 393250, 45, 393251, 49, 393252, 49, 393253, 49, 393254, 49, 393255, 49, 393256, 49, 393257, 49, 393258, 49, 393259, 49, 393260, 49, 393261, 49, 393262, 52, 524284, 29, 524285, 32, 524286, 32, 524287, 32, 458752, 32, 458753, 32, 458754, 35, 458756, 29, 458757, 32, 458758, 35, 458763, 45, 458764, 49, 458765, 49, 458766, 49, 458767, 49, 458768, 49, 458769, 49, 458770, 49, 458771, 49, 458772, 49, 458773, 49, 458774, 49, 458775, 52, 458786, 45, 458787, 49, 458788, 49, 458789, 49, 458790, 49, 458791, 49, 458792, 49, 458793, 49, 458794, 49, 458795, 49, 458796, 49, 458797, 49, 458798, 52, 589820, 30, 589821, 33, 589822, 33, 589823, 33, 524288, 33, 524289, 33, 524290, 36, 524292, 30, 524293, 33, 524294, 36, 524299, 46, 524300, 50, 524301, 50, 524302, 50, 524303, 50, 524304, 50, 524305, 50, 524306, 50, 524307, 50, 524308, 50, 524309, 50, 524310, 50, 524311, 53 )
 
-[node name="Ruins" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 904.155, 257.064 )
-ruin_frame = 1
-
-[node name="Ruins1" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 1335.18, 260.388 )
-
-[node name="Ruins2" parent="." instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 2511.33, 263.328 )
-
 [node name="CanvasLayer_HUD" type="CanvasLayer" parent="."]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -176,24 +166,53 @@ margin/bottom = 40.0
 custom_constants/vseparation = 32
 columns = 2
 
-[node name="Player" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
+[node name="PlayerHUD" type="Control" parent="CanvasLayer_HUD/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="Player" parent="CanvasLayer_HUD/GridContainer/PlayerHUD" instance=ExtResource( 8 )]
 
 label_text = "PLAYER"
 
-[node name="Healthbar" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
+[node name="Healthbar" parent="CanvasLayer_HUD/GridContainer/PlayerHUD" instance=ExtResource( 9 )]
 
-[node name="Player2" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
+margin/left = 8.0
+margin/right = 8.0
+
+[node name="EnemyHUD" type="Control" parent="CanvasLayer_HUD/GridContainer"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 0.0
+margin/right = 4.0
+margin/bottom = 0.0
+
+[node name="Player2" parent="CanvasLayer_HUD/GridContainer/EnemyHUD" instance=ExtResource( 8 )]
 
 margin/top = 32.0
 margin/bottom = 32.0
 label_text = "ENEMY"
 
-[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
+[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer/EnemyHUD" instance=ExtResource( 9 )]
 
+margin/left = 4.0
 margin/top = 32.0
+margin/right = 4.0
 margin/bottom = 32.0
+path_to_target = "Node2D/Enemies/Payaso"
 
-[node name="king" parent="." instance=ExtResource( 11 )]
+[node name="king" parent="." instance=ExtResource( 10 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 44.2522, 227.504 )
@@ -217,38 +236,57 @@ drag_margin/top = 0.0
 drag_margin/right = 0.0
 drag_margin/bottom = 0.0
 
-[node name="Corpses" type="Sprite" parent="."]
-
-transform/pos = Vector2( 466.964, 357.308 )
-texture = ExtResource( 12 )
-
-[node name="Cart1" parent="." instance=ExtResource( 13 )]
-
-transform/pos = Vector2( 1030.53, 276.104 )
-cart_frame = 2
-
-[node name="Node2D" parent="." instance=ExtResource( 14 )]
-
-transform/pos = Vector2( 4092.06, -31.1121 )
-
-[node name="boss_area" parent="." instance=ExtResource( 15 )]
+[node name="boss_area" parent="." instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 3771.84, -7.84341 )
 
-[node name="genoma" parent="." instance=ExtResource( 16 )]
+[node name="Enemies" type="Node2D" parent="."]
 
-transform/pos = Vector2( 1242.66, 248.682 )
+editor/display_folded = true
 
-[node name="bat" parent="." instance=ExtResource( 17 )]
+[node name="ahorcado" parent="Enemies" instance=ExtResource( 12 )]
 
-transform/pos = Vector2( 2201.99, 185.583 )
+transform/pos = Vector2( 384.928, 98.0827 )
 
-[node name="genoma1" parent="." instance=ExtResource( 16 )]
+[node name="genoma1" parent="Enemies" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 2668.1, 125.944 )
 
-[node name="ahorcado" parent="." instance=ExtResource( 18 )]
+[node name="bat" parent="Enemies" instance=ExtResource( 14 )]
 
-transform/pos = Vector2( 384.928, 98.0827 )
+transform/pos = Vector2( 2201.99, 185.583 )
+
+[node name="genoma" parent="Enemies" instance=ExtResource( 13 )]
+
+transform/pos = Vector2( 1242.66, 248.682 )
+
+[node name="Payaso" parent="Enemies" instance=ExtResource( 15 )]
+
+transform/pos = Vector2( 4092.06, -31.1121 )
+
+[node name="FG_objetos" type="Node2D" parent="."]
+
+[node name="Cart1" parent="FG_objetos" instance=ExtResource( 16 )]
+
+transform/pos = Vector2( 1067.59, 277.909 )
+cart_frame = 2
+
+[node name="Corpses" type="Sprite" parent="FG_objetos"]
+
+transform/pos = Vector2( 466.964, 357.308 )
+texture = ExtResource( 17 )
+
+[node name="Ruins" parent="FG_objetos" instance=ExtResource( 18 )]
+
+transform/pos = Vector2( 905.041, 254.347 )
+ruin_frame = 1
+
+[node name="Ruins1" parent="FG_objetos" instance=ExtResource( 18 )]
+
+transform/pos = Vector2( 1336.07, 257.671 )
+
+[node name="Ruins2" parent="FG_objetos" instance=ExtResource( 18 )]
+
+transform/pos = Vector2( 2511.33, 263.328 )
 
 
