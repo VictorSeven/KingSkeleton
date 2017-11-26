@@ -99,7 +99,7 @@ tracks/0/keys = {
 "values": [ 27, 28 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=7]
 
 resource/name = "death"
 length = 2.0
@@ -246,7 +246,7 @@ tracks/13/keys = {
 "values": [ 0.0, 41.9832 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=8]
 
 length = 0.45
 loop = true
@@ -262,7 +262,7 @@ tracks/0/keys = {
 "values": [ 24, 25, 26 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=9]
 
 length = 0.6
 loop = true
@@ -278,7 +278,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=10]
 
 length = 0.6
 loop = true
@@ -334,10 +334,10 @@ anims/atq1_wait = SubResource( 3 )
 anims/atq2_throw = SubResource( 4 )
 anims/atq2_wait = SubResource( 5 )
 anims/damage = SubResource( 6 )
-anims/death = SubResource( 12 )
-anims/float = SubResource( 13 )
-anims/idle = SubResource( 14 )
-anims/walk = SubResource( 15 )
+anims/death = SubResource( 7 )
+anims/float = SubResource( 8 )
+anims/idle = SubResource( 9 )
+anims/walk = SubResource( 10 )
 next/atq1_throw = "atq1_wait"
 next/atq2_throw = "atq2_wait"
 playback/active = true

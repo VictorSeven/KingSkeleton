@@ -1,0 +1,28 @@
+Rey fantasma:
+
+-La espada debe tener un radio de lanzamiento de unos 3 protas en total
+ de otro modo los enemigos como el penitente o el genoma no presentarian
+ problema alguno.
+
+Enemigos: 
+
+-Todos los enemigos harán daño de dos formas:
+      · primera si te tocan (quitará poca vida)
+      · recibiendo un ataque de ellos (esto quitará más)
+
+- Cuando el personaje acierte en el enemigo se usará el efecto especial 
+  "Golpe de espada" y la animación de daño de el enemigo se repetirá y retrocederá
+  un poco hacía atrás, pero será algo muy rapido.
+
+- Cuando un enemigo muere se usa la animación de daño pero sin repetirse y 
+  sobre esta el efecto especial "muerte"
+
+   
+Enemigos concretos:
+
+- El penitente no tiene animación de daño ya que cuando le pegas este no retrocede
+  por ser un enemigo tanque.
+
+-La bruja aparece de un extremo de la pantalla siguiendo al personaje pero tan solo dan
+ una única pasada.
+
