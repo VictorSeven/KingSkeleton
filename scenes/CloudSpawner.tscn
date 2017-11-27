@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+export var height_range = 60
+export var ratio_of_spawn = 900000 #More is less
+
+var cloud = load(\"res://scenes/clouds.tscn\")
+var cloud_instance
+var cloud_count = 0
+
+var elapsed_time = 0
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	randomize()
+	set_process(true)
+	pass
+
+func _process(delta):
+	elapsed_time += delta
+	var tmp_rand = randi() % ratio_of_spawn
+	var tmp_height = randi() % (height_range * 2) - height_range
+	var tmp_pos = get_pos()
+	
+	if(tmp_rand > ratio_of_spawn - 1000):
+		cloud_instance = cloud.instance()
+		cloud_instance.set_pos(Vector2(tmp_pos.x, tmp_pos.y + tmp_height))
+		cloud_instance.set_name(\"cloud_\" + str(cloud_count))
+		add_child(cloud_instance)
+		cloud_count += 1
+		print(\"nube creada\")
+	pass"
+
+[node name="CloudSpawner" type="Node2D"]
+
+script/script = SubResource( 1 )
+height_range = 80
+ratio_of_spawn = 800000
+
+

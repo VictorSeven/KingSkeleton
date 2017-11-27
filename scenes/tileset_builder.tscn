@@ -39,32 +39,32 @@ extents = Vector2( 56, 8 )
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 8 )
+
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 48 )
 
 [sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8, 48 )
+extents = Vector2( 32, 8 )
 
 [sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 8 )
+extents = Vector2( 16, 8 )
 
 [sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 8 )
-
-[sub_resource type="RectangleShape2D" id=13]
-
-custom_solver_bias = 0.0
 extents = Vector2( 8, 48 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=13]
 
 custom_solver_bias = 0.0
 extents = Vector2( 24, 8 )
@@ -114,21 +114,6 @@ extents = Vector2( 32, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 24, 10 )
 
-[sub_resource type="RectangleShape2D" id=28]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
-
-[sub_resource type="RectangleShape2D" id=29]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
-
-[sub_resource type="RectangleShape2D" id=30]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
-
 [sub_resource type="RectangleShape2D" id=23]
 
 custom_solver_bias = 0.0
@@ -137,7 +122,7 @@ extents = Vector2( 32, 10 )
 [sub_resource type="RectangleShape2D" id=24]
 
 custom_solver_bias = 0.0
-extents = Vector2( 24, 10 )
+extents = Vector2( 32, 10 )
 
 [sub_resource type="RectangleShape2D" id=25]
 
@@ -147,9 +132,24 @@ extents = Vector2( 32, 10 )
 [sub_resource type="RectangleShape2D" id=26]
 
 custom_solver_bias = 0.0
-extents = Vector2( 24, 10 )
+extents = Vector2( 32, 10 )
 
 [sub_resource type="RectangleShape2D" id=27]
+
+custom_solver_bias = 0.0
+extents = Vector2( 24, 10 )
+
+[sub_resource type="RectangleShape2D" id=28]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 10 )
+
+[sub_resource type="RectangleShape2D" id=29]
+
+custom_solver_bias = 0.0
+extents = Vector2( 24, 10 )
+
+[sub_resource type="RectangleShape2D" id=30]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 8 )
@@ -238,7 +238,6 @@ region_rect = Rect2( 128, 128, 64, 64 )
 
 [node name="GroundLeftTop" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 192, 0 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -257,7 +256,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundLeftTop/StaticBody2D"]
@@ -268,7 +267,6 @@ _update_shape_index = 0
 
 [node name="GroundLeft" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 192, 64 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -287,7 +285,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundLeft/StaticBody2D2"]
@@ -307,7 +305,6 @@ region_rect = Rect2( 192, 128, 64, 64 )
 
 [node name="GroundTop" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 256, 0 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -326,7 +323,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundTop/StaticBody2D"]
@@ -355,7 +352,6 @@ region_rect = Rect2( 256, 128, 64, 64 )
 
 [node name="GroundRightTop" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 320, 0 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -374,7 +370,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundRightTop/StaticBody2D"]
@@ -385,7 +381,6 @@ _update_shape_index = 0
 
 [node name="GroundRight" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 320, 64 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -404,7 +399,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundRight/StaticBody2D1"]
@@ -424,7 +419,6 @@ region_rect = Rect2( 320, 128, 64, 64 )
 
 [node name="Ground2LeftTop" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 384, 0 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -443,7 +437,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2LeftTop/StaticBody2D1"]
@@ -454,7 +448,6 @@ _update_shape_index = 0
 
 [node name="Ground2Left" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 384, 64 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -473,7 +466,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2Left/StaticBody2D1"]
@@ -493,7 +486,6 @@ region_rect = Rect2( 384, 128, 64, 64 )
 
 [node name="Ground2Top" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 448, 0 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -512,7 +504,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2Top/StaticBody2D1"]
@@ -541,7 +533,6 @@ region_rect = Rect2( 448, 128, 64, 64 )
 
 [node name="Ground2RightTop" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 512, 0 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -560,7 +551,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2RightTop/StaticBody2D1"]
@@ -571,7 +562,6 @@ _update_shape_index = 0
 
 [node name="Ground2Right" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 512, 64 )
 z/relative = false
 texture = ExtResource( 1 )
@@ -590,7 +580,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2Right/StaticBody2D"]
@@ -704,25 +694,24 @@ region_rect = Rect2( 0, 0, 64, 64 )
 
 transform/pos = Vector2( 48, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorLeftTop/StaticBody2D"]
 
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 trigger = false
 _update_shape_index = 0
 
 [node name="FloorLeft" type="Sprite" parent="cf_floor1"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 256 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -734,25 +723,24 @@ region_rect = Rect2( 0, 64, 64, 64 )
 
 transform/pos = Vector2( 40, 24 )
 input/pickable = false
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorLeft/StaticBody2D"]
 
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 trigger = false
 _update_shape_index = 0
 
 [node name="FloorTop" type="Sprite" parent="cf_floor1"]
 
-editor/display_folded = true
 transform/pos = Vector2( 64, 192 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -764,19 +752,19 @@ region_rect = Rect2( 64, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorTop/StaticBody2D"]
 
-shape = SubResource( 11 )
+shape = SubResource( 10 )
 trigger = false
 _update_shape_index = 0
 
@@ -802,25 +790,24 @@ region_rect = Rect2( 128, 0, 64, 64 )
 
 transform/pos = Vector2( 8, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorRightTop/StaticBody2D"]
 
-shape = SubResource( 12 )
+shape = SubResource( 11 )
 trigger = false
 _update_shape_index = 0
 
 [node name="FloorRight" type="Sprite" parent="cf_floor1"]
 
-editor/display_folded = true
 transform/pos = Vector2( 128, 256 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -832,19 +819,19 @@ region_rect = Rect2( 128, 64, 64, 64 )
 
 transform/pos = Vector2( 16, 24 )
 input/pickable = false
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorRight/StaticBody2D"]
 
-shape = SubResource( 13 )
+shape = SubResource( 12 )
 trigger = false
 _update_shape_index = 0
 
@@ -863,19 +850,19 @@ region_rect = Rect2( 192, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_platform/Platform1/StaticBody2D"]
 
-shape = SubResource( 8 )
+shape = SubResource( 13 )
 trigger = false
 _update_shape_index = 0
 
@@ -890,11 +877,8 @@ region_rect = Rect2( 192, 64, 64, 64 )
 
 [node name="cf_ceilling" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="CeillingLeftTop" type="Sprite" parent="cf_ceilling"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 328 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -913,7 +897,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_ceilling/CeillingLeftTop/StaticBody2D"]
@@ -942,7 +926,6 @@ region_rect = Rect2( 128, 192, 64, 64 )
 
 [node name="CeillingRightTop" type="Sprite" parent="cf_ceilling"]
 
-editor/display_folded = true
 transform/pos = Vector2( 192, 328 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -961,7 +944,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_ceilling/CeillingRightTop/StaticBody2D"]
@@ -972,7 +955,6 @@ _update_shape_index = 0
 
 [node name="CeillingLeftBottom" type="Sprite" parent="cf_ceilling"]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 392 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -991,7 +973,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_ceilling/CeillingLeftBottom/StaticBody2D"]
@@ -1002,7 +984,6 @@ _update_shape_index = 0
 
 [node name="CeillingBottom1" type="Sprite" parent="cf_ceilling"]
 
-editor/display_folded = true
 transform/pos = Vector2( 64, 392 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -1021,7 +1002,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_ceilling/CeillingBottom1/StaticBody2D"]
@@ -1032,7 +1013,6 @@ _update_shape_index = 0
 
 [node name="CeillingBottom2" type="Sprite" parent="cf_ceilling"]
 
-editor/display_folded = true
 transform/pos = Vector2( 128, 392 )
 z/relative = false
 texture = ExtResource( 2 )
@@ -1051,7 +1031,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_ceilling/CeillingBottom2/StaticBody2D"]
@@ -1080,7 +1060,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_ceilling/CeillingRightBottom/StaticBody2D"]
@@ -1093,7 +1073,6 @@ _update_shape_index = 0
 
 [node name="CastleLeftTop1" type="Sprite" parent="cst_floor"]
 
-editor/display_folded = true
 transform/pos = Vector2( 256, 192 )
 z/relative = false
 texture = ExtResource( 3 )
@@ -1112,7 +1091,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floor/CastleLeftTop1/StaticBody2D"]
@@ -1160,7 +1139,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floor/CastleTop1/StaticBody2D"]
@@ -1207,7 +1186,7 @@ collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floor/CastleRightTop1/StaticBody2D"]
@@ -1303,19 +1282,19 @@ region_rect = Rect2( 320, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 28 )
+shapes/0/shape = SubResource( 23 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_redcarpet/carpet1/StaticBody2D"]
 
-shape = SubResource( 28 )
+shape = SubResource( 23 )
 trigger = false
 _update_shape_index = 0
 
@@ -1332,19 +1311,19 @@ region_rect = Rect2( 384, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 29 )
+shapes/0/shape = SubResource( 24 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_redcarpet/carpet2/StaticBody2D"]
 
-shape = SubResource( 29 )
+shape = SubResource( 24 )
 trigger = false
 _update_shape_index = 0
 
@@ -1361,25 +1340,23 @@ region_rect = Rect2( 448, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 30 )
+shapes/0/shape = SubResource( 25 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_redcarpet/carpet3/StaticBody2D"]
 
-shape = SubResource( 30 )
+shape = SubResource( 25 )
 trigger = false
 _update_shape_index = 0
 
 [node name="cst_floors" type="Node2D" parent="."]
-
-editor/display_folded = true
 
 [node name="floor1" type="Sprite" parent="cst_floors"]
 
@@ -1394,19 +1371,19 @@ region_rect = Rect2( 192, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 23 )
+shapes/0/shape = SubResource( 26 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor1/StaticBody2D"]
 
-shape = SubResource( 23 )
+shape = SubResource( 26 )
 trigger = false
 _update_shape_index = 0
 
@@ -1423,19 +1400,19 @@ region_rect = Rect2( 256, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 23 )
+shapes/0/shape = SubResource( 26 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor2/StaticBody2D1"]
 
-shape = SubResource( 23 )
+shape = SubResource( 26 )
 trigger = false
 _update_shape_index = 0
 
@@ -1461,19 +1438,19 @@ region_rect = Rect2( 256, 64, 64, 64 )
 
 transform/pos = Vector2( 40, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 24 )
+shapes/0/shape = SubResource( 27 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor4/StaticBody2D"]
 
-shape = SubResource( 24 )
+shape = SubResource( 27 )
 trigger = false
 _update_shape_index = 0
 
@@ -1490,19 +1467,19 @@ region_rect = Rect2( 320, 64, 64, 64 )
 
 transform/pos = Vector2( 32, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 25 )
+shapes/0/shape = SubResource( 28 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor5/StaticBody2D"]
 
-shape = SubResource( 25 )
+shape = SubResource( 28 )
 trigger = false
 _update_shape_index = 0
 
@@ -1519,19 +1496,19 @@ region_rect = Rect2( 384, 64, 64, 64 )
 
 transform/pos = Vector2( 24, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 26 )
+shapes/0/shape = SubResource( 29 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor6/StaticBody2D"]
 
-shape = SubResource( 26 )
+shape = SubResource( 29 )
 trigger = false
 _update_shape_index = 0
 
@@ -1548,19 +1525,19 @@ region_rect = Rect2( 448, 64, 64, 64 )
 
 transform/pos = Vector2( 32, 56 )
 input/pickable = false
-shapes/0/shape = SubResource( 27 )
+shapes/0/shape = SubResource( 30 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 1.0
+friction = 0.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor7/StaticBody2D"]
 
-shape = SubResource( 27 )
+shape = SubResource( 30 )
 trigger = false
 _update_shape_index = 0
 

@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://fonts/retroFont.fnt" type="BitmapFont" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Control
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+var border_panel
+var content_panel
+var rich_text_label
+
+var width
+var height = 196
+var inner_width
+var inner_height
+
+var pos
+
+var outer_margin = 128
+var inner_margin = 8
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	border_panel = get_node(\"BorderPanel\")
+	content_panel = get_node(\"ContentPanel\")
+	rich_text_label = get_node(\"ContentPanel/Text\")
+	
+	width = get_viewport().get_rect().size.width - outer_margin
+	inner_width = width - inner_margin
+	inner_height = height - inner_margin
+	
+	pos = get_parent().get_pos()
+	get_parent().set_pos(Vector2(pos.x + outer_margin / 3, pos.y))
+	
+	border_panel.set_size(Vector2(width, height))
+	content_panel.set_size(Vector2(inner_width, inner_height))
+	#var inner_width2 = inner_width - 32
+	#var inner_height2 = inner_height - 32
+	#rich_text_label.set_size(Vector2(inner_width2, inner_height2))
+	pass
+"
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 1, 1, 1, 1 )
+light_color = Color( 1, 1, 1, 1 )
+dark_color = Color( 1, 1, 1, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0, 0, 1 )
+light_color = Color( 0, 0, 0, 1 )
+dark_color = Color( 0, 0, 0, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[node name="Dialog" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = SubResource( 1 )
+
+[node name="BorderPanel" type="PanelContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 128.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="ContentPanel" type="PanelContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 4.0
+margin/right = 316.0
+margin/bottom = 124.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Text" type="RichTextLabel" parent="ContentPanel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 312.0
+margin/bottom = 120.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode/enabled = false
+bbcode/bbcode = "Fuck off!"
+visible_characters = -1
+percent_visible = 1.0
+
+

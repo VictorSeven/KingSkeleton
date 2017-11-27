@@ -15,7 +15,10 @@ var max_frame = 2;
 
 var cloud_width = 320
 var cloud_height = 128
-var cloud_speed = 10
+var cloud_speed = 50
+
+var offset = 16
+var cloud_left_limit = -16
 
 func _ready():
 	set_process(true)
@@ -24,12 +27,18 @@ func _ready():
 	# Initialization here
 	nube_frame = randi() % max_frame
 	set_region_rect(Rect2(0, nube_frame * cloud_height, cloud_width, cloud_height));
+	
 	pass
 
 func _process(delta):
 	var pos = get_pos()
 	set_pos(Vector2(pos.x - cloud_speed * delta, pos.y))
-	pass"
+	if(pos.x + cloud_width < cloud_left_limit):
+		destroy()
+	pass
+
+func destroy():
+	queue_free()"
 
 [node name="Cloud" type="Sprite"]
 
