@@ -90,13 +90,14 @@ func get_atq():
 	return atq
 
 func damage(swatq):
-	life -= swatq
-	elapsed_time = 0.0 #Set elapsed time for animations
-	#If alive, play hit animation.
-	if (life > 0):
-		play_anim("hit", 1)
-		damaged = true
-	#If nt, block it with damaged var and kill it
-	else:
-		play_anim("death", 2)
-		damaged = true
+	if (not damaged):
+		life -= swatq
+		elapsed_time = 0.0 #Set elapsed time for animations
+		#If alive, play hit animation.
+		if (life > 0):
+			play_anim("hit", 1)
+			damaged = true
+		#If nt, block it with damaged var and kill it
+		else:
+			play_anim("death", 2)
+			damaged = true

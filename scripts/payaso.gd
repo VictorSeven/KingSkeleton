@@ -33,6 +33,11 @@ var left = true #Are we walking to right?
 var maxvel = 30.0 #Movement speed
 var vel = 0.0
 
+var risa_inicial = false
+
+var time_laugh = 10.0
+var elapsed_time_laugh = 0.0
+
 func _ready():
 	randomize() #RNG
 	king = get_tree().get_root().get_node("Node2D/king") #Get the king
@@ -45,6 +50,10 @@ func _ready():
 
 func _fixed_process(delta):
 	if (king.is_in_boss()):
+		if (not risa_inicial):
+			get_node("player").play("risa1")
+			risa_inicial = true
+		laugh(delta)
 		#Move and throw things if we are not damaged
 		if (not is_damaged):
 			movement()
@@ -54,7 +63,7 @@ func _fixed_process(delta):
 			elapsed_time_damage += delta #Time of damage
 			if (life > 0):
 				#Alpha modulation allows player to see it has hit the clown
-				get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, cos(elapsed_time_damage)))
+				get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, sin(elapsed_time_damage)))
 				#Reocover from hit
 				if (elapsed_time_damage > damagetime):
 					elapsed_time_damage = 0.0
@@ -113,6 +122,7 @@ func throw_card():
 	#Init a new card in a big zone around the clown
 	new_card.init(texture, Vector2((randf() - 0.5) * 10.0 * zone, -200), card_atq) 
 	add_child(new_card)
+
 #Damage the clown
 func damage(swatq):
 	if (not is_damaged): #Avoid extra damage
@@ -122,10 +132,22 @@ func damage(swatq):
 			throwtime = throwtime * 0.8 #Reduce the rate of knive throw!
 			#Cool animation of cards using particle emitter
 			if (life <= maxlife/2 and not cards_used):
+				get_node("player").play("risa1")
 				get_node("cards_start/card1_generator").set_emitting(true)
 				get_node("cards_start/card2_generator").set_emitting(true)
 				cards_used = true
 		else:
 			get_node("anim").play("death") #Kill clown
 
-
+func laugh(delta):
+	elapsed_time_laugh += delta
+	if (elapsed_time_laugh > time_laugh):
+		elapsed_time_laugh= 0.0
+		#Randomly select a laugh SFX
+		var r = randf()
+		if (r < 0.33):
+			get_node("player").play("risa2")
+		elif(r < 0.66):
+			get_node("player").play("risa3")
+		else:
+			get_node("player").play("risa4")

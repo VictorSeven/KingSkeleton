@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 
 #Each image has different dimensions, so we will load each one individually
 var nombres = ["Caminando", "Ataque", "hit1", "Muerte"]
@@ -25,7 +25,6 @@ func _ready():
 	king = get_tree().get_root().get_node("Node2D/king") #Get the king
 	get_node("hitbox").add_to_group("hitbox")
 	get_node("atq").add_to_group("enemy")
-	king = get_tree().get_root().get_node("Node2D/king")
 	# Load all textures:
 	for name in nombres:
 		texturas.append(load("res://graphics/enemies/genoma/"+name+".png"))
@@ -35,7 +34,7 @@ func _ready():
 
 func _fixed_process(delta):
 	#Activate only inside area
-	if (get_pos().x - king.get_pos().x < detection_distance):
+	if (abs(get_pos().x - king.get_pos().x) < detection_distance):
 		#During the activation/attack/death anim, we're blocked:
 		if (not walking):
 			vel.x = 0.0
@@ -51,7 +50,7 @@ func _fixed_process(delta):
 					queue_free() #Not alive -> delete node
 		else:
 			movement(delta) #Move
-		move(vel * delta)
+		set_pos(get_pos() + vel * delta)
 
 func movement(delta):
 	if (king.get_pos().x < get_pos().x):
@@ -74,6 +73,8 @@ func set_sprite_text(index):
 	get_node("Sprite").set_hframes(frames[index]) #Say how many frames it has
 
 func get_atq():
+	#If this function is invoked, we are attacking, so animate
+	atq_anim() 
 	return atq
 
 #Called by sword to deal damage
@@ -97,15 +98,13 @@ func damage(points):
 			activate_start_time = 1.0 #Set block time
 
 func can_deal_damage():
-	return true
+	return not kill
 
-#Attack animation when collides with player
-func _on_atq_area_enter( area ):
-	if (area.is_in_group("king")):
+#Attack animation
+func atq_anim():
 		change_anim("attack", 1)
 		#Use this to block the enemy during this animation:
 		walking = false
 		elapsed_time = 0.0
 		#Current animation is attack, so gets its length
 		activate_start_time = get_node("anim").get_current_animation_length()
-

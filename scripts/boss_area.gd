@@ -86,6 +86,9 @@ func zoom_out(delta):
 func _on_boss_start_area_enter( area ):
 	#and we are the king
 	if (area.is_in_group("king")):
+		#get_tree().get_root().get_node("Node2D/musicplayer").stop()
+		get_tree().get_root().get_node("Node2D/musicplayer").set_stream(load("res://music/ost/finalboss.ogg"))
+		get_tree().get_root().get_node("Node2D/musicplayer").play()
 		started = true
 		area.get_parent().start_boss()
 		set_fixed_process(true) #Make the zoom

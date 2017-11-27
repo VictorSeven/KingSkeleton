@@ -55,12 +55,21 @@ func _fixed_process(delta):
 			# You can check which tile was collision against with this
 			# print(get_collider_metadata())
 		
+			
 			var n = get_collision_normal()
 			#In case we are colliding with ground, get start height
 			if (n == Vector2(0.0, -1.0)):
 				start_height = get_pos().y
 				vel.y = 0.0
 				on_air_time = 0 #In ground, reset air time counter
+			#This avoids getting stuck over the walls
+			#because it deletes the force pushing it that blocks y-vel
+			elif(n == Vector2(1.0, 0.0)):
+				if (vel.x < 0):
+					vel.x = 0.0
+			elif(n == Vector2(-1.0, 0.0)):
+				if (vel.x > 0):
+					vel.x = 0.0
 		
 		#set_pos(Vector2(get_pos().x, get_pos().y + sin(timer * frequency) * amplitude));
 		#timer += 1;
@@ -165,7 +174,8 @@ func damage(points):
 	is_damaged = true #Enter in damage state
 	elapsed_time = 0.0 #Start counter
 	lifepoints -= points #Eliminate points
-	if (lifepoints < 0):
+	if (lifepoints <= 0):
+		get_node("player").play("kingdeath")
 		change_anim("death") #Kill it
 	else: 
 		change_anim("damage") #Damaged anim

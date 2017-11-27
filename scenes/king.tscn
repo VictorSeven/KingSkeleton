@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=22 format=1]
 
 [ext_resource path="res://scripts/king_controller.gd" type="Script" id=1]
 [ext_resource path="res://graphics/king/sheet.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://graphics/king/brazo.png" type="Texture" id=6]
 [ext_resource path="res://graphics/king/hombro derecho.png" type="Texture" id=7]
 [ext_resource path="res://graphics/king/alma.png" type="Texture" id=8]
+[ext_resource path="res://music/sfx/kingdeath.smp" type="Sample" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -99,7 +100,7 @@ tracks/0/keys = {
 "values": [ 27, 28 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=7]
 
 resource/name = "death"
 length = 2.0
@@ -246,7 +247,7 @@ tracks/13/keys = {
 "values": [ 0.0, 41.9832 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=8]
 
 length = 0.45
 loop = true
@@ -262,7 +263,7 @@ tracks/0/keys = {
 "values": [ 24, 25, 26 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=9]
 
 length = 0.6
 loop = true
@@ -278,7 +279,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=10]
 
 length = 0.6
 loop = true
@@ -299,6 +300,15 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 20.672, 20.6476 )
 
+[sub_resource type="SampleLibrary" id=12]
+
+samples/kingdeath = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+
 [node name="king" type="KinematicBody2D"]
 
 input/pickable = false
@@ -315,6 +325,7 @@ script/script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 8
+frame = 11
 
 [node name="shape" type="CollisionShape2D" parent="."]
 
@@ -334,10 +345,10 @@ anims/atq1_wait = SubResource( 3 )
 anims/atq2_throw = SubResource( 4 )
 anims/atq2_wait = SubResource( 5 )
 anims/damage = SubResource( 6 )
-anims/death = SubResource( 12 )
-anims/float = SubResource( 13 )
-anims/idle = SubResource( 14 )
-anims/walk = SubResource( 15 )
+anims/death = SubResource( 7 )
+anims/float = SubResource( 8 )
+anims/idle = SubResource( 9 )
+anims/walk = SubResource( 10 )
 next/atq1_throw = "atq1_wait"
 next/atq2_throw = "atq2_wait"
 playback/active = true
@@ -402,6 +413,23 @@ visibility/visible = false
 transform/pos = Vector2( -1.66385, -54.2327 )
 texture = ExtResource( 8 )
 hframes = 9
+
+[node name="player" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 12 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [connection signal="area_enter" from="hitbox" to="." method="_on_hitbox_area_enter"]
 
