@@ -15,7 +15,7 @@ var max_frame = 2;
 
 var cloud_width = 320
 var cloud_height = 128
-var cloud_speed = 50
+var cloud_speed = 40
 
 var offset = 16
 var cloud_left_limit = -16

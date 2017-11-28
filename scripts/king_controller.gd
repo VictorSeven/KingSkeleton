@@ -5,8 +5,10 @@ extends KinematicBody2D
 
 var healthbar
 var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/PlayerHUD/Healthbar"
-var hud_panel
-var path_to_hud_panel = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD"
+var enemy_healthbar
+var path_to_enemy_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD"
+var dialog_hud
+var path_to_dialog_hud = "Node2D/CanvasLayer_HUD/Dialog_HUD"
 
 var gravity = Vector2(0, 500)
 var acel = Vector2(20, 0.8) #Acceleration
@@ -44,20 +46,21 @@ func _ready():
 	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
 	healthbar = get_tree().get_root().get_node(path_to_healthbar).get_child(0)
-	hud_panel = get_tree().get_root().get_node(path_to_hud_panel)
+	enemy_healthbar = get_tree().get_root().get_node(path_to_enemy_healthbar)
+	dialog_hud = get_tree().get_root().get_node(path_to_dialog_hud)
 	set_fixed_process(true) #Start the fixed process
 
 #Proceso fijo
 func _fixed_process(delta):
 	elapsed_time += delta
 	
-	if in_boss:
-		hud_panel.show()
+	if (in_boss):
+		enemy_healthbar.show()
 	else:
-		hud_panel.hide()
+		enemy_healthbar.hide()
 	
 	#If the sword is not in the air, process King's input
-	if (not is_throwing and not is_damaged):
+	if (not is_throwing and not is_damaged and not is_dialog_showing()):
 		move_input(delta)
 		
 		# Integrate velocity into motion and move
@@ -158,9 +161,9 @@ func move_input(delta):
 	if (not input_x and not input_y):
 		change_anim("idle")
 	
-	#Do attack is we are not throwing sword
-	if (Input.is_action_pressed("ui_accept") and !is_throwing):
-		vel.x = 0.0 #Stop king
+	#Do attack if we are not throwing sword
+	if (Input.is_action_pressed("ui_accept") and !is_throwing and !is_dialog_showing()):
+		vel.x = 0.0 #Stop king 
 		var sword_world = sword.instance() #Instance new sword
 		sword_world.init_sword(get_pos(), not right) #Init it
 		add_child(sword_world) #Crate into world
@@ -171,7 +174,7 @@ func move_input(delta):
 			change_anim("atq1_throw")
 		else:
 			change_anim("atq2_throw") 
-		atq1 = not atq1 #Change animation for next 
+		atq1 = not atq1 #Change animation for next
 
 func damage(points):
 	is_damaged = true #Enter in damage state
@@ -198,7 +201,14 @@ func start_boss():
 func get_health():
 	return lifepoints
 
+func is_dialog_showing():
+	return dialog_hud.is_visible()
+
 func _on_hitbox_body_enter( body ):
+	if (Input.is_action_pressed("ui_accept")):
+		if (body.is_in_group("npc")):
+			body.show_dialog()
+			
 	#If we detect a collision with the sword,
 	if (body.is_in_group("sword")):
 		#Don't count the collision reported by creation of sword,

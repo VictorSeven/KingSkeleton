@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://fonts/retroFont.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://fonts/retroFont2.fnt" type="BitmapFont" id=1]
 
 [sub_resource type="GDScript" id=1]
 
@@ -11,6 +11,7 @@ script/source = "extends Control
 # var b = \"textvar\"
 var border_panel
 var content_panel
+var container
 var rich_text_label
 
 var width
@@ -23,12 +24,26 @@ var pos
 var outer_margin = 128
 var inner_margin = 8
 
+export var messages = [\"Hello, my name is Flan, welcome to Nameless Kingdom. We are here to have fun and play a little bit. THROWBACK!!!\", \"Goodbye, fuck off Nameless Kingdom. We are here to have fun and play a little bit. BACKTHROW!!!\", \"We are here to have fun and play a little bit. THROWBACK!!!\"]
+var current_message
+var current_message_array
+
+var message_counter = 0
+var characters_shown = 0
+var next_word = 0
+export var text_speed = 0.1
+
+var elapsed_time = 0.0
+var is_message_written = false
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	border_panel = get_node(\"BorderPanel\")
 	content_panel = get_node(\"ContentPanel\")
-	rich_text_label = get_node(\"ContentPanel/Text\")
+	rich_text_label = get_node(\"Text\")
+	
+	init()
 	
 	width = get_viewport().get_rect().size.width - outer_margin
 	inner_width = width - inner_margin
@@ -39,10 +54,80 @@ func _ready():
 	
 	border_panel.set_size(Vector2(width, height))
 	content_panel.set_size(Vector2(inner_width, inner_height))
-	#var inner_width2 = inner_width - 32
-	#var inner_height2 = inner_height - 32
-	#rich_text_label.set_size(Vector2(inner_width2, inner_height2))
+	rich_text_label.set_size(Vector2(inner_width - 8, inner_height - 8))
+	rich_text_label.set_bbcode(current_message)
+	rich_text_label.set_visible_characters(characters_shown)
+	
+	set_process(true)
+	set_process_input(true)
 	pass
+	
+func _process(delta):
+	if(get_parent().is_visible()):
+		elapsed_time += delta
+		
+		if(elapsed_time >= text_speed && !is_message_written):
+			draw_next_word()
+	pass
+
+func _input(event):
+	if (Input.is_action_pressed(\"ui_accept\")):
+		complete_or_next_page()
+
+func init():
+	message_counter = 0
+	current_message = messages[message_counter]
+	current_message_array = current_message.split(\" \")
+	characters_shown = current_message_array[0].length()
+	next_word = 1
+	rich_text_label.set_bbcode(current_message)
+	rich_text_label.set_visible_characters(characters_shown)
+	is_message_written = false
+
+func complete_or_next_page():
+	if(!is_message_written):
+		characters_shown = current_message.length()
+		next_word = current_message_array.size()
+		rich_text_label.set_visible_characters(characters_shown)
+		is_message_written = true
+	else:
+		message_counter += 1
+		if(message_counter < messages.size()):
+			next_page()
+		else:
+			hide_dialog()
+
+func next_page():
+	#print(\"MESSAGE\", \": \", current_message_array[next_word])
+	#print(\"CHARACTERS\", \": \", characters_shown)
+	#print(\"NEXT WORD\", \": \", next_word)
+	current_message = messages[message_counter]
+	current_message_array = current_message.split(\" \")
+	characters_shown = 0
+	next_word = 0
+	is_message_written = false
+	rich_text_label.set_bbcode(current_message)
+	rich_text_label.set_visible_characters(characters_shown)
+
+func draw_next_word():
+	#print(\"MESSAGE\", \": \", current_message_array[next_word])
+	#print(\"CHARACTERS\", \": \", characters_shown)
+	#print(\"NEXT WORD\", \": \", next_word)
+	characters_shown += current_message_array[next_word].length() + 1
+	next_word += 1
+	rich_text_label.set_visible_characters(characters_shown)
+	elapsed_time = 0.0 #Start counter
+	if(next_word >= current_message_array.size()):
+		is_message_written = true
+
+func hide_dialog():
+	get_parent().hide()
+	init()
+
+func _on_Dialog_input_event( ev ):
+	pass
+	#if (Input.is_action_pressed(\"ui_accept\")):
+	#	complete_or_next_page()
 "
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -82,6 +167,8 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 script/script = SubResource( 1 )
+messages = [ "Hello, my name is Flan, welcome to Nameless Kingdom. We are here to have fun and play a little bit. THROWBACK!!!", "Goodbye, fuck off Nameless Kingdom. We are here to have fun and play a little bit. BACKTHROW!!!", "We are here to have fun and play a little bit. THROWBACK!!!" ]
+text_speed = 0.1
 
 [node name="BorderPanel" type="PanelContainer" parent="."]
 
@@ -107,20 +194,23 @@ margin/right = 316.0
 margin/bottom = 124.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Text" type="RichTextLabel" parent="ContentPanel"]
+[node name="Text" type="RichTextLabel" parent="."]
 
+visibility/light_mask = 0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
+margin/left = 8.0
+margin/top = 4.0
 margin/right = 312.0
 margin/bottom = 120.0
 custom_fonts/normal_font = ExtResource( 1 )
-bbcode/enabled = false
+bbcode/enabled = true
 bbcode/bbcode = "Fuck off!"
 visible_characters = -1
 percent_visible = 1.0
+
+[connection signal="input_event" from="." to="." method="_on_Dialog_input_event"]
 
 

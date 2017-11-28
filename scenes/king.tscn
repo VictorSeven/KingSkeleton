@@ -348,7 +348,6 @@ autoplay = "idle"
 
 [node name="hitbox" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( -0.921261, -1.29413 )
 transform/scale = Vector2( 1.02176, 1 )
 input/pickable = true
