@@ -1,0 +1,217 @@
+[gd_scene load_steps=13 format=1]
+
+[ext_resource path="res://scripts/payaso.gd" type="Script" id=1]
+[ext_resource path="res://graphics/enemies/payaso/pose.png" type="Texture" id=2]
+[ext_resource path="res://graphics/enemies/payaso/card1.png" type="Texture" id=3]
+[ext_resource path="res://graphics/enemies/payaso/card2.png" type="Texture" id=4]
+[ext_resource path="res://music/sfx/risa payaso 1.smp" type="Sample" id=5]
+[ext_resource path="res://music/sfx/risa payaso 2.smp" type="Sample" id=6]
+[ext_resource path="res://music/sfx/risa payaso 4.smp" type="Sample" id=7]
+[ext_resource path="res://music/sfx/risa payaso 3.smp" type="Sample" id=8]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "death"
+length = 1.7
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:transform/scale")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 1.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "loop"
+length = 0.9
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("hitbox:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.3, 0.6 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7.5193, -45.9183 ), Vector2( -6.44746, -56.2096 ), Vector2( -14.901, -45.1833 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 20.9511
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/risa1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/risa2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/risa3 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+samples/risa4 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+
+[node name="Node2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+hframes = 9
+
+[node name="anim" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/death = SubResource( 1 )
+anims/loop = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "loop"
+
+[node name="hitbox" type="Area2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 7.5193, -45.9183 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="col" type="CollisionShape2D" parent="hitbox"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cards_start" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="card1_generator" type="Particles2D" parent="cards_start"]
+
+transform/pos = Vector2( -70.0522, 115.692 )
+config/amount = 30
+config/lifetime = 4.0
+config/emit_timeout = 2.0
+config/emitting = false
+config/process_mode = 1
+config/half_extents = Vector2( 300, 2 )
+config/texture = ExtResource( 3 )
+params/direction = 0.0
+params/spread = 0.0
+params/linear_velocity = -200.0
+params/spin_velocity = 5.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 50.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="card2_generator" type="Particles2D" parent="cards_start"]
+
+transform/pos = Vector2( -70.0522, 115.692 )
+config/amount = 30
+config/lifetime = 4.0
+config/emit_timeout = 2.0
+config/emitting = false
+config/process_mode = 1
+config/half_extents = Vector2( 300, 2 )
+config/texture = ExtResource( 4 )
+params/direction = 0.0
+params/spread = 0.0
+params/linear_velocity = -200.0
+params/spin_velocity = 5.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 50.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="player" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
+
+

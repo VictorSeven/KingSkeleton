@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://graphics/deco/arboles.png" type="Texture" id=1]
+
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Sprite
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+export var tree_frame = 0
+var max_frame = 2
+
+var tree_width = 64
+var tree_height = 192
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	set_region_rect(Rect2((tree_frame % max_frame) * tree_width, 0, tree_width, tree_height));
+	pass
+"
+
+[node name="Tree" type="Sprite"]
+
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 64, 192 )
+script/script = SubResource( 1 )
+tree_frame = 0
+
+
