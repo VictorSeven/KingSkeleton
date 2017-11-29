@@ -13,12 +13,12 @@
 [ext_resource path="res://scenes/king.tscn" type="PackedScene" id=11]
 [ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=12]
 [ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/peste.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/ahorcado.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/crisadea.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/ahorcado.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/crisadea.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/past_king.tscn" type="PackedScene" id=19]
 
 [node name="Node2D" type="Node2D"]
 
@@ -242,32 +242,34 @@ texture = ExtResource( 12 )
 transform/pos = Vector2( 1030.53, 276.104 )
 cart_frame = 2
 
-[node name="peste" parent="." instance=ExtResource( 14 )]
-
-transform/pos = Vector2( 3990.65, 31.4608 )
-
-[node name="boss_area" parent="." instance=ExtResource( 15 )]
+[node name="boss_area" parent="." instance=ExtResource( 14 )]
 
 transform/pos = Vector2( 3771.84, -7.84341 )
 
-[node name="genoma" parent="." instance=ExtResource( 16 )]
+[node name="genoma" parent="." instance=ExtResource( 15 )]
 
 transform/pos = Vector2( 1242.66, 248.682 )
 
-[node name="bat" parent="." instance=ExtResource( 17 )]
+[node name="bat" parent="." instance=ExtResource( 16 )]
 
 transform/pos = Vector2( 2201.99, 185.583 )
 
-[node name="genoma1" parent="." instance=ExtResource( 16 )]
+[node name="genoma1" parent="." instance=ExtResource( 15 )]
 
 transform/pos = Vector2( 2668.1, 125.944 )
 
-[node name="ahorcado" parent="." instance=ExtResource( 18 )]
+[node name="ahorcado" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 384.928, 98.0827 )
 
-[node name="crisadea" parent="." instance=ExtResource( 19 )]
+[node name="crisadea" parent="." instance=ExtResource( 18 )]
 
 transform/pos = Vector2( 937.297, 262.552 )
+
+[node name="past_king" parent="." instance=ExtResource( 19 )]
+
+transform/pos = Vector2( 4015.06, 14.7814 )
+ldist = 3600
+rdist = 4200
 
 
