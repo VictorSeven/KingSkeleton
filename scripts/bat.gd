@@ -18,6 +18,9 @@ var noise_intensity = 0.45 #Intensity of random force
 var damaged = false #If this is damaged
 var elapsed_time = 0.0 #Elapsed time
 
+var elap_repro = 0.0
+var repro_time = 3.0
+
 #Parameters
 var life = 50
 var atq = 20
@@ -44,12 +47,14 @@ func _fixed_process(delta):
 	if (not flying):
 		if (get_pos().distance_squared_to(king.get_pos()) < radar*radar):
 			flying = true
+			get_node("player").play("bat") #First time sound
 			play_anim("fly", 0)
 			get_node("anim").set_speed(1.5) #Animation speed
 	else:
 		if (not damaged):
 			#If we are not block, move
 			move()
+			player_timer(delta) #Play sound every certain time
 			set_pos(get_pos() + vel * delta)
 		else:
 			#Block it so it does not move
@@ -85,6 +90,12 @@ func play_anim(name, index):
 
 func can_deal_damage():
 	return not damaged
+
+func player_timer(delta):
+	elap_repro += delta
+	if (elap_repro > repro_time):
+		elap_repro = 0.0
+		get_node("player").play("bat")
 
 func get_atq():
 	return atq

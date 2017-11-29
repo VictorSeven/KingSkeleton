@@ -4,7 +4,7 @@ var king
 
 var deathtex = load("res://graphics/enemies/payaso/death.png")
 
-var maxlife = 100 #MAximum amount of life
+var maxlife = 150 #MAximum amount of life
 var life = maxlife
 var knife_atq = 20 #Damage dealed by knives
 var card_atq = 10 #Damage dealed by cards
@@ -132,7 +132,7 @@ func damage(swatq):
 			throwtime = throwtime * 0.8 #Reduce the rate of knive throw!
 			#Cool animation of cards using particle emitter
 			if (life <= maxlife/2 and not cards_used):
-				get_node("player").play("risa1")
+				get_node("player").play("cartas")
 				get_node("cards_start/card1_generator").set_emitting(true)
 				get_node("cards_start/card2_generator").set_emitting(true)
 				cards_used = true

@@ -158,6 +158,8 @@ func move_input(delta):
 	#Do attack is we are not throwing sword
 	if (Input.is_action_pressed("ui_accept") and !is_throwing):
 		vel.x = 0.0 #Stop king
+		get_node("player").play("throwsword")
+		get_node("player").play("swordspin")
 		var sword_world = sword.instance() #Instance new sword
 		sword_world.init_sword(get_pos(), not right) #Init it
 		add_child(sword_world) #Crate into world
@@ -171,14 +173,16 @@ func move_input(delta):
 		atq1 = not atq1 #Change animation for next 
 
 func damage(points):
-	is_damaged = true #Enter in damage state
-	elapsed_time = 0.0 #Start counter
-	lifepoints -= points #Eliminate points
-	if (lifepoints <= 0):
-		get_node("player").play("kingdeath")
-		change_anim("death") #Kill it
-	else: 
-		change_anim("damage") #Damaged anim
+	if (not is_damaged):
+		get_node("player").play("damage")
+		is_damaged = true #Enter in damage state
+		elapsed_time = 0.0 #Start counter
+		lifepoints -= points #Eliminate points
+		if (lifepoints <= 0):
+			get_node("player").play("kingdeath")
+			change_anim("death") #Kill it
+		else: 
+			change_anim("damage") #Damaged anim
 
 
 func change_anim(newanim):
@@ -199,6 +203,8 @@ func _on_hitbox_body_enter( body ):
 		if (!sword_destroy): 
 			sword_destroy = true
 		else: #but when it returns
+			get_node("player").stop_all()
+			get_node("player").play("getsword")
 			body.queue_free() #Delete the sword
 			is_throwing = false #Stop throwing
 			change_anim("idle") #Idle anim
@@ -211,6 +217,8 @@ func _on_hitbox_area_enter( area ):
 		if (!sword_destroy): 
 			sword_destroy = true
 		else: #but when it returns
+			get_node("player").stop_all()
+			get_node("player").play("getsword")
 			area.queue_free() #Delete the sword
 			is_throwing = false #Stop throwing
 			change_anim("idle") #Idle anim

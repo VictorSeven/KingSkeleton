@@ -84,6 +84,7 @@ func damage(points):
 		life -= points
 		print(life)
 		if (life > 0):
+			get_node("player").play("damage")
 			change_anim("damage", 2)
 			#Use this to block the enemy during this animation:
 			#is_damaged = true #Block
@@ -91,6 +92,7 @@ func damage(points):
 			elapsed_time = 0.0
 			activate_start_time = 1.0 #Set block time
 		else:
+			get_node("player").play("death")
 			change_anim("death", 3)
 			walking = false
 			kill = true 

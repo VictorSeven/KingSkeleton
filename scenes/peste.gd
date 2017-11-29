@@ -89,6 +89,8 @@ func do_atq():
 		#Add them
 		add_child(w1)
 		add_child(w2)
+		#Play the sound of invoke
+		get_node("player").play("witch_attack")
 		
 	else:
 		#This animation includes movement of area that makes the attack!
