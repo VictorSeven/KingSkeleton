@@ -66,6 +66,7 @@ func atq_timer(delta):
 	elapsed_time += delta
 	#Start atq
 	if (elapsed_time >= start_atq):
+		get_node("anim").set_speed(1.5)
 		change_anim("ataque", 1) #Change animation 
 		#Once the animation have run enough, create the projectile
 		if (elapsed_time > start_atq + atq_anim_length - 0.3 and not anim_started):
@@ -86,6 +87,7 @@ func atq_timer(delta):
 			#Once the animation finishes, go again to normal anim
 			elapsed_time = 0.0
 			anim_started = false
+			get_node("anim").set_speed(1.0)
 			change_anim("loop", 0)
 
 #Damage logic
@@ -105,6 +107,7 @@ func damage(swatq):
 			set_fixed_process(false)
 			#and add the kill effect. This will take care
 			#of freeing the node after playing
+			get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, 0.0))
 			var new_effect = death_effect.instance()
 			add_child(new_effect)
 

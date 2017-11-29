@@ -110,8 +110,10 @@ func _fixed_process(delta):
 func check_look():
 	if (king.get_pos().x > get_pos().x):
 		right = true
+		get_node("hitbox").set_pos(Vector2(-16,44))
 	else:
 		right = false
+		get_node("hitbox").set_pos(Vector2(14,44))
 	get_node("Sprite").set_flip_h(not right)
 
 
@@ -162,8 +164,10 @@ func body_atq(delta):
 		#Select direction of tackle
 		if (right):
 			dir = Vector2(1.0, 0.0)
+			get_node("hitbox").set_pos(Vector2(12,44))
 		else:
 			dir = Vector2(-1.0, 0.0)
+			get_node("hitbox").set_pos(Vector2(-16,44))
 		#Move it at high speed!
 		set_pos(get_pos() + dir * 2.0 * speed * delta)
 	#After the animation finishes, we are done

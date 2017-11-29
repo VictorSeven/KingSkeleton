@@ -1,24 +1,26 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=22 format=1]
 
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=1]
 [ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=2]
-[ext_resource path="res://graphics/deco/castillo grande.png" type="Texture" id=3]
-[ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=4]
-[ext_resource path="res://graphics/deco/casa.png" type="Texture" id=5]
-[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=6]
-[ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=7]
-[ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=11]
-[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=12]
-[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/ahorcado.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/crisadea.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/past_king.tscn" type="PackedScene" id=19]
+[ext_resource path="res://music/ost/illness and penury.ogg" type="AudioStream" id=3]
+[ext_resource path="res://graphics/deco/castillo grande.png" type="Texture" id=4]
+[ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/deco/casa.png" type="Texture" id=6]
+[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=7]
+[ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=8]
+[ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=12]
+[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=13]
+[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/ahorcado.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/crisadea.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/past_king.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/penitente.tscn" type="PackedScene" id=21]
 
 [node name="Node2D" type="Node2D"]
 
@@ -68,7 +70,7 @@ transform/pos = Vector2( 28.809, 87.5343 )
 
 [node name="musicplayer" type="StreamPlayer" parent="."]
 
-stream/stream = null
+stream/stream = ExtResource( 3 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -80,9 +82,9 @@ stream/buffering_ms = 500
 [node name="Castillo" type="Sprite" parent="."]
 
 transform/pos = Vector2( 3835.98, -15.6322 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
-[node name="Tree3" parent="." instance=ExtResource( 4 )]
+[node name="Tree3" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 1854.59, 203.306 )
 tree_frame = 1
@@ -90,30 +92,30 @@ tree_frame = 1
 [node name="House1" type="Sprite" parent="."]
 
 transform/pos = Vector2( 530.354, 315.269 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 346, 192, 75, 62 )
 
 [node name="House2" type="Sprite" parent="."]
 
 transform/pos = Vector2( 1916.66, 245.542 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 346, 192, 75, 62 )
 
 [node name="Valla1" type="Sprite" parent="."]
 
 transform/pos = Vector2( 962.299, 265.359 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="Valla2" type="Sprite" parent="."]
 
 transform/pos = Vector2( 1894.16, 259.918 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
-[node name="Tree1" parent="." instance=ExtResource( 4 )]
+[node name="Tree1" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( -121.884, 192.798 )
 
-[node name="Tree2" parent="." instance=ExtResource( 4 )]
+[node name="Tree2" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 13.2963, 192.798 )
 tree_frame = 1
@@ -121,7 +123,7 @@ tree_frame = 1
 [node name="Floor" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -139,7 +141,7 @@ tile_data = IntArray( 65530, 31, 65531, 31, 65532, 31, 65533, 34, 131066, 32, 13
 [node name="Platform" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -157,16 +159,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Ruins" parent="." instance=ExtResource( 8 )]
+[node name="Ruins" parent="." instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 904.155, 257.064 )
 ruin_frame = 1
 
-[node name="Ruins1" parent="." instance=ExtResource( 8 )]
+[node name="Ruins1" parent="." instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 1335.18, 260.388 )
 
-[node name="Ruins2" parent="." instance=ExtResource( 8 )]
+[node name="Ruins2" parent="." instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 2511.33, 263.328 )
 
@@ -191,24 +193,24 @@ margin/bottom = 40.0
 custom_constants/vseparation = 32
 columns = 2
 
-[node name="Player" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
+[node name="Player" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
 
 label_text = "PLAYER"
 
-[node name="Healthbar" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
+[node name="Healthbar" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 11 )]
 
-[node name="Player2" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 9 )]
+[node name="Player2" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
 
 margin/top = 32.0
 margin/bottom = 32.0
 label_text = "ENEMY"
 
-[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
+[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 11 )]
 
 margin/top = 32.0
 margin/bottom = 32.0
 
-[node name="king" parent="." instance=ExtResource( 11 )]
+[node name="king" parent="." instance=ExtResource( 12 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 3244.93, 24.689 )
@@ -235,41 +237,41 @@ drag_margin/bottom = 0.0
 [node name="Corpses" type="Sprite" parent="."]
 
 transform/pos = Vector2( 466.964, 357.308 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
-[node name="Cart1" parent="." instance=ExtResource( 13 )]
+[node name="Cart1" parent="." instance=ExtResource( 14 )]
 
 transform/pos = Vector2( 1030.53, 276.104 )
 cart_frame = 2
 
-[node name="boss_area" parent="." instance=ExtResource( 14 )]
+[node name="boss_area" parent="." instance=ExtResource( 15 )]
 
 transform/pos = Vector2( 3771.84, -7.84341 )
 
-[node name="genoma" parent="." instance=ExtResource( 15 )]
+[node name="genoma" parent="." instance=ExtResource( 16 )]
 
 transform/pos = Vector2( 1242.66, 248.682 )
 
-[node name="bat" parent="." instance=ExtResource( 16 )]
+[node name="bat" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2201.99, 185.583 )
 
-[node name="genoma1" parent="." instance=ExtResource( 15 )]
-
-transform/pos = Vector2( 2668.1, 125.944 )
-
-[node name="ahorcado" parent="." instance=ExtResource( 17 )]
+[node name="ahorcado" parent="." instance=ExtResource( 18 )]
 
 transform/pos = Vector2( 384.928, 98.0827 )
 
-[node name="crisadea" parent="." instance=ExtResource( 18 )]
+[node name="crisadea" parent="." instance=ExtResource( 19 )]
 
 transform/pos = Vector2( 937.297, 262.552 )
 
-[node name="past_king" parent="." instance=ExtResource( 19 )]
+[node name="past_king" parent="." instance=ExtResource( 20 )]
 
 transform/pos = Vector2( 4015.06, 14.7814 )
 ldist = 3600
 rdist = 4200
+
+[node name="penitente" parent="." instance=ExtResource( 21 )]
+
+transform/pos = Vector2( 2476.3, 91.1163 )
 
 

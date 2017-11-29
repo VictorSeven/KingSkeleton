@@ -25,6 +25,9 @@ var repro_time = 3.0
 var life = 50
 var atq = 20
 
+#Death effect
+var death_effect = load("res://scenes/death_effect.tscn")
+
 func _ready():
 	randomize() #To get good random numbers
 	
@@ -59,14 +62,13 @@ func _fixed_process(delta):
 		else:
 			#Block it so it does not move
 			elapsed_time += delta
-			if (elapsed_time > get_node("anim").get_animation("hit").get_length()*2):
+			if (elapsed_time > get_node("anim").get_animation("hit").get_length()):
 				if (life > 0):
 					#If we are still alive, then return to stuff
 					play_anim("fly", 0)
 					damaged = false 
 				else:
-					#In any other case, kill it!
-					queue_free()
+					get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, 0.0)) #Death effect will kill this
 
 func move():
 	var frame = get_node("anim").get_current_animation_pos()
@@ -110,5 +112,8 @@ func damage(swatq):
 			damaged = true
 		#If nt, block it with damaged var and kill it
 		else:
+			#Create a death effect to kill this
+			var new_effect = death_effect.instance()
+			add_child(new_effect)
 			play_anim("death", 2)
 			damaged = true

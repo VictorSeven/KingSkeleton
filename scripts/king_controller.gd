@@ -18,7 +18,7 @@ var target_height = -1.0 #Where do I have to jump?
 var start_height #Height where jump started
 var input_y = false  #We are not making any input in y
 var on_air_time = 0 #Time spent in the air since the last time floor was touched
-var max_float_time =  1.4 #Maximum time to float around
+var max_float_time =  1.0 #Maximum time to float around
 
 var atq1 = true #Controls which animation I use
 var is_throwing = false #true when we are throwing the sword
