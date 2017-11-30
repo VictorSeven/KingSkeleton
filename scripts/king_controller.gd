@@ -25,7 +25,7 @@ var target_height = -1.0 #Where do I have to jump?
 var start_height #Height where jump started
 var input_y = false  #We are not making any input in y
 var on_air_time = 0 #Time spent in the air since the last time floor was touched
-var max_float_time =  1 #Maximum time to float around
+var max_float_time =  1.0 #Maximum time to float around
 
 var atq1 = true #Controls which animation I use
 var is_throwing = false #true when we are throwing the sword
@@ -70,12 +70,21 @@ func _fixed_process(delta):
 			# You can check which tile was collision against with this
 			# print(get_collider_metadata())
 		
+			
 			var n = get_collision_normal()
 			#In case we are colliding with ground, get start height
 			if (n == Vector2(0.0, -1.0)):
 				start_height = get_pos().y
 				vel.y = 0.0
 				on_air_time = 0 #In ground, reset air time counter
+			#This avoids getting stuck over the walls
+			#because it deletes the force pushing it that blocks y-vel
+			elif(n == Vector2(1.0, 0.0)):
+				if (vel.x < 0):
+					vel.x = 0.0
+			elif(n == Vector2(-1.0, 0.0)):
+				if (vel.x > 0):
+					vel.x = 0.0
 		
 		#set_pos(Vector2(get_pos().x, get_pos().y + sin(timer * frequency) * amplitude));
 		#timer += 1;
@@ -161,9 +170,11 @@ func move_input(delta):
 	if (not input_x and not input_y):
 		change_anim("idle")
 	
-	#Do attack if we are not throwing sword
-	if (Input.is_action_pressed("ui_accept") and !is_throwing and !is_dialog_showing()):
-		vel.x = 0.0 #Stop king 
+	#Do attack is we are not throwing sword
+	if (Input.is_action_pressed("ui_accept") and !is_throwing):
+		vel.x = 0.0 #Stop king
+		get_node("player").play("throwsword")
+		get_node("player").play("swordspin")
 		var sword_world = sword.instance() #Instance new sword
 		sword_world.init_sword(get_pos(), not right) #Init it
 		add_child(sword_world) #Crate into world
@@ -177,14 +188,17 @@ func move_input(delta):
 		atq1 = not atq1 #Change animation for next
 
 func damage(points):
-	is_damaged = true #Enter in damage state
-	elapsed_time = 0.0 #Start counter
-	lifepoints -= points #Eliminate points
-	healthbar.update()
-	if (lifepoints < 0):
-		change_anim("death") #Kill it
-	else: 
-		change_anim("damage") #Damaged anim
+	if (not is_damaged):
+		get_node("player").play("damage")
+		is_damaged = true #Enter in damage state
+		elapsed_time = 0.0 #Start counter
+		lifepoints -= points #Eliminate points
+		healthbar.update()
+		if (lifepoints <= 0):
+			get_node("player").play("kingdeath")
+			change_anim("death") #Kill it
+		else: 
+			change_anim("damage") #Damaged anim
 
 
 func change_anim(newanim):
@@ -215,6 +229,8 @@ func _on_hitbox_body_enter( body ):
 		if (!sword_destroy): 
 			sword_destroy = true
 		else: #but when it returns
+			get_node("player").stop_all()
+			get_node("player").play("getsword")
 			body.queue_free() #Delete the sword
 			is_throwing = false #Stop throwing
 			change_anim("idle") #Idle anim
@@ -227,6 +243,8 @@ func _on_hitbox_area_enter( area ):
 		if (!sword_destroy): 
 			sword_destroy = true
 		else: #but when it returns
+			get_node("player").stop_all()
+			get_node("player").play("getsword")
 			area.queue_free() #Delete the sword
 			is_throwing = false #Stop throwing
 			change_anim("idle") #Idle anim

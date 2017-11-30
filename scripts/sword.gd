@@ -6,6 +6,8 @@ var input_force = 600.0 #Force by user
 var initial_vel = 700.0 #Initial velocity
 var vel 
 
+var swhit = load("res://scenes/sword_hit.tscn")
+
 var cycle = 0 #Cycle of sword movement
 var lifetime = [1.0, 0.3, 1000] #Time to change behaviour
 var elapsed_time = 0.0 #Counter
@@ -56,7 +58,10 @@ func elastic_force():
 	#get_pos is a vector from king to sword
 	return -k * get_pos()
 
-
+func show_hit():
+	var newhit = swhit.instance()
+	newhit.set_pos(get_global_pos())
+	get_tree().get_root().get_node("Node2D").add_child(newhit)
 
 #Input by user makes a force over sword
 func move_input():
@@ -71,4 +76,5 @@ func move_input():
 #Damage enemies
 func _on_sword_area_enter( area ):
 	if (area.is_in_group("hitbox")):
+		show_hit() #Show animation of the hit
 		area.get_parent().damage(atq)
