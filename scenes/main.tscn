@@ -213,7 +213,7 @@ margin/bottom = 32.0
 [node name="king" parent="." instance=ExtResource( 12 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 3244.93, 24.689 )
+transform/pos = Vector2( -72.6805, 219.17 )
 
 [node name="camera" type="Camera2D" parent="king"]
 
@@ -272,6 +272,6 @@ rdist = 4200
 
 [node name="penitente" parent="." instance=ExtResource( 21 )]
 
-transform/pos = Vector2( 2476.3, 91.1163 )
+transform/pos = Vector2( 2856.9, 93.5718 )
 
 
