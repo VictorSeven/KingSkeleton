@@ -31,7 +31,6 @@ func change_anim(newanim):
 		get_node(\"anim\").play(newanim) #Change it!
 		
 func show_dialog():
-	print(dialog_object)
 	dialog_object.messages = msgs
 	dialog_object.init()
 	dialog_hud.show()
