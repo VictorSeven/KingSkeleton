@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scripts/payaso.gd" type="Script" id=1]
 [ext_resource path="res://graphics/enemies/payaso/pose.png" type="Texture" id=2]
 [ext_resource path="res://graphics/enemies/payaso/card1.png" type="Texture" id=3]
 [ext_resource path="res://graphics/enemies/payaso/card2.png" type="Texture" id=4]
+[ext_resource path="res://music/sfx/cartas.smp" type="Sample" id=5]
+[ext_resource path="res://music/sfx/risa payaso 1.smp" type="Sample" id=6]
+[ext_resource path="res://music/sfx/risa payaso 2.smp" type="Sample" id=7]
+[ext_resource path="res://music/sfx/risa payaso 4.smp" type="Sample" id=8]
+[ext_resource path="res://music/sfx/risa payaso 3.smp" type="Sample" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -74,6 +79,39 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 radius = 20.9511
 
+[sub_resource type="SampleLibrary" id=4]
+
+samples/cartas = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/risa1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/risa2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+samples/risa3 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+samples/risa4 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+
 [node name="Node2D" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -115,6 +153,8 @@ trigger = false
 _update_shape_index = 0
 
 [node name="cards_start" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="card1_generator" type="Particles2D" parent="cards_start"]
 
@@ -169,5 +209,16 @@ params/final_size = 1.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
+
+[node name="player" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
 
 

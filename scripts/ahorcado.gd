@@ -53,4 +53,5 @@ func damage():
 #Activation of the fall when king is near
 func _on_radar_area_enter( area ):
 	if (area.is_in_group("king") and not start):
+		get_node("player").play("ahorcado")
 		set_fixed_process(true)

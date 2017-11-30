@@ -18,9 +18,15 @@ var noise_intensity = 0.45 #Intensity of random force
 var damaged = false #If this is damaged
 var elapsed_time = 0.0 #Elapsed time
 
+var elap_repro = 0.0
+var repro_time = 3.0
+
 #Parameters
 var life = 50
 var atq = 20
+
+#Death effect
+var death_effect = load("res://scenes/death_effect.tscn")
 
 func _ready():
 	randomize() #To get good random numbers
@@ -44,24 +50,25 @@ func _fixed_process(delta):
 	if (not flying):
 		if (get_pos().distance_squared_to(king.get_pos()) < radar*radar):
 			flying = true
+			get_node("player").play("bat") #First time sound
 			play_anim("fly", 0)
 			get_node("anim").set_speed(1.5) #Animation speed
 	else:
 		if (not damaged):
 			#If we are not block, move
 			move()
+			player_timer(delta) #Play sound every certain time
 			set_pos(get_pos() + vel * delta)
 		else:
 			#Block it so it does not move
 			elapsed_time += delta
-			if (elapsed_time > get_node("anim").get_animation("hit").get_length()*2):
+			if (elapsed_time > get_node("anim").get_animation("hit").get_length()):
 				if (life > 0):
 					#If we are still alive, then return to stuff
 					play_anim("fly", 0)
 					damaged = false 
 				else:
-					#In any other case, kill it!
-					queue_free()
+					get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, 0.0)) #Death effect will kill this
 
 func move():
 	var frame = get_node("anim").get_current_animation_pos()
@@ -86,17 +93,27 @@ func play_anim(name, index):
 func can_deal_damage():
 	return not damaged
 
+func player_timer(delta):
+	elap_repro += delta
+	if (elap_repro > repro_time):
+		elap_repro = 0.0
+		get_node("player").play("bat")
+
 func get_atq():
 	return atq
 
 func damage(swatq):
-	life -= swatq
-	elapsed_time = 0.0 #Set elapsed time for animations
-	#If alive, play hit animation.
-	if (life > 0):
-		play_anim("hit", 1)
-		damaged = true
-	#If nt, block it with damaged var and kill it
-	else:
-		play_anim("death", 2)
-		damaged = true
+	if (not damaged):
+		life -= swatq
+		elapsed_time = 0.0 #Set elapsed time for animations
+		#If alive, play hit animation.
+		if (life > 0):
+			play_anim("hit", 1)
+			damaged = true
+		#If nt, block it with damaged var and kill it
+		else:
+			#Create a death effect to kill this
+			var new_effect = death_effect.instance()
+			add_child(new_effect)
+			play_anim("death", 2)
+			damaged = true
