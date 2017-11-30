@@ -314,7 +314,7 @@ msgs = [ "The town is a mess. There are monsters out there!", "They destroyed th
 
 [node name="king" parent="." instance=ExtResource( 13 )]
 
-transform/pos = Vector2( 6333.7, -704.843 )
+transform/pos = Vector2( 514.898, -304.956 )
 
 [node name="CloudSpawner" parent="king" instance=ExtResource( 14 )]
 
