@@ -1,7 +1,7 @@
 extends Sprite
 
 var dir 
-var maxvel = 50.0
+var maxvel = 100.0
 
 var atq = 20
 

@@ -25,9 +25,9 @@ var target_height = -1.0 #Where do I have to jump?
 var start_height #Height where jump started
 var input_y = false  #We are not making any input in y
 var on_air_time = 0 #Time spent in the air since the last time floor was touched
-==== BASE ====
+#==== BASE ====
 var max_float_time =  1.0 #Maximum time to float around
-==== BASE ====
+#==== BASE ====
 
 var atq1 = true #Controls which animation I use
 var is_throwing = false #true when we are throwing the sword
@@ -172,11 +172,11 @@ func move_input(delta):
 	if (not input_x and not input_y):
 		change_anim("idle")
 	
-==== BASE ====
+#==== BASE ====
 	#Do attack is we are not throwing sword
 	if (Input.is_action_pressed("ui_accept") and !is_throwing):
 		vel.x = 0.0 #Stop king
-==== BASE ====
+#==== BASE ====
 		get_node("player").play("throwsword")
 		get_node("player").play("swordspin")
 		var sword_world = sword.instance() #Instance new sword
