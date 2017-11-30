@@ -3,7 +3,7 @@
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=1]
 [ext_resource path="res://graphics/deco/castillo pequeño.png" type="Texture" id=2]
 [ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=3]
-[ext_resource path="res://graphics/king/sheet.png" type="Texture" id=4]
+[ext_resource path="res://graphics/startscreen/king.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -31,13 +31,25 @@ func _process(delta):
 
 [node name="HomeScreen" type="Node2D"]
 
+[node name="musicplayer" type="StreamPlayer" parent="."]
+
+stream/stream = null
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
 [node name="background" type="Sprite" parent="."]
 
 texture = ExtResource( 1 )
+flip_v = true
 
 [node name="castillo" type="Sprite" parent="."]
 
-transform/pos = Vector2( 56, 120 )
+transform/pos = Vector2( 56, 114.148 )
 texture = ExtResource( 2 )
 
 [node name="Cloud" parent="." instance=ExtResource( 3 )]
@@ -51,12 +63,11 @@ nube_frame = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 
-visibility/visible = false
-transform/pos = Vector2( -80, 152 )
+visibility/blend_mode = 1
+transform/pos = Vector2( -15.2663, 48.9329 )
 transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
-region = true
-region_rect = Rect2( 272, 260, 96, 96 )
+modulate = Color( 0.75, 0.472206, 0.0791016, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -68,7 +79,7 @@ zoom = Vector2( 0.25, 0.25 )
 limit/left = -10000000
 limit/top = -180
 limit/right = 10000000
-limit/bottom = 160
+limit/bottom = 180
 drag_margin/h_enabled = true
 drag_margin/v_enabled = true
 smoothing/enable = false

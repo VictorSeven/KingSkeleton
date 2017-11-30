@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=34 format=1]
+[gd_resource type="TileSet" load_steps=36 format=1]
 
 [ext_resource path="res://graphics/tiles/puebloDestruidoBueno.png" type="Texture" id=1]
 [ext_resource path="res://graphics/tiles/catacumbas/catacumbas_tileset.png" type="Texture" id=2]
@@ -34,32 +34,32 @@ extents = Vector2( 56, 8 )
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 8 )
+
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 48 )
 
 [sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8, 48 )
+extents = Vector2( 32, 8 )
 
 [sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 8 )
+extents = Vector2( 16, 8 )
 
 [sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 8 )
-
-[sub_resource type="RectangleShape2D" id=13]
-
-custom_solver_bias = 0.0
 extents = Vector2( 8, 48 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=13]
 
 custom_solver_bias = 0.0
 extents = Vector2( 24, 8 )
@@ -109,21 +109,6 @@ extents = Vector2( 32, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 24, 10 )
 
-[sub_resource type="RectangleShape2D" id=28]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
-
-[sub_resource type="RectangleShape2D" id=29]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
-
-[sub_resource type="RectangleShape2D" id=30]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
-
 [sub_resource type="RectangleShape2D" id=23]
 
 custom_solver_bias = 0.0
@@ -132,7 +117,7 @@ extents = Vector2( 32, 10 )
 [sub_resource type="RectangleShape2D" id=24]
 
 custom_solver_bias = 0.0
-extents = Vector2( 24, 10 )
+extents = Vector2( 32, 10 )
 
 [sub_resource type="RectangleShape2D" id=25]
 
@@ -142,12 +127,37 @@ extents = Vector2( 32, 10 )
 [sub_resource type="RectangleShape2D" id=26]
 
 custom_solver_bias = 0.0
-extents = Vector2( 24, 10 )
+extents = Vector2( 32, 10 )
 
 [sub_resource type="RectangleShape2D" id=27]
 
 custom_solver_bias = 0.0
+extents = Vector2( 24, 10 )
+
+[sub_resource type="RectangleShape2D" id=28]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 10 )
+
+[sub_resource type="RectangleShape2D" id=29]
+
+custom_solver_bias = 0.0
+extents = Vector2( 24, 10 )
+
+[sub_resource type="RectangleShape2D" id=30]
+
+custom_solver_bias = 0.0
 extents = Vector2( 32, 8 )
+
+[sub_resource type="RectangleShape2D" id=31]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 32 )
+
+[sub_resource type="RectangleShape2D" id=32]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 32 )
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -560,7 +570,7 @@ extents = Vector2( 8, 8 )
 36/occluder_offset = Vector2( 48, 32 )
 36/navigation_offset = Vector2( 48, 32 )
 36/shape_offset = Vector2( 48, 32 )
-36/shapes = [ SubResource( 9 ) ]
+36/shapes = [ SubResource( 8 ) ]
 36/one_way_collision_direction = Vector2( 0, 0 )
 36/one_way_collision_max_depth = 0.0
 37/name = "FloorLeft"
@@ -571,7 +581,7 @@ extents = Vector2( 8, 8 )
 37/occluder_offset = Vector2( 40, 24 )
 37/navigation_offset = Vector2( 40, 24 )
 37/shape_offset = Vector2( 40, 24 )
-37/shapes = [ SubResource( 10 ) ]
+37/shapes = [ SubResource( 9 ) ]
 37/one_way_collision_direction = Vector2( 0, 0 )
 37/one_way_collision_max_depth = 0.0
 38/name = "FloorTop"
@@ -582,7 +592,7 @@ extents = Vector2( 8, 8 )
 38/occluder_offset = Vector2( 32, 32 )
 38/navigation_offset = Vector2( 32, 32 )
 38/shape_offset = Vector2( 32, 32 )
-38/shapes = [ SubResource( 11 ) ]
+38/shapes = [ SubResource( 10 ) ]
 38/one_way_collision_direction = Vector2( 0, 0 )
 38/one_way_collision_max_depth = 0.0
 39/name = "FloorCenter"
@@ -604,7 +614,7 @@ extents = Vector2( 8, 8 )
 40/occluder_offset = Vector2( 8, 32 )
 40/navigation_offset = Vector2( 8, 32 )
 40/shape_offset = Vector2( 8, 32 )
-40/shapes = [ SubResource( 12 ) ]
+40/shapes = [ SubResource( 11 ) ]
 40/one_way_collision_direction = Vector2( 0, 0 )
 40/one_way_collision_max_depth = 0.0
 41/name = "FloorRight"
@@ -615,7 +625,7 @@ extents = Vector2( 8, 8 )
 41/occluder_offset = Vector2( 16, 24 )
 41/navigation_offset = Vector2( 16, 24 )
 41/shape_offset = Vector2( 16, 24 )
-41/shapes = [ SubResource( 13 ) ]
+41/shapes = [ SubResource( 12 ) ]
 41/one_way_collision_direction = Vector2( 0, 0 )
 41/one_way_collision_max_depth = 0.0
 42/name = "Platform1"
@@ -626,7 +636,7 @@ extents = Vector2( 8, 8 )
 42/occluder_offset = Vector2( 32, 48 )
 42/navigation_offset = Vector2( 32, 48 )
 42/shape_offset = Vector2( 32, 48 )
-42/shapes = [ SubResource( 8 ) ]
+42/shapes = [ SubResource( 13 ) ]
 42/one_way_collision_direction = Vector2( 0, 0 )
 42/one_way_collision_max_depth = 0.0
 43/name = "Platform2"
@@ -901,7 +911,7 @@ extents = Vector2( 8, 8 )
 67/occluder_offset = Vector2( 32, 32 )
 67/navigation_offset = Vector2( 32, 32 )
 67/shape_offset = Vector2( 32, 32 )
-67/shapes = [ SubResource( 28 ) ]
+67/shapes = [ SubResource( 23 ) ]
 67/one_way_collision_direction = Vector2( 0, 0 )
 67/one_way_collision_max_depth = 0.0
 68/name = "carpet2"
@@ -912,7 +922,7 @@ extents = Vector2( 8, 8 )
 68/occluder_offset = Vector2( 32, 32 )
 68/navigation_offset = Vector2( 32, 32 )
 68/shape_offset = Vector2( 32, 32 )
-68/shapes = [ SubResource( 29 ) ]
+68/shapes = [ SubResource( 24 ) ]
 68/one_way_collision_direction = Vector2( 0, 0 )
 68/one_way_collision_max_depth = 0.0
 69/name = "carpet3"
@@ -923,7 +933,7 @@ extents = Vector2( 8, 8 )
 69/occluder_offset = Vector2( 32, 32 )
 69/navigation_offset = Vector2( 32, 32 )
 69/shape_offset = Vector2( 32, 32 )
-69/shapes = [ SubResource( 30 ) ]
+69/shapes = [ SubResource( 25 ) ]
 69/one_way_collision_direction = Vector2( 0, 0 )
 69/one_way_collision_max_depth = 0.0
 70/name = "floor1"
@@ -934,7 +944,7 @@ extents = Vector2( 8, 8 )
 70/occluder_offset = Vector2( 32, 32 )
 70/navigation_offset = Vector2( 32, 32 )
 70/shape_offset = Vector2( 32, 32 )
-70/shapes = [ SubResource( 23 ) ]
+70/shapes = [ SubResource( 26 ) ]
 70/one_way_collision_direction = Vector2( 0, 0 )
 70/one_way_collision_max_depth = 0.0
 71/name = "floor2"
@@ -945,7 +955,7 @@ extents = Vector2( 8, 8 )
 71/occluder_offset = Vector2( 32, 32 )
 71/navigation_offset = Vector2( 32, 32 )
 71/shape_offset = Vector2( 32, 32 )
-71/shapes = [ SubResource( 23 ) ]
+71/shapes = [ SubResource( 26 ) ]
 71/one_way_collision_direction = Vector2( 0, 0 )
 71/one_way_collision_max_depth = 0.0
 72/name = "floor3"
@@ -967,7 +977,7 @@ extents = Vector2( 8, 8 )
 73/occluder_offset = Vector2( 40, 48 )
 73/navigation_offset = Vector2( 40, 48 )
 73/shape_offset = Vector2( 40, 48 )
-73/shapes = [ SubResource( 24 ) ]
+73/shapes = [ SubResource( 27 ) ]
 73/one_way_collision_direction = Vector2( 0, 0 )
 73/one_way_collision_max_depth = 0.0
 74/name = "floor5"
@@ -978,7 +988,7 @@ extents = Vector2( 8, 8 )
 74/occluder_offset = Vector2( 32, 48 )
 74/navigation_offset = Vector2( 32, 48 )
 74/shape_offset = Vector2( 32, 48 )
-74/shapes = [ SubResource( 25 ) ]
+74/shapes = [ SubResource( 28 ) ]
 74/one_way_collision_direction = Vector2( 0, 0 )
 74/one_way_collision_max_depth = 0.0
 75/name = "floor6"
@@ -989,7 +999,7 @@ extents = Vector2( 8, 8 )
 75/occluder_offset = Vector2( 24, 48 )
 75/navigation_offset = Vector2( 24, 48 )
 75/shape_offset = Vector2( 24, 48 )
-75/shapes = [ SubResource( 26 ) ]
+75/shapes = [ SubResource( 29 ) ]
 75/one_way_collision_direction = Vector2( 0, 0 )
 75/one_way_collision_max_depth = 0.0
 76/name = "floor7"
@@ -1000,7 +1010,7 @@ extents = Vector2( 8, 8 )
 76/occluder_offset = Vector2( 32, 56 )
 76/navigation_offset = Vector2( 32, 56 )
 76/shape_offset = Vector2( 32, 56 )
-76/shapes = [ SubResource( 27 ) ]
+76/shapes = [ SubResource( 30 ) ]
 76/one_way_collision_direction = Vector2( 0, 0 )
 76/one_way_collision_max_depth = 0.0
 77/name = "Col1Top"
@@ -1102,4 +1112,26 @@ extents = Vector2( 8, 8 )
 85/shapes = [  ]
 85/one_way_collision_direction = Vector2( 0, 0 )
 85/one_way_collision_max_depth = 0.0
+86/name = "CastleLeftWall"
+86/texture = ExtResource( 3 )
+86/tex_offset = Vector2( 0, 0 )
+86/modulate = Color( 1, 1, 1, 1 )
+86/region = Rect2( 0, 128, 64, 64 )
+86/occluder_offset = Vector2( 32, 32 )
+86/navigation_offset = Vector2( 32, 32 )
+86/shape_offset = Vector2( 32, 32 )
+86/shapes = [ SubResource( 31 ) ]
+86/one_way_collision_direction = Vector2( 0, 0 )
+86/one_way_collision_max_depth = 0.0
+87/name = "CastleRightWall"
+87/texture = ExtResource( 3 )
+87/tex_offset = Vector2( 0, 0 )
+87/modulate = Color( 1, 1, 1, 1 )
+87/region = Rect2( 128, 128, 64, 64 )
+87/occluder_offset = Vector2( 24, 32 )
+87/navigation_offset = Vector2( 24, 32 )
+87/shape_offset = Vector2( 24, 32 )
+87/shapes = [ SubResource( 32 ) ]
+87/one_way_collision_direction = Vector2( 0, 0 )
+87/one_way_collision_max_depth = 0.0
 

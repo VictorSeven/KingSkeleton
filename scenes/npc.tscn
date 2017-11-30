@@ -12,11 +12,15 @@ script/source = "extends KinematicBody2D
 
 var dialog_hud
 var path_to_dialog_hud = \"Node2D/CanvasLayer_HUD/Dialog_HUD\"
+var dialog_object
+var path_to_dialog_object = \"Node2D/CanvasLayer_HUD/Dialog_HUD/Dialog\"
+export var msgs = [\"Hi,\", \"I'm lost.\"]
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	dialog_hud = get_tree().get_root().get_node(path_to_dialog_hud)
+	dialog_object = get_tree().get_root().get_node(path_to_dialog_object)
 	add_to_group(\"npc\")
 	change_anim(\"idle\")
 	pass
@@ -27,6 +31,9 @@ func change_anim(newanim):
 		get_node(\"anim\").play(newanim) #Change it!
 		
 func show_dialog():
+	print(dialog_object)
+	dialog_object.messages = msgs
+	dialog_object.init()
 	dialog_hud.show()
 	
 func _on_hitbox_area_enter(area):
@@ -62,6 +69,7 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = SubResource( 1 )
+msgs = [ "Hi,", "I'm lost." ]
 
 [node name="Sprite" type="Sprite" parent="."]
 
