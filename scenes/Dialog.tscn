@@ -2,7 +2,7 @@
 
 [ext_resource path="res://fonts/retroFont2.fnt" type="BitmapFont" id=1]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Control
 
@@ -45,19 +45,6 @@ func _ready():
 	
 	init()
 	
-	width = get_viewport().get_rect().size.width - outer_margin
-	inner_width = width - inner_margin
-	inner_height = height - inner_margin
-	
-	pos = get_parent().get_pos()
-	get_parent().set_pos(Vector2(pos.x + outer_margin / 3, pos.y))
-	
-	border_panel.set_size(Vector2(width, height))
-	content_panel.set_size(Vector2(inner_width, inner_height))
-	rich_text_label.set_size(Vector2(inner_width - 8, inner_height - 8))
-	rich_text_label.set_bbcode(current_message)
-	rich_text_label.set_visible_characters(characters_shown)
-	
 	set_process(true)
 	set_process_input(true)
 	pass
@@ -87,7 +74,21 @@ func init():
 	rich_text_label.set_bbcode(current_message)
 	rich_text_label.set_visible_characters(characters_shown)
 	is_message_written = false
-
+	print(get_viewport().get_rect().size)
+	
+	width = get_viewport().get_rect().size.width - outer_margin
+	inner_width = width - inner_margin
+	inner_height = height - inner_margin
+	
+	pos = get_parent().get_pos()
+	get_parent().set_pos(Vector2(pos.x + outer_margin / 3, pos.y))
+	
+	border_panel.set_size(Vector2(width, height))
+	content_panel.set_size(Vector2(inner_width, inner_height))
+	rich_text_label.set_size(Vector2(inner_width - 8, inner_height - 8))
+	rich_text_label.set_bbcode(current_message)
+	rich_text_label.set_visible_characters(characters_shown)
+	
 func complete_or_next_page():
 	if(!is_message_written):
 		characters_shown = current_message.length()
@@ -134,7 +135,7 @@ func _on_Dialog_input_event( ev ):
 	#	complete_or_next_page()
 "
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -147,7 +148,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -170,7 +171,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-script/script = SubResource( 4 )
+script/script = SubResource( 1 )
 text_speed = 0.1
 
 [node name="BorderPanel" type="PanelContainer" parent="."]
@@ -183,7 +184,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 320.0
 margin/bottom = 128.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="ContentPanel" type="PanelContainer" parent="."]
 
@@ -195,7 +196,7 @@ margin/left = 4.0
 margin/top = 4.0
 margin/right = 316.0
 margin/bottom = 124.0
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Text" type="RichTextLabel" parent="."]
 

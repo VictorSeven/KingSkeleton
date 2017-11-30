@@ -234,3 +234,8 @@ func _on_hitbox_area_enter( area ):
 		#Do damage to the King depending on enemy atq
 		if (area.get_parent().can_deal_damage()):
 			damage(area.get_parent().get_atq()) 
+
+
+func _on_radar_area_enter( area ):
+	if (area.is_in_group("king")):
+		get_node("/root/global").goto_scene("res://scenes/Castle.tscn")

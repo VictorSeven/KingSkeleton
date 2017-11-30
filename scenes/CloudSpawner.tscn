@@ -2,6 +2,7 @@
 
 [sub_resource type="GDScript" id=1]
 
+resource/name = "cloud_spawner.gd"
 script/source = "extends Node2D
 
 # class member variables go here, for example:
@@ -34,15 +35,15 @@ func _process(delta):
 	var tmp_pos_x = origin.x * -1 + offset_x
 	var tmp_pos_y = origin.y * -1 + offset_y
 	
-	#print(tmp_pos_x, \", \", tmp_pos_y)
+	print(tmp_pos_x, \", \", tmp_pos_y)
 	
 	if(tmp_rand > ratio_of_spawn - 1000):
 		cloud_instance = cloud.instance()
 		cloud_instance.set_pos(Vector2(tmp_pos_x, tmp_pos_y + tmp_height))
 		cloud_instance.set_name(\"cloud_\" + str(cloud_count))
-		get_parent().get_parent().get_node(\"BG_objetos\").add_child(cloud_instance)
+		get_parent().get_parent().get_node(\"bg_objects2\").add_child(cloud_instance)
 		cloud_count += 1
-		#print(\"nube creada\")
+		print(\"nube creada\")
 	pass"
 
 [node name="CloudSpawner" type="Node2D"]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://music/songs/titulo.ogg" type="AudioStream" id=1]
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=2]
-[ext_resource path="res://graphics/deco/castillo pequeño.png" type="Texture" id=3]
-[ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=4]
-[ext_resource path="res://graphics/startscreen/king.png" type="Texture" id=5]
+[ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=3]
+[ext_resource path="res://graphics/startscreen/king.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -64,26 +63,25 @@ flip_v = true
 [node name="castillo" type="Sprite" parent="."]
 
 transform/pos = Vector2( 56, 114.148 )
-texture = ExtResource( 3 )
 
-[node name="Cloud" parent="." instance=ExtResource( 4 )]
+[node name="Cloud" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 302.738, 7.92427 )
 
-[node name="Cloud2" parent="." instance=ExtResource( 4 )]
+[node name="Cloud2" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 183.647, -156.593 )
 
-[node name="Cloud3" parent="." instance=ExtResource( 4 )]
+[node name="Cloud3" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 259.767, -410.735 )
 
-[node name="Cloud1" parent="." instance=ExtResource( 4 )]
+[node name="Cloud1" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 158.738, 63.9243 )
 nube_frame = 1
 
-[node name="Cloud2 2" parent="." instance=ExtResource( 4 )]
+[node name="Cloud2 2" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 74.0235, -304.398 )
 nube_frame = 1
@@ -93,7 +91,7 @@ nube_frame = 1
 visibility/blend_mode = 1
 transform/pos = Vector2( -15.2663, 48.9329 )
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 modulate = Color( 0.75, 0.472206, 0.0791016, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
