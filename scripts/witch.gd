@@ -1,6 +1,6 @@
 extends Node2D
 
-var maxvel = 1.0
+var maxvel = 3.0
 var left = Vector2(-1.0, 0.0)
 var atq = 20
 var laugh = false

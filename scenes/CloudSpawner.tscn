@@ -2,7 +2,6 @@
 
 [sub_resource type="GDScript" id=1]
 
-resource/name = "cloud_spawner.gd"
 script/source = "extends Node2D
 
 # class member variables go here, for example:
@@ -43,7 +42,7 @@ func _process(delta):
 		cloud_instance.set_name(\"cloud_\" + str(cloud_count))
 		get_parent().get_parent().get_node(\"bg_objects2\").add_child(cloud_instance)
 		cloud_count += 1
-		print(\"nube creada\")
+		#print(\"nube creada\")
 	pass"
 
 [node name="CloudSpawner" type="Node2D"]

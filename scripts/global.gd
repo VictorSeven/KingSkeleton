@@ -1,22 +1,39 @@
 extends Node
 
+#Change code scene from Godot tutorials! Added function to do fade in/out
 var current_scene = null
+var next_scene = ""
+
+var elapsed_time = 0.0
+var delay_time = 3.0
 
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
-	
+
+
+func _fixed_process(delta):
+	elapsed_time += delta
+	if (elapsed_time > delay_time):
+		set_fixed_process(false)
+		_deferred_goto_scene(next_scene)
+
+func fade_in():
+	get_tree().get_root().get_node("Node2D/CanvasLayer_HUD/fadesprite").show()
+	var anim = get_tree().get_root().get_node("Node2D/CanvasLayer_HUD/fadesprite/anim")
+	anim.play("fade_in")
+
+func fade_out():
+	get_tree().get_root().get_node("Node2D/CanvasLayer_HUD/fadesprite").show()
+	var anim = get_tree().get_root().get_node("Node2D/CanvasLayer_HUD/fadesprite/anim")
+	anim.play("fade_out")
+
 func goto_scene(path):
-    # This function will usually be called from a signal callback,
-    # or some other function from the running scene.
-    # Deleting the current scene at this point might be
-    # a bad idea, because it may be inside of a callback or function of it.
-    # The worst case will be a crash or unexpected behavior.
-
-    # The way around this is deferring the load to a later time, when
-    # it is ensured that no code from the current scene is running:
-    call_deferred("_deferred_goto_scene",path)
-
+	next_scene = path
+	elapsed_time = 0.0
+	fade_out()
+	set_fixed_process(true)
+	#call_deferred("_deferred_goto_scene",path)
 
 func _deferred_goto_scene(path):
     # Immediately free the current scene,
