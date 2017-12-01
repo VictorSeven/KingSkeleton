@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=7 format=1]
 
-[ext_resource path="res://graphics/tiles/fondo_castillo.png" type="Texture" id=1]
+[ext_resource path="res://music/ost/balada.ogg" type="AudioStream" id=1]
 [ext_resource path="res://graphics/tiles/tileset_definitivo.tres" type="TileSet" id=2]
-[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://graphics/tiles/fondo_trono1.jpg" type="Texture" id=3]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/past_king.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="musicplayer" type="StreamPlayer" parent="."]
 
-stream/stream = null
+stream/stream = ExtResource( 1 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -16,6 +19,26 @@ stream/autoplay = false
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
+
+[node name="bounds" type="TileMap" parent="."]
+
+visibility/visible = false
+z/z = -1
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 196612, 86, 262148, 86, 262161, 44, 327684, 86, 327697, 44, 393220, 86, 393233, 44, 458756, 86, 458769, 44, 524292, 86, 524305, 44, 589828, 86, 589829, 74, 589830, 74, 589831, 74, 589832, 74, 589833, 74, 589834, 74, 589835, 74, 589836, 74, 589837, 74, 589838, 74, 589839, 74, 589840, 74, 589841, 74 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -38,29 +61,46 @@ motion/mirroring = Vector2( 0, 0 )
 
 [node name="background" type="Sprite" parent="ParallaxBackground/ParallaxLayer _bg"]
 
-transform/pos = Vector2( 28.6687, -135.992 )
-texture = ExtResource( 1 )
-region = true
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+centered = false
 region_rect = Rect2( 0, 0, 10000, 4000 )
 
-[node name="TileMap" type="TileMap" parent="ParallaxBackground"]
+[node name="CanvasLayer_HUD" parent="." instance=ExtResource( 4 )]
 
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray(  )
+[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer/EnemyHUD"]
 
-[node name="CanvasLayer_HUD" parent="." instance=ExtResource( 3 )]
+path_to_target = "Node2D/Enemies/past_king"
+
+[node name="king" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 419.155, 584.783 )
+
+[node name="camera" type="Camera2D" parent="king"]
+
+transform/pos = Vector2( -2.05054, 4.10104 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = 0
+limit/top = -10000000
+limit/right = 1444
+limit/bottom = 720
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="past_king" parent="Enemies" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 933.556, 546.695 )
 
 
+[editable path="CanvasLayer_HUD"]

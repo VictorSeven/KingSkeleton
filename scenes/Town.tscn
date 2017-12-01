@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://scripts/levelload.gd" type="Script" id=1]
 [ext_resource path="res://music/ost/illness and penury.ogg" type="AudioStream" id=2]
@@ -6,20 +6,22 @@
 [ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=5]
 [ext_resource path="res://graphics/deco/castillo grande.png" type="Texture" id=6]
-[ext_resource path="res://graphics/tiles/tileset_definitivo.tres" type="TileSet" id=7]
-[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=8]
-[ext_resource path="res://graphics/deco/Castillo/vidriera.png" type="Texture" id=9]
-[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=10]
-[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=11]
-[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/npc.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/CloudSpawner.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/penitente.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/peste.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=20]
+[ext_resource path="res://graphics/deco/bosque.png" type="Texture" id=7]
+[ext_resource path="res://graphics/tiles/tileset_definitivo.tres" type="TileSet" id=8]
+[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=9]
+[ext_resource path="res://graphics/deco/Castillo/vidriera.png" type="Texture" id=10]
+[ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=11]
+[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=12]
+[ext_resource path="res://scenes/house1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/npc.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/king.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/CloudSpawner.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/bat.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/penitente.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/peste.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ImageTexture" id=1]
 
@@ -39,10 +41,48 @@ size = Vector2( 152, 48 )
 storage = 0
 lossy_quality = 0.7
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends KinematicBody2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+var dialog_hud
+var path_to_dialog_hud = \"Node2D/CanvasLayer_HUD/Dialog_HUD\"
+var dialog_object
+var path_to_dialog_object = \"Node2D/CanvasLayer_HUD/Dialog_HUD/Dialog\"
+export var msgs = [\"Hi,\", \"I'm lost.\"]
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	dialog_hud = get_tree().get_root().get_node(path_to_dialog_hud)
+	dialog_object = get_tree().get_root().get_node(path_to_dialog_object)
+	add_to_group(\"npc\")
+	change_anim(\"idle\")
+	pass
+
+func change_anim(newanim):
+	#If the animation is new,
+	if (newanim != get_node(\"anim\").get_current_animation()):
+		get_node(\"anim\").play(newanim) #Change it!
+		
+func show_dialog():
+	dialog_object.messages = msgs
+	dialog_object.init()
+	dialog_hud.show()
+	
+func _on_hitbox_area_enter(area):
+	if(area.is_in_group(\"king\")):
+		show_dialog()
+"
+
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 26.6201, 162.817 )
+extents = Vector2( 199.367, 30.56 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -87,8 +127,6 @@ region_rect = Rect2( 0, 0, 10000, 4000 )
 
 [node name="bg_objects1" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="Ruins" parent="bg_objects1" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 1049.53, -358.384 )
@@ -113,31 +151,20 @@ transform/pos = Vector2( 4079.61, -791.149 )
 
 [node name="castle" type="Sprite" parent="bg_objects1"]
 
-transform/pos = Vector2( 8433.96, -754.331 )
+transform/pos = Vector2( 9084.64, -1034.12 )
+transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 6 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Sprite" type="Sprite" parent="bg_objects1"]
 
-mode = 0
-tile_set = ExtResource( 7 )
-cell/size = Vector2( 64, 64 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 2
-cell/tile_origin = 0
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 1
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray( -982955, 12, -982953, 12, -982952, 12, -982951, 12, -982950, 12, -982949, 12 )
+transform/pos = Vector2( 9239.5, -832.612 )
+texture = ExtResource( 7 )
+flip_h = true
 
 [node name="tlst_aux" type="TileMap" parent="."]
 
 mode = 0
-tile_set = null
+tile_set = ExtResource( 8 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -150,12 +177,12 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray(  )
+tile_data = IntArray( -982955, 12, -982954, 87, -982953, 12, -982952, 12, -982951, 12, -982950, 12, -982949, 12, -982947, 12, -982946, 12, -982945, 12, -851830, 18, -851829, 21, -851828, 21, -851827, 21, -851826, 21, -851825, 21, -851824, 21, -851823, 21, -851822, 21, -851821, 21, -851820, 21, -851819, 24, -786294, 19, -786293, 13, -786292, 13, -786291, 13, -786290, 13, -786289, 13, -786288, 13, -786287, 13, -786286, 13, -786285, 13, -786284, 13, -786283, 16, -720758, 19, -720757, 13, -720756, 13, -720755, 13, -720754, 13, -720753, 13, -720752, 13, -720751, 13, -720750, 13, -720749, 13, -720748, 13, -720747, 16, -655222, 19, -655221, 13, -655220, 13, -655219, 13, -655218, 13, -655217, 13, -655216, 13, -655215, 13, -655214, 13, -655213, 13, -655212, 13, -655211, 16, -589686, 19, -589685, 13, -589684, 13, -589683, 13, -589682, 13, -589681, 13, -589680, 13, -589679, 13, -589678, 13, -589677, 13, -589676, 13, -589675, 16, -524150, 19, -524149, 13, -524148, 13, -524147, 13, -524146, 13, -524145, 13, -524144, 13, -524143, 13, -524142, 13, -524141, 13, -524140, 13, -524139, 16, -458614, 19, -458613, 13, -458612, 13, -458611, 13, -458610, 13, -458609, 13, -458608, 13, -458607, 13, -458606, 13, -458605, 13, -458604, 13, -458603, 16, -393078, 19, -393077, 13, -393076, 13, -393075, 13, -393074, 13, -393073, 13, -393072, 13, -393071, 13, -393070, 13, -393069, 13, -393068, 13, -393067, 16, -327542, 19, -327541, 13, -327540, 13, -327539, 13, -327538, 13, -327537, 13, -327536, 13, -327535, 13, -327534, 13, -327533, 13, -327532, 13, -327531, 16, -262006, 19, -262005, 13, -262004, 13, -262003, 13, -262002, 13, -262001, 13, -262000, 13, -261999, 13, -261998, 13, -261997, 13, -261996, 13, -261995, 16, -196470, 19, -196469, 13, -196468, 13, -196467, 13, -196466, 13, -196465, 13, -196464, 13, -196463, 13, -196462, 13, -196461, 13, -196460, 13, -196459, 16, -130934, 19, -130933, 13, -130932, 13, -130931, 13, -130930, 13, -130929, 13, -130928, 13, -130927, 13, -130926, 13, -130925, 13, -130924, 13, -130923, 16, -65398, 19, -65397, 13, -65396, 13, -65395, 13, -65394, 13, -65393, 13, -65392, 13, -65391, 13, -65390, 13, -65389, 13, -65388, 13, -65387, 16 )
 
 [node name="tlst_ground1" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -168,13 +195,13 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( -1114027, 0, -1114025, 3, -1114024, 3, -1114023, 3, -1114022, 3, -1114021, 6, -1048491, 1, -1048490, 4, -1048489, 4, -1048488, 4, -1048487, 4, -1048486, 4, -1048485, 34, -982975, 0, -982974, 6, -982956, 9, -982955, 29, -982954, 21, -982953, 32, -982952, 32, -982951, 32, -982950, 32, -982949, 35, -982948, 12, -982947, 15, -917446, 4, -917445, 4, -917439, 1, -917438, 7, -917430, 9, -917429, 12, -917428, 12, -917427, 12, -917426, 12, -917425, 12, -917424, 12, -917423, 12, -917422, 12, -917421, 15, -917420, 19, -917419, 13, -917418, 13, -917417, 13, -917416, 13, -917415, 13, -917414, 13, -917413, 13, -917412, 13, -917411, 16, -851912, 0, -851911, 4, -851910, 4, -851909, 4, -851908, 4, -851907, 6, -851903, 1, -851902, 7, -851899, 9, -851898, 12, -851897, 12, -851896, 15, -851894, 19, -851893, 13, -851892, 13, -851891, 13, -851890, 13, -851889, 13, -851888, 13, -851887, 13, -851886, 13, -851885, 16, -851884, 19, -851883, 13, -851882, 13, -851881, 22, -851880, 13, -851879, 13, -851878, 13, -851877, 13, -851876, 13, -851875, 16, -786376, 2, -786375, 5, -786374, 5, -786373, 5, -786372, 5, -786371, 8, -786367, 5, -786366, 5, -786363, 10, -786362, 22, -786361, 22, -786360, 22, -786359, 22, -786358, 22, -786357, 22, -786356, 22, -786355, 22, -786354, 22, -786353, 22, -786352, 22, -786351, 22, -786350, 22, -786349, 22, -786348, 22, -786347, 13, -786346, 23, -786345, 23, -786344, 23, -786343, 23, -786342, 23, -786341, 23, -786340, 23, -786339, 26, -720827, 10, -720826, 22, -720825, 22, -720824, 22, -720823, 22, -720822, 22, -720821, 22, -720820, 22, -720819, 22, -720818, 22, -720817, 22, -720816, 22, -720815, 22, -720814, 22, -720813, 22, -720812, 22, -720811, 22, -655312, 0, -655311, 3, -655310, 3, -655309, 6, -655308, 18, -655307, 21, -655306, 24, -655291, 10, -655290, 22, -655289, 22, -655288, 22, -655287, 22, -655286, 22, -655285, 22, -655284, 22, -655283, 22, -655282, 22, -655281, 22, -655280, 22, -655279, 22, -655278, 22, -655277, 22, -655276, 22, -655275, 22, -655271, 18, -655270, 21, -655269, 21, -655268, 21, -655267, 21, -589824, 12, -589823, 12, -589822, 12, -589821, 12, -589820, 15, -589776, 2, -589775, 4, -589774, 4, -589773, 7, -589772, 10, -589771, 13, -589770, 16, -589755, 10, -589754, 22, -589753, 22, -589752, 22, -589751, 22, -589750, 22, -589749, 22, -589748, 22, -589747, 22, -589746, 22, -589745, 22, -589744, 22, -589743, 22, -589742, 22, -589741, 22, -589740, 22, -589739, 22, -589738, 22, -589737, 22, -589736, 22, -589735, 22, -589734, 13, -589733, 13, -589732, 13, -589731, 16, -524288, 13, -524287, 13, -524286, 13, -524285, 13, -524284, 16, -524245, 18, -524244, 21, -524243, 21, -524242, 21, -524241, 21, -524236, 22, -524235, 13, -524234, 16, -524219, 10, -524218, 22, -524217, 22, -524216, 22, -524215, 22, -524214, 22, -524213, 22, -524212, 22, -524211, 22, -524210, 22, -524209, 22, -524208, 22, -524207, 22, -524206, 22, -524205, 22, -524204, 22, -524203, 22, -524202, 22, -524201, 22, -524200, 22, -524199, 22, -524198, 13, -524197, 13, -524196, 13, -524195, 16, -458752, 13, -458751, 13, -458750, 13, -458749, 13, -458748, 13, -458747, 16, -458709, 10, -458708, 22, -458707, 22, -458706, 22, -458705, 22, -458698, 16, -458683, 10, -458682, 22, -458681, 22, -458680, 22, -458679, 22, -458678, 22, -458677, 22, -458676, 22, -458675, 22, -458674, 22, -458673, 22, -458672, 22, -458671, 22, -458670, 22, -458669, 22, -458668, 22, -458667, 22, -458666, 22, -458665, 22, -458664, 22, -458663, 22, -458662, 13, -458661, 13, -458660, 13, -458659, 16, -393216, 13, -393215, 13, -393214, 13, -393213, 13, -393212, 13, -393211, 16, -393173, 10, -393172, 22, -393171, 22, -393170, 22, -393169, 22, -393162, 16, -393147, 10, -393146, 22, -393145, 22, -393144, 22, -393143, 22, -393142, 22, -393141, 22, -393140, 22, -393139, 22, -393138, 22, -393137, 22, -393136, 22, -393135, 22, -393134, 22, -393133, 22, -393132, 22, -393131, 22, -393130, 22, -393129, 22, -393128, 22, -393127, 22, -393126, 13, -393125, 13, -393124, 13, -393123, 16, -327680, 13, -327679, 13, -327678, 13, -327677, 13, -327676, 13, -327675, 12, -327674, 12, -327673, 15, -327670, 9, -327669, 12, -327668, 12, -327667, 15, -327637, 10, -327636, 22, -327635, 22, -327634, 22, -327633, 22, -327626, 16, -327611, 10, -327610, 22, -327609, 22, -327608, 22, -327607, 22, -327606, 22, -327605, 22, -327604, 22, -327603, 22, -327602, 22, -327601, 22, -327600, 22, -327599, 22, -327598, 22, -327597, 22, -327596, 22, -327595, 22, -327594, 22, -327593, 22, -327592, 22, -327591, 22, -327590, 13, -327589, 13, -327588, 13, -327587, 16, -262144, 13, -262143, 13, -262142, 13, -262141, 13, -262140, 13, -262139, 22, -262138, 22, -262137, 22, -262134, 22, -262133, 22, -262132, 22, -262131, 25, -262101, 10, -262100, 22, -262099, 22, -262098, 22, -262097, 22, -262090, 16, -262075, 10, -262074, 22, -262073, 22, -262072, 22, -262071, 22, -262070, 22, -262069, 22, -262068, 22, -262067, 22, -262066, 22, -262065, 22, -262064, 22, -262063, 22, -262062, 22, -262061, 22, -262060, 22, -262059, 22, -262058, 22, -262057, 22, -262056, 22, -262055, 22, -262054, 13, -262053, 13, -262052, 13, -262051, 16, -196608, 13, -196607, 13, -196606, 13, -196605, 13, -196604, 13, -196603, 22, -196602, 22, -196601, 22, -196598, 22, -196597, 22, -196596, 22, -196595, 25, -196565, 10, -196564, 22, -196563, 22, -196562, 22, -196561, 22, -196554, 16, -196539, 10, -196538, 22, -196537, 22, -196536, 22, -196535, 22, -196534, 22, -196533, 22, -196532, 22, -196531, 22, -196530, 22, -196529, 22, -196528, 22, -196527, 22, -196526, 22, -196525, 22, -196524, 22, -196523, 22, -196522, 22, -196521, 22, -196520, 22, -196519, 22, -196518, 22, -196517, 22, -196516, 22, -196515, 26, -131072, 13, -131071, 13, -131070, 13, -131069, 13, -131068, 13, -131067, 22, -131066, 22, -131065, 22, -131062, 22, -131061, 22, -131060, 22, -131059, 25, -131029, 10, -131028, 22, -131027, 22, -131026, 22, -131025, 22, -131018, 16, -131003, 10, -131002, 22, -131001, 22, -131000, 22, -130999, 22, -130998, 22, -130997, 22, -130996, 22, -130995, 22, -130994, 22, -130993, 22, -130992, 22, -130991, 22, -130990, 22, -130989, 22, -130988, 22, -130987, 22, -130986, 22, -130985, 22, -130984, 22, -130983, 22, -130982, 22, -130981, 22, -130980, 22, -65536, 13, -65535, 13, -65534, 13, -65533, 13, -65532, 13, -65531, 22, -65530, 22, -65529, 22, -65527, 10, -65526, 22, -65525, 22, -65524, 22, -65523, 25, -65493, 10, -65492, 22, -65491, 22, -65490, 22, -65489, 22, -65482, 16, -65467, 10, -65466, 22, -65465, 22, -65464, 22, -65463, 22, -65462, 22, -65461, 22, -65460, 22, -65459, 22, -65458, 22, -65457, 22, -65456, 22, -65455, 22, -65454, 22, -65453, 22, -65452, 22, -65451, 22, -65450, 22, -65449, 22, -65448, 22, -65447, 22, -65446, 22, -65445, 22, -65444, 22 )
+tile_data = IntArray( -1114027, 0, -1114025, 3, -1114024, 3, -1114023, 3, -1114022, 3, -1114021, 6, -1048491, 1, -1048490, 4, -1048489, 4, -1048488, 4, -1048487, 4, -1048486, 4, -1048485, 34, -982975, 0, -982974, 6, -982956, 9, -982955, 29, -982954, 21, -982953, 32, -982952, 32, -982951, 32, -982950, 32, -982949, 35, -982948, 12, -982944, 12, -982943, 15, -917446, 4, -917445, 4, -917439, 1, -917438, 7, -917430, 9, -917429, 12, -917428, 12, -917427, 12, -917426, 12, -917425, 12, -917424, 12, -917423, 12, -917422, 12, -917421, 15, -917420, 19, -917419, 13, -917418, 13, -917417, 13, -917416, 13, -917415, 13, -917414, 13, -917413, 13, -917412, 13, -917411, 13, -917410, 13, -917409, 13, -917408, 13, -917407, 16, -851912, 0, -851911, 4, -851910, 4, -851909, 4, -851908, 4, -851907, 6, -851903, 1, -851902, 7, -851899, 9, -851898, 12, -851897, 12, -851896, 15, -851894, 19, -851893, 13, -851892, 13, -851891, 13, -851890, 13, -851889, 13, -851888, 13, -851887, 13, -851886, 13, -851885, 16, -851884, 19, -851883, 13, -851882, 13, -851881, 22, -851880, 13, -851879, 13, -851878, 13, -851877, 13, -851876, 13, -851875, 13, -851874, 13, -851873, 13, -851872, 13, -851871, 16, -786376, 2, -786375, 5, -786374, 5, -786373, 5, -786372, 5, -786371, 8, -786367, 5, -786366, 5, -786363, 10, -786362, 22, -786361, 22, -786360, 22, -786359, 22, -786358, 22, -786357, 22, -786356, 22, -786355, 22, -786354, 22, -786353, 22, -786352, 22, -786351, 22, -786350, 22, -786349, 22, -786348, 22, -786347, 13, -786346, 23, -786345, 23, -786344, 23, -786343, 23, -786342, 23, -786341, 23, -786340, 23, -786339, 23, -786338, 23, -786337, 23, -786336, 23, -786335, 26, -720827, 10, -720826, 22, -720825, 22, -720824, 22, -720823, 22, -720822, 22, -720821, 22, -720820, 22, -720819, 22, -720818, 22, -720817, 22, -720816, 22, -720815, 22, -720814, 22, -720813, 22, -720812, 22, -720811, 22, -655312, 0, -655311, 3, -655310, 3, -655309, 6, -655308, 18, -655307, 21, -655306, 24, -655291, 10, -655290, 22, -655289, 22, -655288, 22, -655287, 22, -655286, 22, -655285, 22, -655284, 22, -655283, 22, -655282, 22, -655281, 22, -655280, 22, -655279, 22, -655278, 22, -655277, 22, -655276, 22, -655275, 22, -655271, 18, -655270, 21, -655269, 21, -655268, 21, -655267, 21, -589824, 12, -589823, 12, -589822, 12, -589821, 12, -589820, 15, -589776, 2, -589775, 4, -589774, 4, -589773, 7, -589772, 10, -589771, 13, -589770, 16, -589755, 10, -589754, 22, -589753, 22, -589752, 22, -589751, 22, -589750, 22, -589749, 22, -589748, 22, -589747, 22, -589746, 22, -589745, 22, -589744, 22, -589743, 22, -589742, 22, -589741, 22, -589740, 22, -589739, 22, -589738, 22, -589737, 22, -589736, 22, -589735, 22, -589734, 13, -589733, 13, -589732, 13, -589731, 16, -524288, 13, -524287, 13, -524286, 13, -524285, 13, -524284, 16, -524245, 18, -524244, 21, -524243, 21, -524242, 21, -524241, 21, -524236, 22, -524235, 13, -524234, 16, -524219, 10, -524218, 22, -524217, 22, -524216, 22, -524215, 22, -524214, 22, -524213, 22, -524212, 22, -524211, 22, -524210, 22, -524209, 22, -524208, 22, -524207, 22, -524206, 22, -524205, 22, -524204, 22, -524203, 22, -524202, 22, -524201, 22, -524200, 22, -524199, 22, -524198, 13, -524197, 13, -524196, 13, -524195, 16, -458752, 13, -458751, 13, -458750, 13, -458749, 13, -458748, 13, -458747, 16, -458709, 10, -458708, 22, -458707, 22, -458706, 22, -458705, 22, -458698, 16, -458683, 10, -458682, 22, -458681, 22, -458680, 22, -458679, 22, -458678, 22, -458677, 22, -458676, 22, -458675, 22, -458674, 22, -458673, 22, -458672, 22, -458671, 22, -458670, 22, -458669, 22, -458668, 22, -458667, 22, -458666, 22, -458665, 22, -458664, 22, -458663, 22, -458662, 13, -458661, 13, -458660, 13, -458659, 16, -393216, 13, -393215, 13, -393214, 13, -393213, 13, -393212, 13, -393211, 16, -393173, 10, -393172, 22, -393171, 22, -393170, 22, -393169, 22, -393162, 16, -393147, 10, -393146, 22, -393145, 22, -393144, 22, -393143, 22, -393142, 22, -393141, 22, -393140, 22, -393139, 22, -393138, 22, -393137, 22, -393136, 22, -393135, 22, -393134, 22, -393133, 22, -393132, 22, -393131, 22, -393130, 22, -393129, 22, -393128, 22, -393127, 22, -393126, 13, -393125, 13, -393124, 13, -393123, 16, -327680, 13, -327679, 13, -327678, 13, -327677, 13, -327676, 13, -327675, 12, -327674, 12, -327673, 15, -327670, 9, -327669, 12, -327668, 12, -327667, 15, -327637, 10, -327636, 22, -327635, 22, -327634, 22, -327633, 22, -327626, 16, -327611, 10, -327610, 22, -327609, 22, -327608, 22, -327607, 22, -327606, 22, -327605, 22, -327604, 22, -327603, 22, -327602, 22, -327601, 22, -327600, 22, -327599, 22, -327598, 22, -327597, 22, -327596, 22, -327595, 22, -327594, 22, -327593, 22, -327592, 22, -327591, 22, -327590, 13, -327589, 13, -327588, 13, -327587, 16, -262144, 13, -262143, 13, -262142, 13, -262141, 13, -262140, 13, -262139, 22, -262138, 22, -262137, 22, -262134, 22, -262133, 22, -262132, 22, -262131, 25, -262101, 10, -262100, 22, -262099, 22, -262098, 22, -262097, 22, -262090, 16, -262075, 10, -262074, 22, -262073, 22, -262072, 22, -262071, 22, -262070, 22, -262069, 22, -262068, 22, -262067, 22, -262066, 22, -262065, 22, -262064, 22, -262063, 22, -262062, 22, -262061, 22, -262060, 22, -262059, 22, -262058, 22, -262057, 22, -262056, 22, -262055, 22, -262054, 13, -262053, 13, -262052, 13, -262051, 16, -196608, 13, -196607, 13, -196606, 13, -196605, 13, -196604, 13, -196603, 22, -196602, 22, -196601, 22, -196598, 22, -196597, 22, -196596, 22, -196595, 25, -196565, 10, -196564, 22, -196563, 22, -196562, 22, -196561, 22, -196554, 16, -196539, 10, -196538, 22, -196537, 22, -196536, 22, -196535, 22, -196534, 22, -196533, 22, -196532, 22, -196531, 22, -196530, 22, -196529, 22, -196528, 22, -196527, 22, -196526, 22, -196525, 22, -196524, 22, -196523, 22, -196522, 22, -196521, 22, -196520, 22, -196519, 22, -196518, 22, -196517, 22, -196516, 22, -196515, 26, -131072, 13, -131071, 13, -131070, 13, -131069, 13, -131068, 13, -131067, 22, -131066, 22, -131065, 22, -131062, 22, -131061, 22, -131060, 22, -131059, 25, -131029, 10, -131028, 22, -131027, 22, -131026, 22, -131025, 22, -131018, 16, -131003, 10, -131002, 22, -131001, 22, -131000, 22, -130999, 22, -130998, 22, -130997, 22, -130996, 22, -130995, 22, -130994, 22, -130993, 22, -130992, 22, -130991, 22, -130990, 22, -130989, 22, -130988, 22, -130987, 22, -130986, 22, -130985, 22, -130984, 22, -130983, 22, -130982, 22, -130981, 22, -130980, 22, -65536, 13, -65535, 13, -65534, 13, -65533, 13, -65532, 13, -65531, 22, -65530, 22, -65529, 22, -65527, 10, -65526, 22, -65525, 22, -65524, 22, -65523, 25, -65493, 10, -65492, 22, -65491, 22, -65490, 22, -65489, 22, -65482, 16, -65467, 10, -65466, 22, -65465, 22, -65464, 22, -65463, 22, -65462, 22, -65461, 22, -65460, 22, -65459, 22, -65458, 22, -65457, 22, -65456, 22, -65455, 22, -65454, 22, -65453, 22, -65452, 22, -65451, 22, -65450, 22, -65449, 22, -65448, 22, -65447, 22, -65446, 22, -65445, 22, -65444, 22 )
 
 [node name="tlst_ground2" type="TileMap" parent="."]
 
 transform/pos = Vector2( 30, 34 )
 mode = 0
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -193,7 +220,7 @@ tile_data = IntArray( -1245099, 0, -1245098, 6, -1179563, 1, -1179562, 7, -11140
 
 transform/pos = Vector2( 30, 34 )
 mode = 0
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -210,17 +237,15 @@ tile_data = IntArray( -1245099, 0, -1245098, 6, -1179563, 1, -1179562, 7, -11140
 
 [node name="bg_objects2" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="valla" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 1048.27, -336.392 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="valla1" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 4223.19, -726.389 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="bridge_left" type="Sprite" parent="bg_objects2"]
 
@@ -283,41 +308,52 @@ ruin_frame = 1
 [node name="vidriera" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 5534.15, -1098.01 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
-[node name="cart" parent="bg_objects2" instance=ExtResource( 10 )]
+[node name="cart" parent="bg_objects2" instance=ExtResource( 11 )]
 
-transform/pos = Vector2( 5629.8, -951.866 )
+transform/pos = Vector2( 5501.07, -945.28 )
 cart_frame = 2
+
+[node name="cart1" parent="bg_objects2" instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 5799.47, -627.867 )
+cart_frame = 1
 
 [node name="Sprite" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 5365.72, -763.565 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Sprite1" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 5361.53, -773.744 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 flip_h = true
 
 [node name="Sprite2" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 5371.11, -780.33 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Sprite3" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 5395.06, -766.559 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Sprite4" type="Sprite" parent="bg_objects2"]
 
 transform/pos = Vector2( 5413.03, -773.145 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 flip_h = true
 
-[node name="CanvasLayer_HUD" parent="." instance=ExtResource( 12 )]
+[node name="Sprite 2" parent="bg_objects2" instance=ExtResource( 13 )]
+
+transform/pos = Vector2( 5565.08, -610.108 )
+
+[node name="CanvasLayer_HUD" parent="." instance=ExtResource( 14 )]
+
+editor/display_folded = true
 
 [node name="PlayerHUD" parent="CanvasLayer_HUD/GridContainer"]
 
@@ -329,21 +365,43 @@ path_to_target = "Node2D/Enemies/peste"
 
 [node name="npcs" type="Node2D" parent="."]
 
-[node name="Npc" parent="npcs" instance=ExtResource( 13 )]
+[node name="Npc" parent="npcs" instance=ExtResource( 15 )]
 
 transform/pos = Vector2( 959.056, -344.606 )
 msgs = [ "Are you our King? Can you explain what happened?", "I feel cold.", " I want to go [color=red]back[/color] home.", "Anyway, it looks like something is going on at the castle. I guess someone should go and have a look." ]
 
-[node name="Npc1" parent="npcs" instance=ExtResource( 13 )]
+[node name="Npc1" parent="npcs" instance=ExtResource( 15 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 3511.34, -728.17 )
 msgs = [ "The town is a mess. Who... who... who left the monsters out?!", "They destroyed the bridge, how did you get up here?" ]
 
-[node name="king" parent="." instance=ExtResource( 14 )]
+[node name="Sprite" parent="npcs/Npc1"]
 
-transform/pos = Vector2( 509.672, -305.923 )
+flip_h = true
 
-[node name="CloudSpawner" parent="king" instance=ExtResource( 15 )]
+[node name="Npc2" parent="npcs" instance=ExtResource( 15 )]
+
+transform/pos = Vector2( 5613.26, -601.372 )
+script/script = SubResource( 3 )
+msgs = [ "Oh man!", "As you can see, it's impossible to control the cattle without arms.", "" ]
+
+[node name="Npc3" parent="npcs" instance=ExtResource( 15 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 8479.73, -670.626 )
+script/script = SubResource( 3 )
+msgs = [ "Wow. You saved me this time...", "If you want to [color=red]recover[/color] your castle, you will have to jump off this cliff." ]
+
+[node name="Sprite" parent="npcs/Npc3"]
+
+flip_h = true
+
+[node name="king" parent="." instance=ExtResource( 16 )]
+
+transform/pos = Vector2( 518.701, -303.583 )
+
+[node name="CloudSpawner" parent="king" instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 599.992, 4.73041 )
 height_range = 160
@@ -353,14 +411,14 @@ offset_y = 460
 
 [node name="camera" type="Camera2D" parent="king"]
 
-transform/pos = Vector2( 1.22781, 2.45551 )
+transform/pos = Vector2( -1.04492, 4.72754 )
 anchor_mode = 1
 rotating = false
 current = true
 zoom = Vector2( 0.4, 0.4 )
 limit/left = 0
 limit/top = -10000000
-limit/right = 10000000
+limit/right = 9500
 limit/bottom = 0
 drag_margin/h_enabled = true
 drag_margin/v_enabled = true
@@ -373,46 +431,46 @@ drag_margin/bottom = 0.1
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="genoma" parent="Enemies" instance=ExtResource( 16 )]
+[node name="genoma" parent="Enemies" instance=ExtResource( 18 )]
 
 transform/pos = Vector2( 1542.89, -349.025 )
 
-[node name="genoma1" parent="Enemies" instance=ExtResource( 16 )]
+[node name="genoma1" parent="Enemies" instance=ExtResource( 18 )]
 
 transform/pos = Vector2( 4405.56, -733.146 )
 
-[node name="genoma2" parent="Enemies" instance=ExtResource( 16 )]
+[node name="genoma2" parent="Enemies" instance=ExtResource( 18 )]
 
 transform/pos = Vector2( 4737.27, -800.152 )
 
-[node name="genoma3" parent="Enemies" instance=ExtResource( 16 )]
+[node name="genoma3" parent="Enemies" instance=ExtResource( 18 )]
 
 transform/pos = Vector2( 5394.06, -798.162 )
 
-[node name="bat" parent="Enemies" instance=ExtResource( 17 )]
+[node name="bat" parent="Enemies" instance=ExtResource( 19 )]
 
 transform/pos = Vector2( 5501.91, -1093.53 )
 
-[node name="penitente" parent="Enemies" instance=ExtResource( 18 )]
+[node name="penitente" parent="Enemies" instance=ExtResource( 20 )]
 
-transform/pos = Vector2( 5913.87, -989.659 )
+transform/pos = Vector2( 6170.47, -993.342 )
 
-[node name="peste" parent="Enemies" instance=ExtResource( 19 )]
+[node name="peste" parent="Enemies" instance=ExtResource( 21 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 7515.25, -688.257 )
 
 [node name="fg_objects" type="Node2D" parent="."]
 
-[node name="boss_area" parent="." instance=ExtResource( 20 )]
+[node name="boss_area" parent="." instance=ExtResource( 22 )]
 
 transform/pos = Vector2( 6990.85, -741.495 )
 
 [node name="radar" type="Area2D" parent="."]
 
-transform/pos = Vector2( 8159.04, -675.856 )
+transform/pos = Vector2( 8654.24, -99.0938 )
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 67.6045, -90.4105 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -423,12 +481,14 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="radar"]
 
 transform/pos = Vector2( 67.6045, -90.4105 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 
-[connection signal="area_enter" from="radar" to="king" method="_on_radar_area_enter"]
+[connection signal="area_enter" from="radar" to="." method="_on_radar_area_enter"]
 
 
 [editable path="CanvasLayer_HUD"]
+[editable path="npcs/Npc1"]
+[editable path="npcs/Npc3"]
 [editable path="Enemies/peste"]
