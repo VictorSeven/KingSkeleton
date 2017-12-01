@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://graphics/tiles/fondo_castillo.png" type="Texture" id=1]
+[ext_resource path="res://graphics/tiles/fondo_catacumbas.png" type="Texture" id=1]
 [ext_resource path="res://graphics/tiles/tileset_definitivo.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
 
@@ -38,8 +38,8 @@ motion/mirroring = Vector2( 0, 0 )
 
 [node name="background" type="Sprite" parent="ParallaxBackground/ParallaxLayer _bg"]
 
-transform/pos = Vector2( 28.6687, -135.992 )
 texture = ExtResource( 1 )
+centered = false
 region = true
 region_rect = Rect2( 0, 0, 10000, 4000 )
 

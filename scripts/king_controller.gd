@@ -173,7 +173,6 @@ func move_input(delta):
 	#Do attack is we are not throwing sword
 	if (Input.is_action_pressed("ui_accept") and !is_throwing):
 		vel.x = 0.0 #Stop king
-==== BASE ====
 		get_node("player").play("throwsword")
 		get_node("player").play("swordspin")
 		var sword_world = sword.instance() #Instance new sword
