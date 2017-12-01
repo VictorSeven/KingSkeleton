@@ -142,6 +142,7 @@ func damage(swatq):
 				cards_used = true
 		else:
 			get_node("anim").play("death") #Kill clown
+
 func get_health():
 	return life
 

@@ -173,6 +173,7 @@ func move_input(delta):
 	#Do attack is we are not throwing sword
 	if (Input.is_action_pressed("ui_accept") and !is_throwing):
 		vel.x = 0.0 #Stop king
+==== BASE ====
 		get_node("player").play("throwsword")
 		get_node("player").play("swordspin")
 		var sword_world = sword.instance() #Instance new sword
@@ -193,7 +194,7 @@ func damage(points):
 		is_damaged = true #Enter in damage state
 		elapsed_time = 0.0 #Start counter
 		lifepoints -= points #Eliminate points
-		healthbar.update()
+		healthbar.update() #update healthbar
 		if (lifepoints <= 0):
 			get_node("player").play("kingdeath")
 			change_anim("death") #Kill it
@@ -252,8 +253,3 @@ func _on_hitbox_area_enter( area ):
 		#Do damage to the King depending on enemy atq
 		if (area.get_parent().can_deal_damage()):
 			damage(area.get_parent().get_atq()) 
-
-
-func _on_radar_area_enter( area ):
-	if (area.is_in_group("king")):
-		get_node("/root/global").goto_scene("res://scenes/Castle.tscn")
