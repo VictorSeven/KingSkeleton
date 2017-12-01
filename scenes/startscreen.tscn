@@ -87,7 +87,7 @@ tracks/6/keys = {
 "values": [ Vector2( 0.25, 0.25 ), Vector2( 0.25, 0.25 ), Vector2( 0.3, 0.3 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 
 resource/name = "fade_in"
 length = 2.0
@@ -104,7 +104,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 
 resource/name = "fade_out"
 length = 2.0
@@ -313,23 +313,27 @@ max_lines_visible = -1
 
 visibility/visible = false
 
-[node name="fadesprite" type="Sprite" parent="CanvasLayer_HUD"]
+[node name="fadesprite" parent="CanvasLayer_HUD"]
 
-editor/display_folded = true
-visibility/visible = false
-texture = ExtResource( 9 )
+editor/display_folded = false
 
 [node name="anim" type="AnimationPlayer" parent="CanvasLayer_HUD/fadesprite"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/fade_in = SubResource( 5 )
-anims/fade_out = SubResource( 6 )
+anims/fade_in = SubResource( 2 )
+anims/fade_out = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="fadesprite" type="Sprite" parent="CanvasLayer_HUD"]
+
+editor/display_folded = true
+visibility/visible = false
+texture = ExtResource( 9 )
 
 [connection signal="finished" from="anim" to="." method="_on_anim_finished"]
 

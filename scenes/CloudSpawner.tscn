@@ -34,7 +34,7 @@ func _process(delta):
 	var tmp_pos_x = origin.x * -1 + offset_x
 	var tmp_pos_y = origin.y * -1 + offset_y
 	
-	print(tmp_pos_x, \", \", tmp_pos_y)
+	#print(tmp_pos_x, \", \", tmp_pos_y)
 	
 	if(tmp_rand > ratio_of_spawn - 1000):
 		cloud_instance = cloud.instance()

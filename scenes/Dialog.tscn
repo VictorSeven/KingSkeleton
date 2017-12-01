@@ -209,9 +209,10 @@ margin/left = 8.0
 margin/top = 4.0
 margin/right = 312.0
 margin/bottom = 120.0
+custom_fonts/bold_font = ExtResource( 1 )
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode/enabled = true
-bbcode/bbcode = "Fuck off!"
+bbcode/bbcode = "!"
 visible_characters = -1
 percent_visible = 1.0
 

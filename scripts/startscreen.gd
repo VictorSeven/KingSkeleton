@@ -36,7 +36,7 @@ func _input(event):
 				selected_option = 0
 		if (event.is_action_pressed("ui_accept")):
 			if (selected_option == 0):
-				singleton.goto_scene("res://scenes/Castle.tscn")
+				singleton.goto_scene("res://scenes/Town.tscn")
 			elif (selected_option == 1):
 				creditos = true
 				get_node("creditos").show()

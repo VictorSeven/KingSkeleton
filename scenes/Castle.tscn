@@ -12,8 +12,6 @@
 
 [node name="Node2D" type="Node2D"]
 
-script/script = ExtResource( 1 )
-
 [node name="musicplayer" type="StreamPlayer" parent="."]
 
 stream/stream = ExtResource( 1 )
