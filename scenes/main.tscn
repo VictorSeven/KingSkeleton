@@ -3,16 +3,16 @@
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=1]
 [ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=2]
 [ext_resource path="res://music/ost/illness and penury.ogg" type="AudioStream" id=3]
-[ext_resource path="res://graphics/deco/castillo grande.png" type="Texture" id=4]
+[ext_resource path="res://graphics/deco/Pueblo/castillo grande.png" type="Texture" id=4]
 [ext_resource path="res://scenes/trees.tscn" type="PackedScene" id=5]
-[ext_resource path="res://graphics/deco/casa.png" type="Texture" id=6]
-[ext_resource path="res://graphics/deco/valla.png" type="Texture" id=7]
+[ext_resource path="res://graphics/deco/Pueblo/casa.png" type="Texture" id=6]
+[ext_resource path="res://graphics/deco/Pueblo/valla.png" type="Texture" id=7]
 [ext_resource path="res://graphics/tiles/pueblo_destruido.tres" type="TileSet" id=8]
 [ext_resource path="res://scenes/ruins.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Label.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/king.tscn" type="PackedScene" id=12]
-[ext_resource path="res://graphics/deco/muertos.png" type="Texture" id=13]
+[ext_resource path="res://graphics/deco/Pueblo/muertos.png" type="Texture" id=13]
 [ext_resource path="res://scenes/carts.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/genoma.tscn" type="PackedScene" id=16]
@@ -21,6 +21,10 @@
 [ext_resource path="res://scenes/crisadea.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/past_king.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/penitente.tscn" type="PackedScene" id=21]
+
+
+
+
 
 [node name="Node2D" type="Node2D"]
 

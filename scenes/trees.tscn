@@ -2,7 +2,6 @@
 
 [ext_resource path="res://graphics/deco/Pueblo/arboles.png" type="Texture" id=1]
 
-
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends Sprite
