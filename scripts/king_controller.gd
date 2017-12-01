@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 #King controller: this function controls the King Skeleton
 #The character can move around/fly using the arrows
+ 
+var singleton
 
 var healthbar
 var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/PlayerHUD/Healthbar"
@@ -42,6 +44,7 @@ var is_damaged = false
 var in_boss = false
 
 func _ready():
+	singleton = get_node("/root/global")
 	change_anim("idle")
 	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
@@ -103,7 +106,8 @@ func _fixed_process(delta):
 		else:
 			if (elapsed_time > 10.0):
 				set_fixed_process(false)
-				get_tree().set_pause(true)
+				singleton.repeat_level()
+				#get_tree().set_pause(true)
 				#TODO: lose game
 	else:
 		pass 

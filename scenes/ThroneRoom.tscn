@@ -42,6 +42,7 @@ tile_data = IntArray( 196612, 86, 262148, 86, 262161, 44, 327684, 86, 327697, 44
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -68,12 +69,15 @@ region_rect = Rect2( 0, 0, 10000, 4000 )
 
 [node name="CanvasLayer_HUD" parent="." instance=ExtResource( 4 )]
 
+editor/display_folded = true
+
 [node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer/EnemyHUD"]
 
 path_to_target = "Node2D/Enemies/past_king"
 
 [node name="king" parent="." instance=ExtResource( 5 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 419.155, 584.783 )
 
 [node name="camera" type="Camera2D" parent="king"]
@@ -97,6 +101,8 @@ drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
 [node name="Enemies" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="past_king" parent="Enemies" instance=ExtResource( 6 )]
 

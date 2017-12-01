@@ -1,7 +1,10 @@
 extends Node
 
-#Change code scene from Godot tutorials! Added function to do fade in/out
+#Changed code scene from Godot tutorials! Added function to do fade in/out and level management
+var scenedir = "res://scenes/"
+var scene_paths = ["Town.tscn", "Catacombs.tscn", "Castle.tscn", "ThroneRoom.tscn", "Credits.tscn"]
 var current_scene = null
+var scene_index = 0
 var next_scene = ""
 
 var elapsed_time = 0.0
@@ -27,6 +30,13 @@ func fade_out():
 	get_tree().get_root().get_node("Node2D/CanvasLayer_HUD/fadesprite").show()
 	var anim = get_tree().get_root().get_node("Node2D/CanvasLayer_HUD/fadesprite/anim")
 	anim.play("fade_out")
+
+func repeat_level():
+	goto_scene(scenedir + scene_paths[scene_index])
+
+func load_next_level():
+	scene_index += 1
+	goto_scene(scenedir + scene_paths[scene_index])
 
 func goto_scene(path):
 	next_scene = path

@@ -298,7 +298,7 @@ messages = [ "Hello, my name is Flan, welcome to Nameless Kingdom. We are here t
 editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 485.731, 295.993 )
-transform/scale = Vector2( 2, 1 )
+transform/scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 
 [node name="anim" type="AnimationPlayer" parent="fadesprite"]
