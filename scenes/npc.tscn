@@ -92,7 +92,7 @@ autoplay = ""
 transform/pos = Vector2( 5.78304, 0.771072 )
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -4.69905, -0.28479 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -101,6 +101,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
+transform/pos = Vector2( -4.69905, -0.28479 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0

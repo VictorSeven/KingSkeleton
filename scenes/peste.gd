@@ -125,3 +125,6 @@ func change_anim(newanim, index):
 func set_sprite_text(index):
 	get_node("Sprite").set_texture(texturas[index]) #Set the correct texture
 	get_node("Sprite").set_hframes(frames[index]) #Say how many frames it has
+
+func get_health():
+	return life

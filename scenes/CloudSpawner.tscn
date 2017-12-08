@@ -40,7 +40,7 @@ func _process(delta):
 		cloud_instance = cloud.instance()
 		cloud_instance.set_pos(Vector2(tmp_pos_x, tmp_pos_y + tmp_height))
 		cloud_instance.set_name(\"cloud_\" + str(cloud_count))
-		get_parent().get_parent().get_node(\"BG_objetos\").add_child(cloud_instance)
+		get_parent().get_parent().get_node(\"bg_objects2\").add_child(cloud_instance)
 		cloud_count += 1
 		#print(\"nube creada\")
 	pass"

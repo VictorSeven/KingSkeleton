@@ -206,7 +206,7 @@ scale = Vector2( 1, 1 )
 
 [node name="GridContainer" type="GridContainer" parent="."]
 
-editor/display_folded = true
+rect/scale = Vector2( 1.5, 1.5 )
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -244,7 +244,6 @@ script/script = SubResource( 3 )
 
 [node name="EnemyHUD" type="Control" parent="GridContainer"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -299,7 +298,7 @@ messages = [ "Hello, my name is Flan, welcome to Nameless Kingdom. We are here t
 editor/display_folded = true
 visibility/visible = false
 transform/pos = Vector2( 485.731, 295.993 )
-transform/scale = Vector2( 2, 1 )
+transform/scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 
 [node name="anim" type="AnimationPlayer" parent="fadesprite"]

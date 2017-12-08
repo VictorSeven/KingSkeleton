@@ -313,6 +313,10 @@ max_lines_visible = -1
 
 visibility/visible = false
 
+[node name="fadesprite" parent="CanvasLayer_HUD"]
+
+editor/display_folded = false
+
 [node name="anim" type="AnimationPlayer" parent="CanvasLayer_HUD/fadesprite"]
 
 playback/process_mode = 1

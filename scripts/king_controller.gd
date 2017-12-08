@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 #King controller: this function controls the King Skeleton
 #The character can move around/fly using the arrows
+ 
+var singleton
 
 var healthbar
 var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/PlayerHUD/Healthbar"
@@ -25,9 +27,7 @@ var target_height = -1.0 #Where do I have to jump?
 var start_height #Height where jump started
 var input_y = false  #We are not making any input in y
 var on_air_time = 0 #Time spent in the air since the last time floor was touched
-#==== BASE ====
 var max_float_time =  1.0 #Maximum time to float around
-#==== BASE ====
 
 var atq1 = true #Controls which animation I use
 var is_throwing = false #true when we are throwing the sword
@@ -44,6 +44,7 @@ var is_damaged = false
 var in_boss = false
 
 func _ready():
+	singleton = get_node("/root/global")
 	change_anim("idle")
 	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
@@ -105,7 +106,8 @@ func _fixed_process(delta):
 		else:
 			if (elapsed_time > 10.0):
 				set_fixed_process(false)
-				get_tree().set_pause(true)
+				singleton.repeat_level()
+				#get_tree().set_pause(true)
 				#TODO: lose game
 	else:
 		pass 
@@ -172,11 +174,9 @@ func move_input(delta):
 	if (not input_x and not input_y):
 		change_anim("idle")
 	
-#==== BASE ====
 	#Do attack is we are not throwing sword
 	if (Input.is_action_pressed("ui_accept") and !is_throwing):
 		vel.x = 0.0 #Stop king
-#==== BASE ====
 		get_node("player").play("throwsword")
 		get_node("player").play("swordspin")
 		var sword_world = sword.instance() #Instance new sword
