@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=1]
+[gd_scene load_steps=37 format=1]
 
 [ext_resource path="res://graphics/tiles/puebloDestruidoBueno.png" type="Texture" id=1]
 [ext_resource path="res://graphics/tiles/catacumbas/catacumbas_tileset.png" type="Texture" id=2]
@@ -52,22 +52,22 @@ extents = Vector2( 8, 48 )
 [sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 8 )
+extents = Vector2( 48, 8 )
 
 [sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 8 )
+extents = Vector2( 15.4111, 8 )
 
 [sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 48 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=35]
 
 custom_solver_bias = 0.0
-extents = Vector2( 24, 8 )
+extents = Vector2( 24, 10 )
 
 [sub_resource type="RectangleShape2D" id=14]
 
@@ -107,32 +107,22 @@ extents = Vector2( 24, 10 )
 [sub_resource type="RectangleShape2D" id=21]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
+extents = Vector2( 80, 10 )
 
 [sub_resource type="RectangleShape2D" id=22]
 
 custom_solver_bias = 0.0
 extents = Vector2( 24, 10 )
 
-[sub_resource type="RectangleShape2D" id=31]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 32 )
-
-[sub_resource type="RectangleShape2D" id=32]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 32 )
-
 [sub_resource type="RectangleShape2D" id=23]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
+extents = Vector2( 16, 32 )
 
 [sub_resource type="RectangleShape2D" id=24]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 10 )
+extents = Vector2( 16, 32 )
 
 [sub_resource type="RectangleShape2D" id=25]
 
@@ -147,9 +137,14 @@ extents = Vector2( 32, 10 )
 [sub_resource type="RectangleShape2D" id=27]
 
 custom_solver_bias = 0.0
-extents = Vector2( 24, 10 )
+extents = Vector2( 32, 10 )
 
 [sub_resource type="RectangleShape2D" id=28]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 10 )
+
+[sub_resource type="RectangleShape2D" id=33]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 10 )
@@ -160,6 +155,16 @@ custom_solver_bias = 0.0
 extents = Vector2( 24, 10 )
 
 [sub_resource type="RectangleShape2D" id=30]
+
+custom_solver_bias = 0.0
+extents = Vector2( 40, 10 )
+
+[sub_resource type="RectangleShape2D" id=31]
+
+custom_solver_bias = 0.0
+extents = Vector2( 24, 10 )
+
+[sub_resource type="RectangleShape2D" id=34]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 8 )
@@ -705,7 +710,7 @@ region_rect = Rect2( 0, 0, 64, 64 )
 transform/pos = Vector2( 48, 32 )
 input/pickable = false
 shapes/0/shape = SubResource( 8 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -1 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -716,6 +721,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorLeftTop/StaticBody2D"]
 
+transform/pos = Vector2( 0, -1 )
 shape = SubResource( 8 )
 trigger = false
 _update_shape_index = 0
@@ -763,7 +769,7 @@ region_rect = Rect2( 64, 0, 64, 64 )
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
 shapes/0/shape = SubResource( 10 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -2.38419e-07, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -774,6 +780,8 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorTop/StaticBody2D"]
 
+transform/pos = Vector2( -2.38419e-07, 0 )
+transform/scale = Vector2( 1, 1 )
 shape = SubResource( 10 )
 trigger = false
 _update_shape_index = 0
@@ -801,7 +809,7 @@ region_rect = Rect2( 128, 0, 64, 64 )
 transform/pos = Vector2( 8, 32 )
 input/pickable = false
 shapes/0/shape = SubResource( 11 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 0.583994, 0, 0, 1, 7, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -812,6 +820,8 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_floor1/FloorRightTop/StaticBody2D"]
 
+transform/pos = Vector2( 7, 0 )
+transform/scale = Vector2( 0.583994, 1 )
 shape = SubResource( 11 )
 trigger = false
 _update_shape_index = 0
@@ -860,19 +870,19 @@ region_rect = Rect2( 192, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 35 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
-friction = 0.0
+friction = 1.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cf_platform/Platform1/StaticBody2D"]
 
-shape = SubResource( 13 )
+shape = SubResource( 35 )
 trigger = false
 _update_shape_index = 0
 
@@ -1290,7 +1300,7 @@ region_rect = Rect2( 0, 128, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 31 )
+shapes/0/shape = SubResource( 23 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 8, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1303,7 +1313,7 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floor/CastleLeftWall/StaticBody2D"]
 
 transform/pos = Vector2( 8, 0 )
-shape = SubResource( 31 )
+shape = SubResource( 23 )
 trigger = false
 _update_shape_index = 0
 
@@ -1320,7 +1330,7 @@ region_rect = Rect2( 128, 128, 64, 64 )
 
 transform/pos = Vector2( 24, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 32 )
+shapes/0/shape = SubResource( 24 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1332,7 +1342,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floor/CastleRightWall/StaticBody2D"]
 
-shape = SubResource( 32 )
+shape = SubResource( 24 )
 trigger = false
 _update_shape_index = 0
 
@@ -1353,7 +1363,7 @@ region_rect = Rect2( 320, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 23 )
+shapes/0/shape = SubResource( 25 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1365,7 +1375,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_redcarpet/carpet1/StaticBody2D"]
 
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 trigger = false
 _update_shape_index = 0
 
@@ -1382,7 +1392,7 @@ region_rect = Rect2( 384, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 24 )
+shapes/0/shape = SubResource( 26 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1394,7 +1404,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_redcarpet/carpet2/StaticBody2D"]
 
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 trigger = false
 _update_shape_index = 0
 
@@ -1411,7 +1421,7 @@ region_rect = Rect2( 448, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 25 )
+shapes/0/shape = SubResource( 27 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1423,13 +1433,11 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_redcarpet/carpet3/StaticBody2D"]
 
-shape = SubResource( 25 )
+shape = SubResource( 27 )
 trigger = false
 _update_shape_index = 0
 
 [node name="cst_floors" type="Node2D" parent="."]
-
-editor/display_folded = true
 
 [node name="floor1" type="Sprite" parent="cst_floors"]
 
@@ -1444,7 +1452,7 @@ region_rect = Rect2( 192, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 26 )
+shapes/0/shape = SubResource( 28 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1456,7 +1464,8 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor1/StaticBody2D"]
 
-shape = SubResource( 26 )
+transform/scale = Vector2( 1, 1 )
+shape = SubResource( 28 )
 trigger = false
 _update_shape_index = 0
 
@@ -1473,7 +1482,7 @@ region_rect = Rect2( 256, 0, 64, 64 )
 
 transform/pos = Vector2( 32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 26 )
+shapes/0/shape = SubResource( 33 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1485,7 +1494,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor2/StaticBody2D1"]
 
-shape = SubResource( 26 )
+shape = SubResource( 33 )
 trigger = false
 _update_shape_index = 0
 
@@ -1511,7 +1520,7 @@ region_rect = Rect2( 256, 64, 64, 64 )
 
 transform/pos = Vector2( 40, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 27 )
+shapes/0/shape = SubResource( 29 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1523,7 +1532,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor4/StaticBody2D"]
 
-shape = SubResource( 27 )
+shape = SubResource( 29 )
 trigger = false
 _update_shape_index = 0
 
@@ -1540,7 +1549,7 @@ region_rect = Rect2( 320, 64, 64, 64 )
 
 transform/pos = Vector2( 32, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 28 )
+shapes/0/shape = SubResource( 30 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1552,7 +1561,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor5/StaticBody2D"]
 
-shape = SubResource( 28 )
+shape = SubResource( 30 )
 trigger = false
 _update_shape_index = 0
 
@@ -1569,7 +1578,7 @@ region_rect = Rect2( 384, 64, 64, 64 )
 
 transform/pos = Vector2( 24, 48 )
 input/pickable = false
-shapes/0/shape = SubResource( 29 )
+shapes/0/shape = SubResource( 31 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1581,7 +1590,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor6/StaticBody2D"]
 
-shape = SubResource( 29 )
+shape = SubResource( 31 )
 trigger = false
 _update_shape_index = 0
 
@@ -1598,7 +1607,7 @@ region_rect = Rect2( 448, 64, 64, 64 )
 
 transform/pos = Vector2( 32, 56 )
 input/pickable = false
-shapes/0/shape = SubResource( 30 )
+shapes/0/shape = SubResource( 34 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -1610,7 +1619,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cst_floors/floor7/StaticBody2D"]
 
-shape = SubResource( 30 )
+shape = SubResource( 34 )
 trigger = false
 _update_shape_index = 0
 
