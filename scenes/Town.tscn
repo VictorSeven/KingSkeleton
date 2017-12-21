@@ -399,7 +399,7 @@ flip_h = true
 
 [node name="king" parent="." instance=ExtResource( 16 )]
 
-transform/pos = Vector2( 518.701, -303.583 )
+transform/pos = Vector2( 3059.9, -587.841 )
 
 [node name="CloudSpawner" parent="king" instance=ExtResource( 17 )]
 

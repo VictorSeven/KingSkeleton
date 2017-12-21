@@ -328,7 +328,7 @@ transform/pos = Vector2( 4478.32, -1819.37 )
 
 [node name="king" parent="." instance=ExtResource( 13 )]
 
-transform/pos = Vector2( 1509.35, -1045.24 )
+transform/pos = Vector2( 1784.93, -960.943 )
 
 [node name="camera" type="Camera2D" parent="king"]
 

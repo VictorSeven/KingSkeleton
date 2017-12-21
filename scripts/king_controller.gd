@@ -66,7 +66,9 @@ func _fixed_process(delta):
 		# Integrate velocity into motion and move
 		var motion = vel * delta
 	
+		print(vel)
 		if (is_colliding()):
+			
 			# You can check which tile was collision against with this
 			# print(get_collider_metadata())
 		
