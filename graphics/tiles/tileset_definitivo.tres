@@ -52,7 +52,7 @@ extents = Vector2( 32, 8 )
 [sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
-extents = Vector2( 20.5482, 20 )
+extents = Vector2( 12, 20 )
 
 [sub_resource type="RectangleShape2D" id=12]
 
@@ -572,9 +572,9 @@ extents = Vector2( 12, 8 )
 36/tex_offset = Vector2( 0, 0 )
 36/modulate = Color( 1, 1, 1, 1 )
 36/region = Rect2( 0, 0, 64, 64 )
-36/occluder_offset = Vector2( 50, 44 )
-36/navigation_offset = Vector2( 50, 44 )
-36/shape_offset = Vector2( 50, 44 )
+36/occluder_offset = Vector2( 50, 43 )
+36/navigation_offset = Vector2( 50, 43 )
+36/shape_offset = Vector2( 50, 43 )
 36/shapes = [ SubResource( 8 ) ]
 36/one_way_collision_direction = Vector2( 0, 0 )
 36/one_way_collision_max_depth = 0.0
@@ -704,9 +704,9 @@ extents = Vector2( 12, 8 )
 48/tex_offset = Vector2( 0, 0 )
 48/modulate = Color( 1, 1, 1, 1 )
 48/region = Rect2( 0, 256, 64, 64 )
-48/occluder_offset = Vector2( 55, 0 )
-48/navigation_offset = Vector2( 55, 0 )
-48/shape_offset = Vector2( 55, 0 )
+48/occluder_offset = Vector2( 55, 5 )
+48/navigation_offset = Vector2( 55, 5 )
+48/shape_offset = Vector2( 55, 5 )
 48/shapes = [ SubResource( 16 ) ]
 48/one_way_collision_direction = Vector2( 0, 0 )
 48/one_way_collision_max_depth = 0.0
@@ -1122,9 +1122,9 @@ extents = Vector2( 12, 8 )
 86/tex_offset = Vector2( 0, 0 )
 86/modulate = Color( 1, 1, 1, 1 )
 86/region = Rect2( 0, 128, 64, 64 )
-86/occluder_offset = Vector2( 32, 32 )
-86/navigation_offset = Vector2( 32, 32 )
-86/shape_offset = Vector2( 32, 32 )
+86/occluder_offset = Vector2( 40, 32 )
+86/navigation_offset = Vector2( 40, 32 )
+86/shape_offset = Vector2( 40, 32 )
 86/shapes = [ SubResource( 23 ) ]
 86/one_way_collision_direction = Vector2( 0, 0 )
 86/one_way_collision_max_depth = 0.0
