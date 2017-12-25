@@ -6,7 +6,7 @@
 
 default_font = ExtResource( 1 )
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends Container
 
@@ -21,7 +21,7 @@ func _ready():
 	pass
 "
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -60,7 +60,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = SubResource( 3 )
+script/script = SubResource( 2 )
 label_text = "DEFAULT"
 
 [node name="Panel1" type="Panel" parent="."]
@@ -74,7 +74,7 @@ margin/left = 8.0
 margin/top = 0.0
 margin/right = 74.0
 margin/bottom = 9.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 

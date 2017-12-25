@@ -2,7 +2,7 @@ extends Node2D
 
 var king
 var healthbar
-var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar1"
+var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar"
 
 var deathtex = load("res://graphics/enemies/payaso/death.png")
 
@@ -43,7 +43,7 @@ var elapsed_time_laugh = 0.0
 func _ready():
 	randomize() #RNG
 	king = get_tree().get_root().get_node("Node2D/king") #Get the king
-	healthbar = get_tree().get_root().get_node(path_to_healthbar).get_child(0)
+	healthbar = get_tree().get_root().get_node(path_to_healthbar)
 	#Zone where we are going to walk
 	minx = get_pos().x - zone
 	maxx = get_pos().x + zone
@@ -54,6 +54,7 @@ func _ready():
 func _fixed_process(delta):
 	if (king.is_in_boss()):
 		if (not risa_inicial):
+			healthbar.show() #Show the healthbar
 			get_node("player").play("risa1")
 			risa_inicial = true
 		laugh(delta)
@@ -141,6 +142,7 @@ func damage(swatq):
 				get_node("cards_start/card2_generator").set_emitting(true)
 				cards_used = true
 		else:
+			get_tree().get_root().get_node("Node2D/boss_area").unlock_camera()
 			get_node("anim").play("death") #Kill clown
 
 func get_health():

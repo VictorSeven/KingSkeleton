@@ -8,7 +8,7 @@ var singleton
 var healthbar
 var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/PlayerHUD/Healthbar"
 var enemy_healthbar
-var path_to_enemy_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD"
+var path_to_enemy_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar"
 var dialog_hud
 var path_to_dialog_hud = "Node2D/CanvasLayer_HUD/Dialog_HUD"
 
@@ -48,9 +48,11 @@ func _ready():
 	change_anim("idle")
 	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
-	healthbar = get_tree().get_root().get_node(path_to_healthbar).get_child(0)
+	#Get HUD nodes
+	healthbar = get_tree().get_root().get_node(path_to_healthbar)
 	enemy_healthbar = get_tree().get_root().get_node(path_to_enemy_healthbar)
 	dialog_hud = get_tree().get_root().get_node(path_to_dialog_hud)
+	
 	set_fixed_process(true) #Start the fixed process
 
 #Proceso fijo
