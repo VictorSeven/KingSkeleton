@@ -11,6 +11,7 @@ var selected_option = 0
 var rect_pos = Vector2(xpos, ypos[0])
 var rect_size = Vector2(60, 13)
 
+var secret = 0
 
 func _ready():
 	singleton = get_node("/root/global")
@@ -24,6 +25,9 @@ func _on_anim_finished():
 
 func _input(event):
 	if (not creditos):
+		if (event.is_action_pressed("ui_right") and not down):
+			secret += 1
+		
 		if (event.is_action_pressed("ui_down") and not down):
 			if (selected_option == 0):
 				selected_option = 1
@@ -36,7 +40,14 @@ func _input(event):
 				selected_option = 0
 		if (event.is_action_pressed("ui_accept")):
 			if (selected_option == 0):
-				singleton.goto_scene("res://scenes/Town.tscn")
+				if (secret < 3):
+					singleton.goto_scene("res://scenes/Town.tscn")
+				elif (secret == 3):
+					singleton.scene_index = 1
+					singleton.goto_scene("res://scenes/Catacombs.tscn")
+				elif (secret == 4):
+					singleton.scene_index = 2
+					singleton.goto_scene("res://scenes/ThroneRoom.tscn")
 			elif (selected_option == 1):
 				creditos = true
 				get_node("creditos").show()

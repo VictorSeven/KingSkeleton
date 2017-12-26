@@ -277,6 +277,12 @@ max_lines_visible = -1
 
 [node name="CanvasLayer_HUD" parent="." instance=ExtResource( 8 )]
 
+editor/display_folded = true
+
+[node name="GridContainer" parent="CanvasLayer_HUD"]
+
+editor/display_folded = true
+
 [node name="PlayerHUD" parent="CanvasLayer_HUD/GridContainer"]
 
 visibility/visible = false

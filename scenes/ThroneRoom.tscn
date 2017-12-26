@@ -15,7 +15,7 @@ stream/stream = ExtResource( 1 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
-stream/autoplay = false
+stream/autoplay = true
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
@@ -71,18 +71,13 @@ region_rect = Rect2( 0, 0, 10000, 4000 )
 
 editor/display_folded = true
 
-[node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer/EnemyHUD"]
-
-path_to_target = "Node2D/Enemies/past_king"
-
 [node name="king" parent="." instance=ExtResource( 5 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 419.155, 584.783 )
 
-[node name="camera" type="Camera2D" parent="king"]
+[node name="camera" type="Camera2D" parent="."]
 
-transform/pos = Vector2( -2.05054, 4.10104 )
+transform/pos = Vector2( 725.335, 520.388 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -101,8 +96,6 @@ drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
 [node name="Enemies" type="Node2D" parent="."]
-
-editor/display_folded = true
 
 [node name="past_king" parent="Enemies" instance=ExtResource( 6 )]
 

@@ -15,6 +15,7 @@ var sword = load("res://scenes/past_king_sword.tscn")
 var newsword
 
 var king #An instance of king
+var detect_king = false
 
 #Parameters
 var life = 250 
@@ -45,7 +46,7 @@ func _ready():
 
 func _fixed_process(delta):
 	#Wait until we are in boss
-	if (king.is_in_boss()):
+	if (detect_king):
 		elapsed_time += delta
 		#If we are not vulnerable, control attacks
 		if (not vulnerable):
@@ -108,6 +109,12 @@ func _fixed_process(delta):
 					vulnerable = false
 					is_damaged = false 
 					change_anim("pose")
+	else:
+		#Then check if we are going to start
+		if (abs(get_pos().x - king.get_pos().x) < 100):
+			get_node("../../musicplayer").set_stream(load("res://music/ost/finalboss.ogg"))
+			get_node("../../musicplayer").play()
+			detect_king = true
 
 #Looks always to the player
 func check_look():
