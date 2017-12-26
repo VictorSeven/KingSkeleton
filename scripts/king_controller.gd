@@ -2,6 +2,15 @@ extends KinematicBody2D
 
 #King controller: this function controls the King Skeleton
 #The character can move around/fly using the arrows
+ 
+var singleton
+
+var healthbar
+var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/PlayerHUD/Healthbar"
+var enemy_healthbar
+var path_to_enemy_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar"
+var dialog_hud
+var path_to_dialog_hud = "Node2D/CanvasLayer_HUD/Dialog_HUD"
 
 var gravity = Vector2(0, 500)
 var acel = Vector2(20, 0.8) #Acceleration
@@ -35,17 +44,28 @@ var is_damaged = false
 var in_boss = false
 
 func _ready():
+	singleton = get_node("/root/global")
 	change_anim("idle")
 	get_node("hitbox").add_to_group("king") #Set the hitbox as king
 	start_height = get_pos().y #Initial start height
+	#Get HUD nodes
+	healthbar = get_tree().get_root().get_node(path_to_healthbar)
+	enemy_healthbar = get_tree().get_root().get_node(path_to_enemy_healthbar)
+	dialog_hud = get_tree().get_root().get_node(path_to_dialog_hud)
+	
 	set_fixed_process(true) #Start the fixed process
 
 #Proceso fijo
 func _fixed_process(delta):
 	elapsed_time += delta
 	
+	if (in_boss):
+		enemy_healthbar.show()
+	else:
+		enemy_healthbar.hide()
+	
 	#If the sword is not in the air, process King's input
-	if (not is_throwing and not is_damaged):
+	if (not is_throwing and not is_damaged and not is_dialog_showing()):
 		move_input(delta)
 		
 		# Integrate velocity into motion and move
@@ -88,7 +108,8 @@ func _fixed_process(delta):
 		else:
 			if (elapsed_time > 10.0):
 				set_fixed_process(false)
-				get_tree().set_pause(true)
+				singleton.repeat_level()
+				#get_tree().set_pause(true)
 				#TODO: lose game
 	else:
 		pass 
@@ -170,7 +191,7 @@ func move_input(delta):
 			change_anim("atq1_throw")
 		else:
 			change_anim("atq2_throw") 
-		atq1 = not atq1 #Change animation for next 
+		atq1 = not atq1 #Change animation for next
 
 func damage(points):
 	if (not is_damaged):
@@ -178,6 +199,7 @@ func damage(points):
 		is_damaged = true #Enter in damage state
 		elapsed_time = 0.0 #Start counter
 		lifepoints -= points #Eliminate points
+		healthbar.update() #update healthbar
 		if (lifepoints <= 0):
 			get_node("player").play("kingdeath")
 			change_anim("death") #Kill it
@@ -195,8 +217,18 @@ func is_in_boss():
 
 func start_boss():
 	in_boss = true
+	
+func get_health():
+	return lifepoints
+
+func is_dialog_showing():
+	return dialog_hud.is_visible()
 
 func _on_hitbox_body_enter( body ):
+	if (Input.is_action_pressed("ui_accept")):
+		if (body.is_in_group("npc")):
+			body.show_dialog()
+			
 	#If we detect a collision with the sword,
 	if (body.is_in_group("sword")):
 		#Don't count the collision reported by creation of sword,

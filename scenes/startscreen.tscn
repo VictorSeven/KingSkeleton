@@ -1,0 +1,293 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://scripts/startscreen.gd" type="Script" id=1]
+[ext_resource path="res://music/songs/titulo.ogg" type="AudioStream" id=2]
+[ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=3]
+[ext_resource path="res://graphics/deco/castillo pequeño.png" type="Texture" id=4]
+[ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/startscreen/king.png" type="Texture" id=6]
+[ext_resource path="res://fonts/retroFont2.fnt" type="BitmapFont" id=7]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "animation"
+length = 8.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 2, 7.5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -6.10352e-05, -436 ), Vector2( -6.10352e-05, -436 ), Vector2( 0, 110 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Cloud2:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 7.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 183.647, -156.593 ), Vector2( -223.489, -165.846 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Cloud:transform/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 7.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 302.738, 7.92427 ), Vector2( -434.657, -38.8781 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Cloud3:transform/pos")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 7.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 259.767, -410.735 ), Vector2( -295.418, -425.54 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Cloud1:transform/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0, 7.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 158.738, 63.9243 ), Vector2( -434.936, 58.7157 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Cloud2 2:transform/pos")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 0, 7.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 74.0235, -304.398 ), Vector2( -392.332, -313.651 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Camera2D:zoom")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 0, 4, 7.5 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.25, 0.25 ), Vector2( 0.25, 0.25 ), Vector2( 0.3, 0.3 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="musicplayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 2 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="background" type="Sprite" parent="."]
+
+visibility/behind_parent = true
+transform/pos = Vector2( 0.847633, -181.724 )
+transform/scale = Vector2( 1.40459, 2.00958 )
+texture = ExtResource( 3 )
+flip_v = true
+
+[node name="castillo" type="Sprite" parent="."]
+
+visibility/behind_parent = true
+transform/pos = Vector2( 56, 114.148 )
+texture = ExtResource( 4 )
+
+[node name="Cloud" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -434.657, -38.8781 )
+script/script = null
+
+[node name="Cloud2" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -223.489, -165.846 )
+script/script = null
+
+[node name="Cloud3" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -295.418, -425.54 )
+script/script = null
+
+[node name="Cloud1" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -434.936, 58.7157 )
+script/script = null
+
+[node name="Cloud2 2" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -392.332, -313.651 )
+script/script = null
+
+[node name="Sprite" type="Sprite" parent="."]
+
+visibility/behind_parent = true
+visibility/blend_mode = 1
+transform/pos = Vector2( -15.2663, 48.9329 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+modulate = Color( 0.75, 0.472206, 0.0791016, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+transform/pos = Vector2( 0, 110 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.3, 0.3 )
+limit/left = -10000000
+limit/top = -480
+limit/right = 10000000
+limit/bottom = 180
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="anim" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/animation = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "animation"
+
+[node name="creditos" type="Label" parent="."]
+
+visibility/visible = false
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -128.0
+margin/top = -29.0
+margin/right = 1465.0
+margin/bottom = 500.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.554775, 0.51416, 0.914062, 1 )
+text = "Programming:
+      Victor Buendia (Lead)
+      Fran Escobedo
+Art: 
+      Antonio Heredia Romero
+Music and Effects:
+      Juan Marin Sanchez
+      Mario Vilchez Romero
+Special thanks:
+      Jose Manuel Lopez Ortega
+
+Powered by Godot Engine!
+
+Copyright 2017."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="text" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+visibility/behind_parent = true
+
+[node name="start" type="Label" parent="text"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -20.0
+margin/top = 20.0
+margin/right = 115.0
+margin/bottom = 55.0
+custom_fonts/font = ExtResource( 7 )
+text = "Start"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="credits" type="Label" parent="text"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -27.0
+margin/top = 40.0
+margin/right = 162.0
+margin/bottom = 75.0
+custom_fonts/font = ExtResource( 7 )
+text = "Credits"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="exit" type="Label" parent="text"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -20.0
+margin/top = 60.0
+margin/right = 115.0
+margin/bottom = 95.0
+custom_fonts/font = ExtResource( 7 )
+text = "Exit"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CanvasLayer_HUD" parent="." instance=ExtResource( 8 )]
+
+editor/display_folded = true
+
+[node name="GridContainer" parent="CanvasLayer_HUD"]
+
+editor/display_folded = true
+
+[node name="PlayerHUD" parent="CanvasLayer_HUD/GridContainer"]
+
+visibility/visible = false
+
+[connection signal="finished" from="anim" to="." method="_on_anim_finished"]
+
+
+[editable path="CanvasLayer_HUD"]

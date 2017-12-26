@@ -345,7 +345,7 @@ shapes/0/transform = Matrix32( 1.08035, 0, 0, 1.13708, -1.72999, 6.4886 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-collision/margin = 0.08
+collision/margin = 0.1
 script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -386,7 +386,6 @@ autoplay = "idle"
 
 [node name="hitbox" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( -0.921261, -1.29413 )
 transform/scale = Vector2( 1.02176, 1 )
 input/pickable = true

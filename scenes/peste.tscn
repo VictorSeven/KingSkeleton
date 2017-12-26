@@ -142,7 +142,7 @@ script/script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
-hframes = 7
+hframes = 6
 
 [node name="anim" type="AnimationPlayer" parent="."]
 

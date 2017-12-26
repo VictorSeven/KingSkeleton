@@ -1,5 +1,7 @@
 extends Node2D
 
+var singleton
+
 #Time counters
 var elapsed_time = 0.0 
 var elapsed_time_d = 0.0
@@ -13,6 +15,7 @@ var sword = load("res://scenes/past_king_sword.tscn")
 var newsword
 
 var king #An instance of king
+var detect_king = false
 
 #Parameters
 var life = 250 
@@ -32,6 +35,7 @@ export var ldist = 400
 export var rdist = 400
 
 func _ready():
+	singleton = get_node("/root/global")
 	randomize()
 	set_z(1) #The king must be always in front of the sword
 	king = get_tree().get_root().get_node("Node2D/king") #Get the king
@@ -42,7 +46,7 @@ func _ready():
 
 func _fixed_process(delta):
 	#Wait until we are in boss
-	if (king.is_in_boss()):
+	if (detect_king):
 		elapsed_time += delta
 		#If we are not vulnerable, control attacks
 		if (not vulnerable):
@@ -88,7 +92,7 @@ func _fixed_process(delta):
 					#If we are dead, wait until the animation finishes (and a bit more) to free node
 					if (elapsed_time_d > get_node("anim").get_current_animation_length() + 0.5):
 						set_fixed_process(false)
-						queue_free()
+						singleton.load_next_level()
 			#Whether it is damaged or not, the elapsed time can still go on... 
 			#It is vulnerable while he is trying to take sword out, OR during the animation while he finally takes it
 			if (elapsed_time > get_node("anim").get_current_animation_length() and life > 0):
@@ -105,6 +109,12 @@ func _fixed_process(delta):
 					vulnerable = false
 					is_damaged = false 
 					change_anim("pose")
+	else:
+		#Then check if we are going to start
+		if (abs(get_pos().x - king.get_pos().x) < 100):
+			get_node("../../musicplayer").set_stream(load("res://music/ost/finalboss.ogg"))
+			get_node("../../musicplayer").play()
+			detect_king = true
 
 #Looks always to the player
 func check_look():

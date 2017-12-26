@@ -6,6 +6,7 @@ export var zoom_speed = 0.05 #Speed of change of zoom
 export var offset = Vector2(200, 20) #Offset of camera lock
 
 var camera #To get the camera
+var camera_limit #Original limit of the camera
 
 var started = false #Start of zoom out
 
@@ -21,6 +22,7 @@ func _on_radar_area_enter( area ):
 	if (area.is_in_group("king") and not started):
 		started = true #Start
 		camera = area.get_parent().get_node("camera") #Get the camera
+		camera_limit = camera.get_limit(MARGIN_RIGHT) #Store old camera right limit
 		lock_camera() #Lock it
 		createWalls() #Generate walls
 
@@ -81,6 +83,7 @@ func zoom_out(delta):
 		#zoom has changed and walls were created, so delete this node
 		set_fixed_process(false)
 		queue_free()
+
 
 #If we enter the zoom,
 func _on_boss_start_area_enter( area ):

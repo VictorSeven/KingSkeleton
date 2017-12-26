@@ -8,13 +8,17 @@ var texturas = [] #Stores all textures
 var attack_time = 5.0 #Each 5 seconds, attack
 var elapsed_time = 0.0 #Elapsed time
 var atq_elapsed_time = 0.0 #Counter of atq elapsed time
+var damage_elapsed_time = 0.0 #Counter of time we did nothing
 
 #Witches!
 var witch = load("res://scenes/witch.tscn")
+#Healtbar!
+var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar"
+var healthbar 
 
 var king
 
-var atq = 50
+var atq = 30
 var life = 200
 var is_damaged = false
 var vulnerable = false #Can I attack it? Only when he calls/spit
@@ -27,6 +31,8 @@ func _ready():
 	#Set the hitboxes
 	get_node("hitbox").add_to_group("hitbox")
 	get_node("atq").add_to_group("enemy")
+	#Load healthbar
+	healthbar = get_tree().get_root().get_node(path_to_healthbar)
 	#Load textures
 	for name in nombres:
 		texturas.append(load("res://graphics/enemies/peste/"+name+".png"))
@@ -35,45 +41,48 @@ func _ready():
 func _fixed_process(delta):
 	#Start stuff once we are in-boss
 	if (king.is_in_boss()):
+		healthbar.show()
 		elapsed_time += delta
-		#If we are not damaged, start doing things
-		if (not is_damaged):
-			#Start attack...
-			if (elapsed_time >= attack_time):
-				#If vulnerable = true, then we are yet attacking
-				if (not vulnerable):
-					vulnerable = true
-					atq_elapsed_time = 0.0
-					do_atq() #Select attack
-				else:
-					#In this case see when the atq animation finishes
-					atq_elapsed_time += delta
-					if (atq_elapsed_time > get_node("anim").get_current_animation_length()):
-						vulnerable = false #Stop attack
-						elapsed_time = 0.0 #Reinit counter
-						change_anim("pose", 0)
+		#Start attack...
+		if (elapsed_time >= attack_time and life > 0):
+			#If vulnerable = true, then we are yet attacking
+			if (not vulnerable):
+				vulnerable = true
+				atq_elapsed_time = 0.0
+				do_atq() #Select attack
+			else:
+				#In this case see when the atq animation finishes
+				atq_elapsed_time += delta
+				if (atq_elapsed_time > get_node("anim").get_current_animation_length()):
+					vulnerable = false #Stop attack
+					elapsed_time = 0.0 #Reinit counter
+					change_anim("pose", 0)
+					#get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, 1.0))
 			
-		else:
-			#If we have been attacked,
+		#If we have been attacked,
+		if (is_damaged):
+			damage_elapsed_time += delta
 			if (life > 0):
 				#Alpha modulation allows player to see it has hit the clown
-				get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, sin(elapsed_time)))
+				get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, sin(damage_elapsed_time)))
 				#Reocover from hit
-				if (elapsed_time > damagetime):
-					elapsed_time = 0.0
-					vulnerable = false
+				if (damage_elapsed_time > damagetime):
 					is_damaged = false
+					damage_elapsed_time = 0.0
 					get_node("Sprite").set_modulate(Color(1.0, 1.0, 1.0, 1.0))
 			else:
 				#If we are dead, stop process and delete after animation finishes
-				if (elapsed_time > get_node("anim").get_current_animation_length()):
+				if (damage_elapsed_time > get_node("anim").get_current_animation_length()):
+					#Unlock the camera
+					king.get_node("camera").set_limit(MARGIN_RIGHT, 10000)
+					#Stop and 
 					set_fixed_process(false)
 					queue_free()
 
 func do_atq():
 	var r = randf()
 	#Probability 2/3, call witches
-	if (r < 0.66):
+	if (r < 0.4):
 		change_anim("call", 1) #Call witches!
 		#Two witches
 		var w1 = witch.instance()
@@ -107,9 +116,10 @@ func get_atq():
 func damage(swatq):
 	#Damage only when it is not vulnerable
 	if (vulnerable and not is_damaged):
+		healthbar.update()
 		life -= swatq 
 		is_damaged = true
-		elapsed_time = 0.0
+		damage_elapsed_time = 0.0
 		if (life < 0):
 			#Change texture to pose and play death anim
 			change_anim("death", 0)
@@ -125,3 +135,6 @@ func change_anim(newanim, index):
 func set_sprite_text(index):
 	get_node("Sprite").set_texture(texturas[index]) #Set the correct texture
 	get_node("Sprite").set_hframes(frames[index]) #Say how many frames it has
+
+func get_health():
+	return life
