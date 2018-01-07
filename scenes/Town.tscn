@@ -392,7 +392,7 @@ flip_h = true
 [node name="king" parent="." instance=ExtResource( 16 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 6534.13, -767.007 )
+transform/pos = Vector2( 426.02, -347.68 )
 
 [node name="CloudSpawner" parent="king" instance=ExtResource( 17 )]
 
