@@ -1,6 +1,6 @@
 # The Nameless Kingdom
 
-[<iframe frameborder="0" src="https://itch.io/embed/199601" width="552" height="167">t</iframe>
+[Play it on itch.io](https://victorseven7.itch.io/nameless-kingdom)
 
 
 ## Description
@@ -65,7 +65,7 @@ Además, tal vez quieras crear tu propia versión de Nameless Kingdom, añadiendo n
 4.  Abrimos Godot. Sale una ventana para elegir proyecto. Hacemos click en "importar", y buscamos el archivo **engine.cfg** que está en la carpeta que hemos descargado. 
 5.  Finalmente aparecerá **KingSkeleton** como proyecto.  Simplemente lo abrimos, y pulsamos el botón de **play** que está en la parte de arriba del editor. Se abrirá una venta con el juego.  Los controles son los cursores para moverse y la tecla A para atacar.
 
-##Créditos y Licencia
+## Créditos y Licencia
 Todo el material en este repositorio está protegio por una MIT License. Consulta los términos de la licencia (escritos en LICENSE.md) para reutilizar el material y cita siempre a los autores originales. Los desarrolladores del juego (a los que debes citar apropiadamente si reutilizas material) son los siguientes:
 
 Víctor Buendía Ruiz-Azuaga (dirección y programación)

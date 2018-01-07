@@ -6,7 +6,7 @@ var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar
 
 var deathtex = load("res://graphics/enemies/payaso/death.png")
 
-var maxlife = 20 #MAximum amount of life
+var maxlife = 150 #MAximum amount of life
 var life = maxlife
 var knife_atq = 20 #Damage dealed by knives
 var card_atq = 10 #Damage dealed by cards
