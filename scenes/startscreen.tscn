@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/startscreen.gd" type="Script" id=1]
-[ext_resource path="res://music/songs/titulo.ogg" type="AudioStream" id=2]
+[ext_resource path="res://music/ost/titulo.ogg" type="AudioStream" id=2]
 [ext_resource path="res://graphics/tiles/cielo.png" type="Texture" id=3]
 [ext_resource path="res://graphics/deco/castillo pequeño.png" type="Texture" id=4]
 [ext_resource path="res://scenes/clouds.tscn" type="PackedScene" id=5]
@@ -276,8 +276,6 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="CanvasLayer_HUD" parent="." instance=ExtResource( 8 )]
-
-editor/display_folded = true
 
 [node name="GridContainer" parent="CanvasLayer_HUD"]
 

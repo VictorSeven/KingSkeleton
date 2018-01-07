@@ -13,6 +13,7 @@ var delay_time = 3.0
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
+	print(current_scene.get_name())
 
 
 func _fixed_process(delta):
@@ -60,4 +61,15 @@ func _deferred_goto_scene(path):
     get_tree().get_root().add_child(current_scene)
 
     # optional, to make it compatible with the SceneTree.change_scene() API
+    get_tree().set_current_scene( current_scene )
+
+#Exactly the same, but queue free the scene instead of free
+func jump_intro(path):
+
+    current_scene.queue_free()
+
+    var s = ResourceLoader.load(path)
+    current_scene = s.instance()
+    get_tree().get_root().add_child(current_scene)
+
     get_tree().set_current_scene( current_scene )

@@ -6,7 +6,7 @@ var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar
 
 var deathtex = load("res://graphics/enemies/payaso/death.png")
 
-var maxlife = 150 #MAximum amount of life
+var maxlife = 20 #MAximum amount of life
 var life = maxlife
 var knife_atq = 20 #Damage dealed by knives
 var card_atq = 10 #Damage dealed by cards
@@ -77,6 +77,7 @@ func _fixed_process(delta):
 				#If we are dead, stop process and delete after animation finishes
 				if (elapsed_time_damage > get_node("anim").get_current_animation_length()):
 					set_fixed_process(false)
+					king.kill_boss()
 					queue_free()
 
 
@@ -142,7 +143,6 @@ func damage(swatq):
 				get_node("cards_start/card2_generator").set_emitting(true)
 				cards_used = true
 		else:
-			get_tree().get_root().get_node("Node2D/boss_area").unlock_camera()
 			get_node("anim").play("death") #Kill clown
 
 func get_health():
