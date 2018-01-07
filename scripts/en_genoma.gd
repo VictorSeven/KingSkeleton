@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 #Each image has different dimensions, so we will load each one individually
 var nombres = ["Caminando", "Ataque", "hit1", "Muerte"]
@@ -50,7 +50,8 @@ func _fixed_process(delta):
 					queue_free() #Not alive -> delete node
 		else:
 			movement(delta) #Move
-		set_pos(get_pos() + vel * delta)
+		#set_pos(get_pos() + vel * delta)
+		move(vel * delta)
 
 func movement(delta):
 	if (king.get_pos().x < get_pos().x):

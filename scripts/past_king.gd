@@ -111,7 +111,7 @@ func _fixed_process(delta):
 					change_anim("pose")
 	else:
 		#Then check if we are going to start
-		if (abs(get_pos().x - king.get_pos().x) < 100):
+		if (abs(get_pos().x - king.get_pos().x) < 200):
 			get_node("../../musicplayer").set_stream(load("res://music/ost/finalboss.ogg"))
 			get_node("../../musicplayer").play()
 			detect_king = true
@@ -130,8 +130,8 @@ func check_look():
 #Do the attacks
 func do_atq():
 	var r = randf()
-	#With 50% chance, circular sword attack will happen
-	if (r < 0.5):
+	#With 35% chance, circular sword attack will happen
+	if (r < 0.35):
 		change_anim("ataque2") #Put the anim
 		atqtime = default_atqtime #The next attack will happen at the default time
 		throwing_sword = 2 #Set its marker
@@ -140,7 +140,7 @@ func do_atq():
 		newsword.init_circular(right, 100.0, self) #Set it to circular motion
 		newsword.set_pos(get_pos() - Vector2(0.0, 70.0)) #Adjust initial pos
 		get_parent().add_child(newsword) #Add to scene
-	#With 20% chance, linear sword will happen
+	#With 35% chance, linear sword will happen
 	elif (r < 0.7):
 		atq = 20 #Modify king's attack so the combo sword + king = 50 (in case you receive both)
 		change_anim("ataque2") #Put the anim

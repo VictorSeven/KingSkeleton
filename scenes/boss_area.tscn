@@ -18,7 +18,9 @@ script/script = ExtResource( 1 )
 final_zoom = 0.75
 final_move_up = 10
 zoom_speed = 0.05
-offset = Vector2( 200, 20 )
+offset = 0.0
+left_wall = null
+right_wall = null
 
 [node name="radar" type="Area2D" parent="."]
 

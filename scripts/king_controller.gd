@@ -36,6 +36,7 @@ var sword_destroy = false #To avoid destructing the sword just launched
 
 var sword = preload("res://scenes/sword.tscn")
 
+var maxlifepoints = 100 #Maximum possible amount of life
 var lifepoints = 100 #Life of the King
 var stun = 3.0
 var elapsed_time = 0.0
@@ -72,10 +73,6 @@ func _fixed_process(delta):
 		var motion = vel * delta
 	
 		if (is_colliding()):
-			# You can check which tile was collision against with this
-			# print(get_collider_metadata())
-		
-			
 			var n = get_collision_normal()
 			#In case we are colliding with ground, get start height
 			if (n == Vector2(0.0, -1.0)):
@@ -217,7 +214,13 @@ func is_in_boss():
 
 func start_boss():
 	in_boss = true
-	
+
+func kill_boss():
+	in_boss = false 
+	get_node("camera").set_limit(MARGIN_RIGHT, 10000)
+	get_parent().get_node("bosswall2").set_collision_mask_bit(0, false)
+	get_parent().get_node("bosswall2").set_layer_mask_bit(0, false)
+
 func get_health():
 	return lifepoints
 
@@ -258,3 +261,5 @@ func _on_hitbox_area_enter( area ):
 		#Do damage to the King depending on enemy atq
 		if (area.get_parent().can_deal_damage()):
 			damage(area.get_parent().get_atq()) 
+	elif (area.is_in_group("item")):
+		area.use_item(self)

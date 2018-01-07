@@ -74,7 +74,8 @@ func _fixed_process(delta):
 				#If we are dead, stop process and delete after animation finishes
 				if (damage_elapsed_time > get_node("anim").get_current_animation_length()):
 					#Unlock the camera
-					king.get_node("camera").set_limit(MARGIN_RIGHT, 10000)
+					#king.get_node("camera").set_limit(MARGIN_RIGHT, 10000)
+					king.kill_boss()
 					#Stop and 
 					set_fixed_process(false)
 					queue_free()

@@ -47,7 +47,7 @@ func _input(event):
 					singleton.goto_scene("res://scenes/Catacombs.tscn")
 				elif (secret == 4):
 					singleton.scene_index = 2
-					singleton.goto_scene("res://scenes/ThroneRoom.tscn")
+					singleton.goto_scene("res://scenes/Castle.tscn")
 			elif (selected_option == 1):
 				creditos = true
 				get_node("creditos").show()

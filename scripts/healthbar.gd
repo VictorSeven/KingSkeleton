@@ -28,6 +28,7 @@ func _ready():
 	
 	if (get_tree().get_root().has_node("Node2D/king")):
 		target = get_tree().get_root().get_node("Node2D/king")
+		max_health = target.maxlifepoints
 	else:
 		queue_free()
 

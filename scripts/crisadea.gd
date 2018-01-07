@@ -81,7 +81,10 @@ func atq_timer(delta):
 				dir = dir2
 			new_projectile.init(dir)
 			#Put it in the mouth of crisadea
-			new_projectile.set_pos(Vector2(-14, 16))
+			if (right):
+				new_projectile.set_pos(Vector2(-14, 16))
+			else:
+				new_projectile.set_pos(Vector2(10,16))
 			add_child(new_projectile) #add to scene
 		elif (elapsed_time > start_atq + atq_anim_length ):
 			#Once the animation finishes, go again to normal anim

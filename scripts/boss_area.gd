@@ -3,15 +3,20 @@ extends Node2D
 export var final_zoom = 0.75 #Final level of zoom (default is 0.5)
 export var final_move_up = 10 #Move camera up on zoom out
 export var zoom_speed = 0.05 #Speed of change of zoom
-export var offset = Vector2(200, 20) #Offset of camera lock
+export var offset = 0.0
+
+export(NodePath) var left_wall
+export(NodePath) var right_wall
 
 var camera #To get the camera
 var camera_limit #Original limit of the camera
 
-var started = false #Start of zoom out
+var started = false #Entered area
+var start_zoom = false #Start of the zoom
 
 func _ready():
-	pass
+	left_wall = get_node(left_wall)
+	right_wall = get_node(right_wall)
 
 #Do zoom out 
 func _fixed_process(delta):
@@ -29,43 +34,21 @@ func _on_radar_area_enter( area ):
 func createWalls():
 	var pos = get_pos() #Get our pos
 	#Get our size:
-	var rect = get_node("radar/col").get_shape().get_extents()
-	#MAke two big walls to trap character
-	make_wall(Vector2(pos.x - offset.x - rect.width/2, pos.y), Vector2(10, rect.height), Vector2(-1.0, 0.0))
-	make_wall(Vector2((pos.x + rect.width)*(2-final_zoom), pos.y), Vector2(10, rect.height), Vector2(1.0, 0.0))
+	#var rect = get_node("radar/col").get_shape().get_extents()
+	#Make two big walls to trap character
+	left_wall.set_collision_mask_bit(0, true)
+	left_wall.set_layer_mask_bit(0, true)
+	right_wall.set_collision_mask_bit(0, true)
+	right_wall.set_layer_mask_bit(0, true)
 
-func make_wall(pos, extents, dir): 
-	#Create new wall
-	var wall = StaticBody2D.new()
-	wall.set_pos(pos) #Put at posç
-	#It can be passed to enter, but not to scape!
-	wall.set_one_way_collision_direction(dir)
-	wall.set_one_way_collision_max_depth(1.0)
-	
-	#Create the collision shape
-	var shape = RectangleShape2D.new()
-	shape.set_extents(extents)
-	
-	#Collision shape is editor helpr, add it to debug
-	var collision = CollisionShape2D.new()
-	collision.set_shape(shape)
-	
-	#Add everything to scene
-	wall.add_shape(shape)
-	wall.add_child(collision)
-	
-	#Add this to parent so we can free this node after
-	get_parent().add_child(wall)
+
 
 #Lock the camera to boss area
 func lock_camera():
-	#Get the camera
-	var rect = get_node("radar/col").get_shape().get_extents()
 	#Set the limits to block it. Use offset to avoid problems
-	camera.set_limit(MARGIN_LEFT, get_pos().x - offset.x - rect.width/2)
-	#camera.set_limit(MARGIN_TOP, get_pos().y - offset.y - rect.height/2)
-	camera.set_limit(MARGIN_RIGHT, get_pos().x + rect.width)
-	#camera.set_limit(MARGIN_BOTTOM, get_pos().y + rect.height)
+	camera.set_limit(MARGIN_LEFT, left_wall.get_pos().x - offset)
+	camera.set_limit(MARGIN_RIGHT, right_wall.get_pos().x + offset)
+	pass
 
 #Makes the zoom out
 func zoom_out(delta):
@@ -88,10 +71,9 @@ func zoom_out(delta):
 #If we enter the zoom,
 func _on_boss_start_area_enter( area ):
 	#and we are the king
-	if (area.is_in_group("king")):
-		#get_tree().get_root().get_node("Node2D/musicplayer").stop()
+	if (area.is_in_group("king") and not start_zoom):
 		get_tree().get_root().get_node("Node2D/musicplayer").set_stream(load("res://music/ost/finalboss.ogg"))
 		get_tree().get_root().get_node("Node2D/musicplayer").play()
-		started = true
+		start_zoom = true
 		area.get_parent().start_boss()
 		set_fixed_process(true) #Make the zoom
