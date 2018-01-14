@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=1]
+[gd_scene load_steps=31 format=1]
 
 [ext_resource path="res://scripts/levelload.gd" type="Script" id=1]
 [ext_resource path="res://music/ost/illness and penury.ogg" type="AudioStream" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://scenes/potion.tscn" type="PackedScene" id=22]
 [ext_resource path="res://fonts/retroFont.fnt" type="BitmapFont" id=23]
 [ext_resource path="res://scenes/boss_area.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/killer.tscn" type="PackedScene" id=25]
 
 [sub_resource type="ImageTexture" id=1]
 
@@ -601,6 +602,10 @@ transform/pos = Vector2( 67.6045, -90.4105 )
 shape = SubResource( 5 )
 trigger = false
 _update_shape_index = 0
+
+[node name="killer" parent="." instance=ExtResource( 25 )]
+
+transform/pos = Vector2( 2273.73, 0 )
 
 [connection signal="area_enter" from="radar" to="." method="_on_radar_area_enter"]
 

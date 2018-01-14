@@ -38,7 +38,7 @@ func _input(event):
 				selected_option = 1
 			elif (selected_option == 1):
 				selected_option = 0
-		if (event.is_action_pressed("ui_accept")):
+		if (event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_select")):
 			if (selected_option == 0):
 				if (secret < 3):
 					singleton.goto_scene("res://scenes/Town.tscn")

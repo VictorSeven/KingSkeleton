@@ -11,7 +11,7 @@ func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if (event.is_action_pressed("ui_select")):
+	if (event.is_action_pressed("ui_select") or event.is_action_pressed("ui_accept")):
 		singleton.jump_intro("res://scenes/startscreen.tscn")
 
 func _on_anim_finished():

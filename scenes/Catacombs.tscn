@@ -236,11 +236,11 @@ __meta__ = {
 
 [node name="king" parent="." instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 5605.24, 1557.71 )
+transform/pos = Vector2( 262.095, 1016.99 )
 
 [node name="camera" type="Camera2D" parent="king"]
 
-transform/pos = Vector2( -5358.94, -638.321 )
+transform/pos = Vector2( -1.29346, 7.3103 )
 anchor_mode = 1
 rotating = false
 current = true
