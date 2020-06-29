@@ -35,10 +35,16 @@ func show_dialog():
 	dialog_object.init()
 	dialog_hud.show()
 	
+func hide_dialog():
+	dialog_hud.hide()
+
 func _on_hitbox_area_enter(area):
 	if(area.is_in_group(\"king\")):
 		show_dialog()
-"
+
+func _on_hitbox_area_exit(area):
+	if(area.is_in_group(\"king\")):
+		hide_dialog()"
 
 [sub_resource type="Animation" id=2]
 
@@ -107,5 +113,7 @@ trigger = false
 _update_shape_index = 0
 
 [connection signal="area_enter" from="Area2D" to="." method="_on_hitbox_area_enter"]
+
+[connection signal="area_exit" from="Area2D" to="." method="_on_hitbox_area_exit"]
 
 

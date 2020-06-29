@@ -5,6 +5,7 @@ var left = Vector2(-1.0, 0.0)
 var atq = 10
 var laugh = false
 var death_effect = load("res://scenes/death_effect.tscn")
+var potion_scene = load("res://scenes/potion.tscn")
 
 func _ready():
 	get_node("hitbox").add_to_group("enemy")
@@ -21,6 +22,14 @@ func get_atq():
 	return atq
 
 func damage(swatq):
+	var r = randf()
+	#Probability 2/3, call witches
+	if (r < 0.6):
+		var new_potion = potion_scene.instance()
+		new_potion.set_global_pos(get_global_pos())
+		get_parent().get_parent().add_child(new_potion)
+		
+	
 	var new_effect = death_effect.instance()
 	set_fixed_process(false)
 	add_child(new_effect)

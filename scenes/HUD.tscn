@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/Dialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://graphics/effects/fade.tex" type="Texture" id=4]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Control
 
@@ -127,7 +127,7 @@ func hide_dialog():
 	get_parent().hide()
 	init()"
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 
 resource/name = "fade_in"
 length = 2.0
@@ -144,7 +144,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 
 resource/name = "fade_out"
 length = 2.0
@@ -271,7 +271,7 @@ margin/left = 20.0
 margin/top = 20.0
 margin/right = 20.0
 margin/bottom = 20.0
-script/script = SubResource( 4 )
+script/script = SubResource( 1 )
 messages = [ "Hello, my name is Flan, welcome to Nameless Kingdom. We are here to have fun and play a little bit. THROWBACK!!!", "Goodbye, fuck off Nameless Kingdom. We are here to have fun and play a little bit. BACKTHROW!!!", "We are here to have fun and play a little bit. THROWBACK!!!" ]
 
 [node name="fadesprite" type="Sprite" parent="."]
@@ -287,8 +287,8 @@ texture = ExtResource( 4 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/fade_in = SubResource( 5 )
-anims/fade_out = SubResource( 6 )
+anims/fade_in = SubResource( 2 )
+anims/fade_out = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]

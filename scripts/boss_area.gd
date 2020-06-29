@@ -4,6 +4,7 @@ export var final_zoom = 0.75 #Final level of zoom (default is 0.5)
 export var final_move_up = 10 #Move camera up on zoom out
 export var zoom_speed = 0.05 #Speed of change of zoom
 export var offset = 0.0
+export var is_boss_arena = true
 
 export(NodePath) var left_wall
 export(NodePath) var right_wall
@@ -59,8 +60,12 @@ func zoom_out(delta):
 	
 	#Incrase the level of zoom
 	if (zoom.x < final_zoom):
-		camera.set_zoom(zoom + Vector2(1.0, 1.0) * zoom_speed * delta)
+		if(is_boss_arena):
+			camera.set_zoom(zoom + Vector2(1.0, 1.0) * zoom_speed * delta)
+		else:
+			camera.set_zoom(zoom + Vector2(1.0, 1.5) * zoom_speed * delta)
 		camera.set_pos(camera.get_pos() - Vector2(0.0, delta*final_move_up))
+			
 	else:
 		#Once finished, the camera is locked,
 		#zoom has changed and walls were created, so delete this node
@@ -72,8 +77,9 @@ func zoom_out(delta):
 func _on_boss_start_area_enter( area ):
 	#and we are the king
 	if (area.is_in_group("king") and not start_zoom):
-		get_tree().get_root().get_node("Node2D/musicplayer").set_stream(load("res://music/ost/finalboss.ogg"))
-		get_tree().get_root().get_node("Node2D/musicplayer").play()
+		if(is_boss_arena):
+			get_tree().get_root().get_node("Node2D/musicplayer").set_stream(load("res://music/ost/finalboss.ogg"))
+			get_tree().get_root().get_node("Node2D/musicplayer").play()
+			area.get_parent().start_boss()
 		start_zoom = true
-		area.get_parent().start_boss()
 		set_fixed_process(true) #Make the zoom

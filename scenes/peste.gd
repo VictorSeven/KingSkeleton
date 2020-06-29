@@ -19,7 +19,7 @@ var healthbar
 var king
 
 var atq = 30
-var life = 200
+var life = 100
 var is_damaged = false
 var vulnerable = false #Can I attack it? Only when he calls/spit
 var damagetime = 1.5
@@ -33,6 +33,7 @@ func _ready():
 	get_node("atq").add_to_group("enemy")
 	#Load healthbar
 	healthbar = get_tree().get_root().get_node(path_to_healthbar)
+	healthbar.target = self
 	#Load textures
 	for name in nombres:
 		texturas.append(load("res://graphics/enemies/peste/"+name+".png"))
@@ -83,7 +84,7 @@ func _fixed_process(delta):
 func do_atq():
 	var r = randf()
 	#Probability 2/3, call witches
-	if (r < 0.4):
+	if (r < 0.6):
 		change_anim("call", 1) #Call witches!
 		#Two witches
 		var w1 = witch.instance()
@@ -95,7 +96,7 @@ func do_atq():
 		w2.init(90.0 * (1.0 + r2) )
 		#Start at random heigth also
 		w1.set_pos(Vector2(300 + 100 * r1, -(randf() * 70)))
-		w2.set_pos(Vector2(300 + 100 * r2, -(randf() * 100)))
+		w2.set_pos(Vector2(450 + 100 * r2, -(randf() * 100)))
 		#Add them
 		add_child(w1)
 		add_child(w2)
@@ -117,8 +118,8 @@ func get_atq():
 func damage(swatq):
 	#Damage only when it is not vulnerable
 	if (vulnerable and not is_damaged):
-		healthbar.update()
 		life -= swatq 
+		healthbar.update()
 		is_damaged = true
 		damage_elapsed_time = 0.0
 		if (life < 0):

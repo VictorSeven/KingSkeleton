@@ -44,6 +44,8 @@ func _ready():
 	randomize() #RNG
 	king = get_tree().get_root().get_node("Node2D/king") #Get the king
 	healthbar = get_tree().get_root().get_node(path_to_healthbar)
+	healthbar.target = self
+	
 	#Zone where we are going to walk
 	minx = get_pos().x - zone
 	maxx = get_pos().x + zone
@@ -135,7 +137,7 @@ func damage(swatq):
 		healthbar.update()
 		is_damaged = true
 		if (life > 0):
-			throwtime = throwtime * 0.8 #Reduce the rate of knive throw!
+			throwtime = throwtime * 0.9 #Reduce the rate of knive throw! #This is dangerous, as sometimes the kind doesn't have time to move after attacking.
 			#Cool animation of cards using particle emitter
 			if (life <= maxlife/2 and not cards_used):
 				get_node("player").play("cartas")

@@ -71,6 +71,8 @@ region_rect = Rect2( 0, 0, 10000, 4000 )
 
 [node name="bg_objects" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="estalactita" parent="bg_objects" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 574.419, 1241.74 )
@@ -233,6 +235,10 @@ __meta__ = {
 }
 
 [node name="CanvasLayer_HUD" parent="." instance=ExtResource( 6 )]
+
+[node name="PlayerHUD" parent="CanvasLayer_HUD/GridContainer"]
+
+editor/display_folded = true
 
 [node name="king" parent="." instance=ExtResource( 7 )]
 

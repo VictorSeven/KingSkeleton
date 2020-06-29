@@ -8,7 +8,7 @@ var singleton
 var healthbar
 var path_to_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/PlayerHUD/Healthbar"
 var enemy_healthbar
-var path_to_enemy_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD/Healthbar"
+var path_to_enemy_healthbar = "Node2D/CanvasLayer_HUD/GridContainer/EnemyHUD"
 var dialog_hud
 var path_to_dialog_hud = "Node2D/CanvasLayer_HUD/Dialog_HUD"
 
@@ -66,7 +66,7 @@ func _fixed_process(delta):
 		enemy_healthbar.hide()
 	
 	#If the sword is not in the air, process King's input
-	if (not is_throwing and not is_damaged and not is_dialog_showing()):
+	if (not is_throwing and not is_damaged):
 		move_input(delta)
 		
 		# Integrate velocity into motion and move
@@ -174,7 +174,7 @@ func move_input(delta):
 		change_anim("idle")
 	
 	#Do attack is we are not throwing sword
-	if (Input.is_action_pressed("ui_accept") and !is_throwing):
+	if (Input.is_action_pressed("ui_accept") and !is_throwing and not is_dialog_showing()):
 		vel.x = 0.0 #Stop king
 		get_node("player").play("throwsword")
 		get_node("player").play("swordspin")

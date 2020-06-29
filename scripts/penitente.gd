@@ -5,10 +5,10 @@ var king #King instance
 #Death effect
 var death_effect = load("res://scenes/death_effect.tscn")
 
-var dist_king = 150.0 #Distance to king
+var dist_king = 150.0 #Distance to king to start charging
 var vel = Vector2(0.0, 0.0)
 var speed = 10.0
-var sp_multiplier = 5.0 #To move faster when it is close
+var sp_multiplier = 12.0 #To move faster when it is close
 
 #Stats
 var atq = 30

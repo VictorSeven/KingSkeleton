@@ -52,14 +52,20 @@ func _fixed_process(delta):
 			movement(delta) #Move
 		#set_pos(get_pos() + vel * delta)
 		move(vel * delta)
+	
+	if(walking and not get_node("raycastfloor").is_colliding()):
+		print("hi")
+		turn_around()
 
 func movement(delta):
-	if (king.get_pos().x < get_pos().x):
-		vel.x = -speed
+	vel.x = speed
+	
+	if (vel.x < 0):
 		get_node("Sprite").set_flip_h(false)
+		get_node("raycastfloor").set_pos(Vector2(-1 * abs(get_node("raycastfloor").get_pos().x), get_node("raycastfloor").get_pos().y))
 	else:
-		vel.x = speed
 		get_node("Sprite").set_flip_h(true)
+		get_node("raycastfloor").set_pos(Vector2(abs(get_node("raycastfloor").get_pos().x), get_node("raycastfloor").get_pos().y))
 
 #Here we need also the index of the texture
 func change_anim(newanim, index):
@@ -111,3 +117,9 @@ func atq_anim():
 		elapsed_time = 0.0
 		#Current animation is attack, so gets its length
 		activate_start_time = get_node("anim").get_current_animation_length()
+
+func turn_around():
+	speed = -speed
+	get_node("raycastfloor").set_pos(Vector2(-1 * get_node("raycastfloor").get_pos().x, get_node("raycastfloor").get_pos().y))
+	#get_node("raycastfloor").translate()
+	#get_node("raycastfloor").set_pos()

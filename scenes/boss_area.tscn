@@ -19,6 +19,7 @@ final_zoom = 0.75
 final_move_up = 10
 zoom_speed = 0.05
 offset = 0.0
+is_boss_arena = true
 left_wall = null
 right_wall = null
 

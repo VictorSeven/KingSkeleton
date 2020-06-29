@@ -199,6 +199,9 @@ label_text = "PLAYER"
 
 [node name="Healthbar" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 11 )]
 
+margin/left = 4.0
+margin/right = 4.0
+
 [node name="Player2" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 10 )]
 
 margin/top = 32.0
@@ -207,7 +210,9 @@ label_text = "ENEMY"
 
 [node name="Healthbar1" parent="CanvasLayer_HUD/GridContainer" instance=ExtResource( 11 )]
 
+margin/left = 4.0
 margin/top = 32.0
+margin/right = 4.0
 margin/bottom = 32.0
 
 [node name="king" parent="." instance=ExtResource( 12 )]
@@ -247,6 +252,7 @@ cart_frame = 2
 [node name="boss_area" parent="." instance=ExtResource( 15 )]
 
 transform/pos = Vector2( 3771.84, -7.84341 )
+is_boss_arena = true
 
 [node name="genoma" parent="." instance=ExtResource( 16 )]
 
