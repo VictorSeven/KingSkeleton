@@ -30,50 +30,50 @@ In addition to that, you may want to make your own version of the Nameless Kingd
 ## Credits and License
 All the material in this repository is protected by a MIT License. Please read the terms (stated in LICENSE.md) for re-using the assets and please cite the original authors always. The following people collaborated producing this game (and you should cite the appropiate people if reusing assets):
 
-Víctor Buendía Ruiz-Azuaga (lead & programming)
-Francisco Escobedo (programming)
+VÃ­ctor BuendÃ­a Ruiz-Azuaga (lead & programming)
+FlanGran.de Escobedo (programming)
 Antonio Heredia Romero (art & graphics)
-Juan Marín Sánchez (SFX & boss music)
-Mario Vílchez Romero (music)
+Juan MarÃ­n SÃ¡nchez (SFX & boss music)
+Mario VÃ­lchez Romero (music)
 
-Special thanks to Jose Manuel López Ortega.
+Special thanks to Jose Manuel LÃ³pez Ortega.
 
 
-# Español:
+# EspaÃ±ol:
 
-## Descripción
+## DescripciÃ³n
 
-Nameless Kingdom es un juego de acción y plataformas desarollado para participar en la 5ª GameOff Jam. Se puede jugar en el navegador en la página dedicada de Itch.io (Ver arriba). 
+Nameless Kingdom es un juego de acciÃ³n y plataformas desarollado para participar en la 5Âª GameOff Jam. Se puede jugar en el navegador en la pÃ¡gina dedicada de Itch.io (Ver arriba). 
 
-Ha quedado en la posición 61, de 205 proyectos presentados. Se clasificó 20º por sus gráficos, y 35º por su música. La versión actual corrige bugs iniciales.
+Ha quedado en la posiciÃ³n 61, de 205 proyectos presentados. Se clasificÃ³ 20Âº por sus grÃ¡ficos, y 35Âº por su mÃºsica. La versiÃ³n actual corrige bugs iniciales.
 
 **El Reino sin Nombre era un lugar hermoso y feliz. Bueno, al menos antes de que llegaran los monstruos. Y los fantasmas.**
 
 
-Pero no desesperes -¡nuestro querido rey ha venido para salvarlos a todos! El problema es que el rey *también* es un fantasma. Con solamente una mano, y una espada, debes llegar al final de cada nivel y derrotar a los malvados jefes.
+Pero no desesperes -Â¡nuestro querido rey ha venido para salvarlos a todos! El problema es que el rey *tambiÃ©n* es un fantasma. Con solamente una mano, y una espada, debes llegar al final de cada nivel y derrotar a los malvados jefes.
 
-Nameless Kingdom es un juego de acción y plataformas donde tu habilidad con la espada es importante. Los enemigos son poderosos, pero todavía tienes una oportunidad.
+Nameless Kingdom es un juego de acciÃ³n y plataformas donde tu habilidad con la espada es importante. Los enemigos son poderosos, pero todavÃ­a tienes una oportunidad.
 
-## Usando el código fuente:
+## Usando el cÃ³digo fuente:
 
-Si no puedes ejecutar los binarios, sigue estos pasos para ejecutar el juego desde el código fuente. Es muy sencillo y funciona en cualquier sistema operativo.
-Además, tal vez quieras crear tu propia versión de Nameless Kingdom, añadiendo nuevos niveles, o simplemente tienes curiosidad por ver cómo se hizo. 
+Si no puedes ejecutar los binarios, sigue estos pasos para ejecutar el juego desde el cÃ³digo fuente. Es muy sencillo y funciona en cualquier sistema operativo.
+AdemÃ¡s, tal vez quieras crear tu propia versiÃ³n de Nameless Kingdom, aÃ±adiendo nuevos niveles, o simplemente tienes curiosidad por ver cÃ³mo se hizo. 
 
-1.  Descargar Godot Engine de la página oficial ([https://godotengine.org/](https://godotengine.org/) ). Descargar la versión 2.1.4-stable para el sistema operativo que usemos. **Godot descarga un ejecutable muy ligero que no necesita instalación.**
-2.  Descargar la información del repositorio ([https://github.com/VictorSeven/KingSkeleton](https://github.com/VictorSeven/KingSkeleton)), haciendo click en "Clone or Download" y descargar como un zip. 
-3.  Descomprimir el zip y guardar su contenido en una carpeta. **Poner esta carpeta en el mismo sitio donde esté el ejecutable de Godot.**
-4.  Abrimos Godot. Sale una ventana para elegir proyecto. Hacemos click en "importar", y buscamos el archivo **engine.cfg** que está en la carpeta que hemos descargado. 
-5.  Finalmente aparecerá **KingSkeleton** como proyecto.  Simplemente lo abrimos, y pulsamos el botón de **play** que está en la parte de arriba del editor. Se abrirá una venta con el juego.  Los controles son los cursores para moverse y la tecla A para atacar.
+1.  Descargar Godot Engine de la pÃ¡gina oficial ([https://godotengine.org/](https://godotengine.org/) ). Descargar la versiÃ³n 2.1.4-stable para el sistema operativo que usemos. **Godot descarga un ejecutable muy ligero que no necesita instalaciÃ³n.**
+2.  Descargar la informaciÃ³n del repositorio ([https://github.com/VictorSeven/KingSkeleton](https://github.com/VictorSeven/KingSkeleton)), haciendo click en "Clone or Download" y descargar como un zip. 
+3.  Descomprimir el zip y guardar su contenido en una carpeta. **Poner esta carpeta en el mismo sitio donde estÃ© el ejecutable de Godot.**
+4.  Abrimos Godot. Sale una ventana para elegir proyecto. Hacemos click en "importar", y buscamos el archivo **engine.cfg** que estÃ¡ en la carpeta que hemos descargado. 
+5.  Finalmente aparecerÃ¡ **KingSkeleton** como proyecto.  Simplemente lo abrimos, y pulsamos el botÃ³n de **play** que estÃ¡ en la parte de arriba del editor. Se abrirÃ¡ una venta con el juego.  Los controles son los cursores para moverse y la tecla A para atacar.
 
-## Créditos y Licencia
-Todo el material en este repositorio está protegio por una MIT License. Consulta los términos de la licencia (escritos en LICENSE.md) para reutilizar el material y cita siempre a los autores originales. Los desarrolladores del juego (a los que debes citar apropiadamente si reutilizas material) son los siguientes:
+## CrÃ©ditos y Licencia
+Todo el material en este repositorio estÃ¡ protegio por una MIT License. Consulta los tÃ©rminos de la licencia (escritos en LICENSE.md) para reutilizar el material y cita siempre a los autores originales. Los desarrolladores del juego (a los que debes citar apropiadamente si reutilizas material) son los siguientes:
 
-Víctor Buendía Ruiz-Azuaga (dirección y programación)
-Francisco Escobedo (programación)
-Antonio Heredia Romero (arte t gráficos)
-Juan Marín Sánchez (efectos de sonido, música de jefe final)
-Mario Vílchez Romero (música)
+VÃ­ctor BuendÃ­a Ruiz-Azuaga (direcciÃ³n y programaciÃ³n)
+FlanGran.de (programaciÃ³n)
+Antonio Heredia Romero (arte t grÃ¡ficos)
+Juan MarÃ­n SÃ¡nchez (efectos de sonido, mÃºsica de jefe final)
+Mario VÃ­lchez Romero (mÃºsica)
 
-Gracias a Jose Manuel López Ortega.
+Gracias a Jose Manuel LÃ³pez Ortega.
 
 
